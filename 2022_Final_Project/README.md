@@ -1,8 +1,8 @@
 # Team Name
 
 ### Team Members
-Lauren Martucci
-Lukas Wellenstein
+1. Lauren Martucci
+2. Lukas Wellenstein
 
 ### Final Proposal
 1. Persona/Scenario
