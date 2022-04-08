@@ -13,15 +13,10 @@
     2. Scenario
 2. Requirements Document
 
-| Representation            |
-| ----------- | ----------- |
-| Basemap     | Natural Earth state outlines  |
-| U.S. CWD cases | https://www.usgs.gov/centers/nwhc/science expanding-distribution-chronic-wasting-disease        |
-| CWD cases in Midwest | WI:https://dnr.wi.gov/wmcwd/Summary/County
-MI:https://gis-midnr.opendata.arcgis.com/maps/291616c40b9044e9a73c61df5faaec85/about
-IL: https://www2.illinois.gov/dnr/p
-IA:https://www.iowadnr.gov/Hunting/Deer-Hunting/Deer-Health/Chronic-Wasting-Disease/Surveillance-Results
-MO:https://mdc.mo.gov/hunting-trapping/species/deer/chronic-wasting-disease/cwd-surveillance|
+| Syntax | Description |
+| --- | ----------- |
+| Header | Title |
+| Paragraph | Text |
 
 3. Wireframes
 
