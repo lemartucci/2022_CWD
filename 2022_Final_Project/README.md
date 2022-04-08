@@ -14,11 +14,13 @@
 2. Requirements Document
 
 Representation
-|   |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+ |  | 
+--- | --- | ---
+1 | Basemap | 
+2 | Timeline | 
+3 | Legend | 
+4 | Overview | 
+
 Interaction
 
 3. Wireframes
