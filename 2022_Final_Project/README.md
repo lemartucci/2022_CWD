@@ -14,15 +14,15 @@
 2. Requirements Document
     
     1. Representation
-        **Basemap:** 
-        **U.S. CWD cases/distribution:**
-        **Timeline:**
-        **Legend:**
-        **Overview:**
+        1. **Basemap:** 
+        2. **U.S. CWD cases/distribution:**
+        3. **Timeline:**
+        4. **Legend:**
+        5. **Overview:**
     
     2. Interaction
-        **State selection:**
-        **Line chart hover:**
+        1. **State selection:**
+        2. **Line chart hover:**
 
 3. Wireframes
 
