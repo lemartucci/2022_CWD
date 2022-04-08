@@ -14,8 +14,15 @@
 2. Requirements Document
     
     1. Representation
+        **Basemap:** 
+        **U.S. CWD cases/distribution:**
+        **Timeline:**
+        **Legend:**
+        **Overview:**
     
     2. Interaction
+        **State selection:**
+        **Line chart hover:**
 
 3. Wireframes
 
