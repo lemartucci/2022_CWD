@@ -13,6 +13,13 @@
     2. Scenario
 2. Requirements Document
 
+| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+
+
 3. Wireframes
 
 
