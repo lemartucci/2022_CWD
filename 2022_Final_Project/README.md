@@ -13,10 +13,9 @@
 
     2. **User Case Scenario**
 
-        When accessing the CWD map, the wildlife disease expert is welcomed with a popup that provides a textual overview for navigating the site and a clear entry point for interaction with a "click here to begin" button. Upon closing the popup they see a static map of the United States that shows the spread of CWD in the contiguous U.S. They quickly **identify** and **compare** areas of CWD spread within the U.S, and examine the **clusters** of CWD outbreaks. The user is prompted to scroll and below the static map of the contiguous U.S. there is an interactive CWD policy map for the midwest, which contains Wisconsin, Michigan, Missouri, Iowa, and Illinois. The user hovers over each state, which enables them to **identify** the state and **retrieve** CWD policy information by clicking.
-
-
-
+        When accessing the CWD map, the wildlife disease expert is welcomed with a popup that provides a textual overview for navigating the site and a clear entry point for interaction with a "click here to begin" button. Upon closing the popup they see an introduction to CWD, an interactive donut chart that shows CWD cases in wild and captive cervids by Midwest state, and a static map of CWD spread in the contiguous U.S. They are quickly able to gain **insight** into state-level cervid CWD case makeup by interacting with the donut chart and viewing the static map of the U.S. which enables them to **identify** and **compare** areas of CWD spread and examine **clusters** of CWD outbreaks. Interested in the Midwest, they click "Midwest" in the top menu bar and arrive at the interactive map of CWD spread and policy for the Midwest; they **filter** the data to display state level CWD data which generates proportional symbols over each state; interested in change over time they click on the temporal **sequence** tool. The proportional symbols change to display CWD cases in 5 year intervals.They notice Wisconsin is an **outlier** in that it has seen the largest growth of CWD cases in the Midwest over time. They click on Wisconsin and a popup appears, **retrieving** the year and exact CWD case number for Wisconsin. Interested in visualizing additional data, they **overlay** the number of hunters registered per state and subsequently the number of deer harvested per state, both layers depicted as choropleth base maps, placed under the case numbers proportional symbols.
+        
+        
 2. **Requirements Document**
     
     1. **Representation**
