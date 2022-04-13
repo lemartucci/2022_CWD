@@ -19,11 +19,31 @@
 2. **Requirements Document**
     
     1. **Representation**
-        1. **Basemap:** 
-        2. **U.S. CWD cases/distribution:**
-        3. **Timeline:**
-        4. **Legend:**
-        5. **Overview:**
+        1. **Basemap(Midwest):** 
+            1. Source: Natural Earth: https://www.naturalearthdata.com/ 
+            2. Symbolization: State outlines of midwestern states
+        2. **DNR Regions:** 
+            1. Source:https://data-wi-dnr.opendata.arcgis.com/
+            2. Symbolization: Outline of DNR regions
+        3. **U.S. CWD cases/distribution:**
+            1. Source: https://www.usgs.gov/centers/nwhc/science/expanding-distribution-chronic-wasting-disease 
+            2. Symbolization: Image of map from USGS or, if time allows, static map that we create
+        4. **CWD cases in Midwest:**
+            1. Sources: WI:https://dnr.wi.gov/wmcwd/Summary/County, MI:https://gis-midnr.opendata.arcgis.com/maps/291616c40b9044e9a73c61df5faaec85/about, IL: https://www2.illinois.gov/dnr/p, IA:https://www.iowadnr.gov/Hunting/Deer-Hunting/Deer-Health/Chronic-Wasting-Disease/Surveillance-Results, MO:https://mdc.mo.gov/hunting-trapping/species/deer/chronic-wasting-disease/cwd-surveillance
+            2. Symbolization: Depicted by dots representing individual cases or proportional symbols based on chosen representation
+
+        5. **Timeline:**
+            1. Source: https://cwd-info.org/timeline/    
+                https://leg.mt.gov/content/Committees/Interim/2019-2020/EQC/Meetings/may-2020/cwd-other-states-regulation-comparison.pdf
+            2. Symbolization: Scrolly timeline that gives important CWD policy updates over time
+
+        6. **Legend:**
+            1. Source: Various data sources; dependent on variable being mapped
+            2. Symbolization: Nested proportional symbols for proportional symbol map and color scale   for choropleth overlay
+
+        7. **Overview:**
+            1. Source: 
+            2. Symbolization: Documentation on the background description and user guideline
     
     2. **Interaction**
         1. **State selection:**
