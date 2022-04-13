@@ -47,44 +47,44 @@
     
     2. **Interaction**
         1. **State selection:**
-            1.Operator, Operand: Retrieve: objects.
+            1. Operator, Operand: Retrieve: objects.
 
-            2.Description: Hover to highlight state and click to retrieve popup information window.
+            2. Description: Hover to highlight state and click to retrieve popup information window.
 
         2. **Context overlay**
-            1.Operator, Operand: Overlay: objects.
+            1. Operator, Operand: Overlay: objects.
 
-            2.Description: Click button to turn on/off choropleth overlay of number of deers harvested or number of registered hunters. 
+            2. Description: Click button to turn on/off choropleth overlay of number of deers harvested or number of registered hunters. 
 
         3. **Time animation**
-            1.Operator, Operand:  Sequence: time
+            1. Operator, Operand:  Sequence: time
 
-            2.Description: Press play to sequence through the years from 2000 to 2020; time interval will be every 5 years and the user will be able to pause the sequence.  
+            2. Description: Press play to sequence through the years from 2000 to 2020; time interval will be every 5 years and the user will be able to pause the sequence.  
 
         4. **Timeline Search**
-            1.Operator, Operand: Search: objects
+            1. Operator, Operand: Search: objects
 
-            2.Description: Type a feature of interest in the search bar and the word will be highlighted in the scrolly timeline, if it exists. 
+            2. Description: Type a feature of interest in the search bar and the word will be highlighted in the scrolly timeline, if it exists. 
 
         5. **Donut chart menu selection**
-            1.Operator, Operand:
+            1. Operator, Operand:
 
-            2.Description: Type a feature of interest in the search bar and the word will be highlighted in the scrolly timeline, if it exists. 
+            2. Description: Type a feature of interest in the search bar and the word will be highlighted in the scrolly timeline, if it exists. 
 
         6. **Aggregate by state or county**
-            1.Operator, Operand: Resymbolize: objects.
+            1. Operator, Operand: Resymbolize: objects.
 
-            2.Description: Click button to aggregate CWD cases by state or county. 
+            2. Description: Click button to aggregate CWD cases by state or county. 
 
         7. **Zoom**
-            1.Operator, Operand: Zoom: location. 
+            1. Operator, Operand: Zoom: location. 
 
-            2.Description: Click stored hyperlink to be taken to a page with background about the project. 
+            2. Description: Click stored hyperlink to be taken to a page with background about the project. 
 
         8. **Link to About page**
-            1.Operator, Operand: Retrieve: objects
+            1. Operator, Operand: Retrieve: objects
 
-            2.Description: Click stored hyperlink to be taken to a page with background about the project. 
+            2. Description: Click stored hyperlink to be taken to a page with background about the project. 
 
         9. **Link to Report a bug document:**
             1. Operator, Operand: Retrieve: objects
