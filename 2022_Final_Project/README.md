@@ -107,7 +107,8 @@
             2. **Description:** Clicking button takes users to the section of hyperlinks with further information on the topic. 
 
 3. **Wireframes**
-Documented in submitted PDF
+
+https://github.com/lemartucci/2022_CWD/blob/main/2022_Final_Project/img/Frame_1.jpeg
 
 
 
