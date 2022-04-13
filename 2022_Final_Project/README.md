@@ -94,7 +94,7 @@
         10. **Link to What is CWD section**
             1. **Operator, Operand:** reexpress: Objects 
 
-            2.**Description:** Clicking button takes user directly to the section explaining CWD. 
+            2. **Description:** Clicking button takes user directly to the section explaining CWD. 
 
         11. **Link to Midwest section**
             1. **Operator, Operand:** Reexpress: Objects 
