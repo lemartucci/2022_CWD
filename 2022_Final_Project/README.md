@@ -64,7 +64,7 @@
         4. **Timeline Search**
             1.Operator, Operand: Search: objects
 
-            2.Description: 
+            2.Description: Type a feature of interest in the search bar and the word will be highlighted in the scrolly timeline, if it exists. 
 
         5. **Donut chart menu selection**
             1.Operator, Operand:
@@ -79,7 +79,7 @@
         7. **Zoom**
             1.Operator, Operand: Zoom: location. 
 
-            2. Description: Click stored hyperlink to be taken to a page with background about the project. 
+            2.Description: Click stored hyperlink to be taken to a page with background about the project. 
 
         8. **Link to About page**
             1.Operator, Operand: Retrieve: objects
