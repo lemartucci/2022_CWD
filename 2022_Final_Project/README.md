@@ -30,7 +30,7 @@
             2. **Symbolization:** Image of map from USGS or, if time allows, static map that we create
         4. **CWD cases in Midwest:**
             1. **Sources:** WI:https://dnr.wi.gov/wmcwd/Summary/County, MI:https://gis-midnr.opendata.arcgis.com/maps/291616c40b9044e9a73c61df5faaec85/about, IL: https://www2.illinois.gov/dnr/p, IA:https://www.iowadnr.gov/Hunting/Deer-Hunting/Deer-Health/Chronic-Wasting-Disease/Surveillance-Results, MO:https://mdc.mo.gov/hunting-trapping/species/deer/chronic-wasting-disease/cwd-surveillance
-            2. Symbolization: Depicted by dots representing individual cases or proportional symbols based on chosen representation
+            2. **Symbolization:** Depicted by dots representing individual cases or proportional symbols based on chosen representation
 
         5. **Timeline**
             1. **Source:** https://cwd-info.org/timeline/    
