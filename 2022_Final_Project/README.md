@@ -107,10 +107,9 @@
             2. **Description:** Clicking button takes users to the section of hyperlinks with further information on the topic. 
 
 3. **Wireframes**
+Submitted in PDF on canvas, also located in our img folder. 
 
-https://github.com/lemartucci/2022_CWD/blob/main/2022_Final_Project/img/Frame_1.jpeg
 
-<img src="/img/Frame_1.jpeg" title="Wireframe 1>
 
 
 
