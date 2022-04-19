@@ -36,7 +36,7 @@ function setMap() {
         var midwest = data[0]
             midCounties = data[1]
             console.log(midwest);
-            console.log(counties);
+            console.log(midCounties);
 
         //translate TopoJSON to geoJson
         var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
