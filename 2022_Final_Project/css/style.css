@@ -1,1 +1,13 @@
-/*insert style here*/
+.map {
+    border: medium solid #999;
+}
+.counties {
+    fill: #fff;
+    stroke: #CCC;
+    stroke-width: 2px;
+}
+.midwestBackground {
+    fill: #fff;
+    stroke: #CCC;
+
+}
