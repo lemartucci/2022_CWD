@@ -1,10 +1,16 @@
+html,body{
+   min-height: 140%;
+   overflow: auto;
+}
 body{
-    background-color: #ebebe0;
+   background-color: #ebebe0;
 }
 .map {
-    border: medium solid #999;
+    border: medium solid #111;
+    margin: 45px 0 0 450px;
+    
 }
-.counties {
+.midCounties {
     fill: #fff;
     stroke: #CCC;
     stroke-width: 2px;
@@ -16,7 +22,7 @@ body{
 }
 footer{
    background-color: #ccc;
-   position: absolute;
+   position: fixed;
    bottom: 0;
    height: 45px;
    width: 100vw;
