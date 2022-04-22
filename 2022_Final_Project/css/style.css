@@ -89,6 +89,22 @@ footer{
     background-color:aqua;
  }
 
+ /*Example 3.13*/
+.title {
+   font-family:'EB Garamond', serif;
+   font-size: 1.5em;
+   font-weight: bold;
+   padding-top: 5px;
+}
+
+.description{
+   font-family: 'EB Garamond', serif;
+   font-size: 20px;
+   width: 750px;
+   padding-left: 350px
+
+} 
+
 /*
 .title{
     font-family: 'EB Garamond', serif;
