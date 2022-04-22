@@ -2,8 +2,8 @@ window.onload = setMap();
 
 function setMap() {
     //map frame dimensions
-    var width = 750,
-        height = 1000;
+    var width = window.innerWidth * 0.25,
+    height = 800;
 
     //create new svg container for the map
     var map = d3
@@ -48,15 +48,15 @@ function callback(data) {
         var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
         console.log(midwestCounties);
 
-        var backgroundStates = topojson.feature(background, background.objects.Mid_Background_Project).features;
+        var backgroundStates = topojson.feature(background, background.objects.Mid_Background_Project);
         console.log(backgroundStates);
     
         //add surrounding states for context
         var otherStates = map
-        .append("path")
-        .datum(backgroundStates)
-        .attr("class", "otherStates")
-        .attr("d", path);
+            .append("path")
+            .datum(backgroundStates)
+            .attr("class", "otherStates")
+            .attr("d", path);
         
         //add midwest states to the map
         var midwestBackground = map

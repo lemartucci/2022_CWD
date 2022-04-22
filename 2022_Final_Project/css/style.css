@@ -8,17 +8,25 @@ body{
 .map {
     border: medium solid #111;
     margin: 45px 0 0 450px;
+    background-color: lightblue;
     
 }
-.midCounties {
+.counties {
     fill: #fff;
     stroke: #CCC;
-    stroke-width: 2px;
+    stroke-width: 1px;
+    opacity: 10;
 }
 .midwestBackground {
     fill: #fff;
     stroke: #CCC;
 
+}
+.otherStates {
+   fill: rgb(182, 167, 145);
+   opacity: 10;
+   stroke: gray;
+   stroke-width: 0.5px;
 }
 footer{
    background-color: #ccc;
@@ -77,7 +85,10 @@ footer{
  a:hover{
     background-color: rgb(61, 94, 61);
  }
- 
+ .otherStates{
+    background-color:aqua;
+ }
+
 /*
 .title{
     font-family: 'EB Garamond', serif;
