@@ -27,7 +27,8 @@ function setMap() {
     //Data for map
     var promises = [
         d3.json("data/Midwest_States_Project.topojson"),
-        d3.json("data/USA_Counties_Midwest_Project.topojson")
+        d3.json("data/USA_Counties_Midwest_Project.topojson"),
+        d3.json("data/Mid_Background_Project.topojson")
     ];
     Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
@@ -35,8 +36,10 @@ function setMap() {
 function callback(data) {
         var midwest = data[0]
             midCounties = data[1]
+            background = data[2]
             //console.log(midwest);
             //console.log(midCounties);
+            //console.log(background);
 
         //translate TopoJSONs to geoJsons
         var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
@@ -45,14 +48,22 @@ function callback(data) {
         var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
         console.log(midwestCounties);
 
+        var backgroundStates = topojson.feature(background, background.objects.Mid_Background_Project).features;
+        console.log(backgroundStates);
     
+        //add surrounding states for context
+        var otherStates = map
+        .append("path")
+        .datum(backgroundStates)
+        .attr("class", "otherStates")
+        .attr("d", path);
+        
         //add midwest states to the map
         var midwestBackground = map
             .append("path")
             .datum(midwestStates)
             .attr("class", "midwestBackground")
             .attr("d", path);
-        
         
         //add midwest counties to the map
         var counties = map
@@ -64,6 +75,7 @@ function callback(data) {
                 return "midwestCounties" + d.properties.STATE_NAME;
             })
             .attr("d", path);//d defines the coordinates of path
+        
         }
 
     }
