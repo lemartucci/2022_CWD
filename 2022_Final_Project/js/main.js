@@ -28,8 +28,7 @@ function setMap() {
     var promises = [
         d3.json("data/Midwest_States_Project.topojson"),
         d3.json("data/USA_Counties_Midwest_Project.topojson"),
-        //d3.json("data/Mid_Background_Project.topojson")
-        d3.json("data/cb_2018_us_state_20m.topojson")
+        d3.json("data/USA_Project.topojson")
     ];
     Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
@@ -37,8 +36,7 @@ function setMap() {
 function callback(data) {
         var midwest = data[0]
             midCounties = data[1]
-            usa = data[2]
-            //background = data[2]
+            background = data[2]
             //console.log(midwest);
             //console.log(midCounties);
             //console.log(background);
@@ -50,25 +48,18 @@ function callback(data) {
         var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
         console.log(midwestCounties);
 
-        var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
-        /*var backgroundStates = topojson.feature(background, background.objects.Mid_Background_Project);
-        console.log(backgroundStates);*/
+        //var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
+        var backgroundStates = topojson.feature(background, background.objects.USA_Project);
+        console.log(backgroundStates)
     
         //add surrounding states for context
-        /*var otherStates = map
+        var usa = map
             .append("path")
             .datum(backgroundStates)
-            .attr("class", "otherStates")
-            .attr("d", path);*/
-        
-        //add USA to map
-        var usaCountry = map
-            .append("path")
-            .datum(country)
-            .attr("class", "usaCountry")
+            .attr("class", "usa")
             .attr("d", path);
         
-            //add midwest states to the map
+        //add midwest states to the map
         var midwestBackground = map
             .append("path")
             .datum(midwestStates)
@@ -85,7 +76,5 @@ function callback(data) {
                 return "midwestCounties" + d.properties.STATE_NAME;
             })
             .attr("d", path);//d defines the coordinates of path
-        
         }
-
     }
