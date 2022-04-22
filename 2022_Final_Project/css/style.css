@@ -41,6 +41,9 @@ footer{
    padding-top: 10px;
    font-family: 'Times New Roman', Times, serif;
 }
+.footer-content a{
+   color: black;
+}
 *{
     padding: 0;
     margin: 0;
