@@ -22,12 +22,16 @@ body{
     stroke: #CCC;
 
 }
-.otherStates {
+.usaCountry{
+   fill: #fff;
+   stroke: #CCC;
+}
+/*.otherStates {
    fill: rgb(182, 167, 145);
    opacity: 10;
    stroke: gray;
    stroke-width: 0.5px;
-}
+}*/
 footer{
    background-color: #ccc;
    position: fixed;
