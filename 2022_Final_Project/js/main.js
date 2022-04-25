@@ -80,8 +80,6 @@ function callback(data) {
             .attr("d", path);//d defines the coordinates of path
         }
     }
-
-<<<<<<< HEAD
     //creates info popup upon entering page
     window.addEventListener("load", function(){
         setTimeout(
@@ -94,7 +92,7 @@ function callback(data) {
     document.querySelector("#close").addEventListener("click", function(){
         document.querySelector(".popup").style.display = "none";
     });
-=======
+    
     /*
 
     //Scatterplot Creation....Draft code based on D3 example
@@ -171,4 +169,3 @@ function callback(data) {
             .text('Positive Cases');
 
     }*/
->>>>>>> a35199e4853fdea33e368711e602d96cb184349f

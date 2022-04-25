@@ -27,23 +27,23 @@
         </div>
     </nav>
 
-    <div class="wrapperDiv">
-        <div class="buttonpanel">
-<!--
-             <h2>Year</h2>   
-             <br>
-             <br>
-             <h2>Aggregate by: 
-             <br>
-             <br>
-             <h2>Overlay correlates:</h2> 
-             <br>
-             <br>
--->
-        </div>
-
-        <div class="mapframe"></div>
+    <!---
+    the left panel section
+     <div id="queryPanel">
+                <div id="checkBoxControl">
+                    <div class="buttontitle">Overlay correlates:</div>
+                    <label class="container" style="color: #486052; padding-top: 15px;">Number of registered hunters
+                        <input name="category" value="H5" type="checkbox" checked="checked" onclick="getCheckedCheckboxesFor()">
+                        <span class="checkmark" style="margin-top: 10px;"></span>
+                    </label>
+                    <label class="container" style="color: #486052;padding-top: 5px;">Number of deer harvested
+                        <input name="category" value="H4" type="checkbox" checked="checked" onclick="getCheckedCheckboxesFor()">
+                        <span class="checkmark"></span>
+                    </label>
     </div>
+ -->
+        <div class="mapframe"></div>
+
 
     <div class="popup">
         <button id="close">&times;</button>
@@ -57,14 +57,11 @@
         </p>
     </div>
 
-
     <footer>
         <div class= "footer-content">
             <p>Last Updated May 2022 | Best viewed on desktop browser | <a class="link" href="https://docs.google.com/forms/d/e/1FAIpQLSeoyZwrh7bEweB04HKzX6bLxwQ69rHNrX-UzFLjTk2TjTb2qQ/viewform?usp=sf_link">Report a bug </a> </p>
         </div>
     </footer>
-    
-    <div id="cwd_data"></div>
 
 
 
@@ -86,7 +83,6 @@
         place these within <script> tags-->
 
         <!--put your external script links here-->
-        <script src="https://d3js.org/d3.v4.min.js"></script>
         <script type="text/javascript" src="lib/topojson.min.js"></script>
         <script type="text/javascript" src="lib/d3.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
