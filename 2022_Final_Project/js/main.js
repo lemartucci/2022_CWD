@@ -34,7 +34,7 @@ function setMap() {
     Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
     //Callback function to retrieve the data
-function callback(data) {
+    function callback(data) {
         var midwest = data[0]
             midCounties = data[1]
             background = data[2]
@@ -93,18 +93,18 @@ function callback(data) {
         document.querySelector(".popup").style.display = "none";
     });
     
-    /*
+    
 
     //Scatterplot Creation....Draft code based on D3 example
     var margin = {top: 10, right: 30, bottom: 30, left: 60},
         width = 460-margin.left-margin.right,
         height = 400-margin.top-margin.bottom;
     
-    var svg = d3.select(#cwd_data)
+    var svg = d3.select(".scatterplot")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
-        .appeng("g")
+        .append("g")
             .attr("tranform",
                     "translate(" + margin.left + "," + margin.top + ")");
     
@@ -166,6 +166,5 @@ function callback(data) {
             .attr('transform', 'translate(60,' + height + ')rotate(-90)')
             .style('font-family', 'Helvetica')
             .style('font-size', 12)
-            .text('Positive Cases');
-
-    }*/
+             .text('Positive Cases');
+    })
