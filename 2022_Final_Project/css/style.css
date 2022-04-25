@@ -172,7 +172,7 @@ h6{
 }
 .popup{
     background-color: #fff;
-    width: 500px;
+    width: 850px;
     padding: 30px 40px;
     position: absolute;
     transform: translate(-50%,-50%);
@@ -202,7 +202,7 @@ h6{
    margin-top: -20px;
 }
 .popup p{
-    font-size: 14px;
+    font-size: 30px;
     font-family: 'EB Garamond', serif;
     text-align: justify;
     margin: 20px 0;
@@ -211,7 +211,7 @@ h6{
 }
 .infotitle{
    color: black;
-   font-size: 25px;
+   font-size: 50px;
 }
 #queryPanel {
    margin:0px;
