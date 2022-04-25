@@ -3,12 +3,12 @@ html,body{
    overflow: auto;
 }
 body{
-   background-color: #ebebe0;
+   background-color: #ffffff;
 }
 .map {
-    border: medium solid #111;
+    border: medium solid #C3C9C6;
     margin: 45px 0 0 450px;
-    background-color: rgb(212, 235, 243);
+    background-color: #C3D8D6;
     
 }
 .counties {
@@ -32,8 +32,18 @@ body{
    stroke: gray;
    stroke-width: 0.5px;
 }*/
+.logo{
+   color: white;
+   font-size: 40px;
+   line-height: 80px;
+   padding: 0 100px;
+   padding-left: 20px;
+   font-family:'EB Garamond', serif;
+   border-radius: 3px;
+   text-decoration: none;
+}
 footer{
-   background-color: #ccc;
+   background-color: #536D5E;
    position: fixed;
    bottom: 0;
    height: 45px;
@@ -43,8 +53,8 @@ footer{
    font-size: 15px;
    text-align: center;
    padding-top: 10px;
-   font-family: 'Times New Roman', Times, serif;
-   color: black;
+	font-family: 'EB Garamond', serif;
+   color: white;
 }
 *{
     padding: 0;
@@ -52,26 +62,24 @@ footer{
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    color: white;
  }
  body {
     font-family:'EB Garamond', serif;
  }
  nav{
-    background: #ccc;
+    background: #536D5E;
     height: 80px;
     width: 100%;
  }
- label.logo{
-    color: Black;
-    font-size: 40px;
-    line-height: 80px;
-    padding: 0 100px;
-    font-weight: bold;
-    padding-left: 20px;
-    font-family:'EB Garamond', serif;
-    border-radius: 3px;
-    text-decoration: none;
- }
+ 
+ .title {
+   font-family:'EB Garamond', serif;
+   font-size: 1.5em;
+   font-weight: bold;
+   padding-top: 20px;
+   padding-bottom: 20px;
+}
 
  nav ul{
     float: right;
@@ -83,29 +91,20 @@ footer{
     margin: 0 5px;
  }
  nav ul li a{
-    color: black;
+    color: white;
     font-size: 18px;
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
  }
  a:hover{
-    background-color: rgb(61, 94, 61);
+    background-color: white;
     border-radius: 3px;
     color: black;
  }
  .otherStates{
     background-color:aqua;
  }
-
- /*Example 3.13*/
-.title {
-   font-family:'EB Garamond', serif;
-   font-size: 1.5em;
-   font-weight: bold;
-   padding-top: 10px;
-}
-
 .description{
    font-family: 'EB Garamond', serif;
    font-size: 20px;
@@ -120,6 +119,7 @@ footer{
 
 h4{
    font-size: 20px;
+   font-family: 'EB Garamond', serif;
 }
 
 .buttonpanel{   
@@ -134,15 +134,46 @@ h4{
   float: left;
 }  
 
-
-/*
-.title{
-    font-family: 'EB Garamond', serif;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding-top: 5px;
+.bullets{
+	width: 50%;
+	font-family: 'EB Garamond', serif;
+	color: #486052;
+	font-size: 20px;
+}
+h2{
+	font-family: 'EB Garamond', serif;
+   color:#000000;  
+}
+h3{
+   font-family: 'Shippori Antique B1', sans-serif;
+   color:#000000;  
+}
+h4{
+   font-family: 'Shippori Antique B1', sans-serif;
+   color:#000; 
+}
+h5{
+   font-family: 'Shippori Antique B1', sans-serif;
+  font-size: 40px;
+  color: #000;
+  padding-left: 100px;
+}
+h6{
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+   color:#000; 
+}
+.text{
+	width: 100%;
+	padding-left: 50px;
+}
+.link{
+   text-decoration: underline;
+   color: white
 }
 
+
+/*
 .nav-link{
     color:#914602;
 	text-decoration: none;
