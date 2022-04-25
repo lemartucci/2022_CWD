@@ -171,7 +171,56 @@ h6{
    text-decoration: underline;
    color: white
 }
-
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.popup{
+    background-color: #fff;
+    width: 500px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border: medium solid #C3C9C6;
+    border-width: 3px;
+    border-radius: 15px;
+    display: none;
+    text-align: center;
+}
+.popup button{
+   display: block;
+   margin:  0 0 20px auto;
+   background-color: transparent;
+   font-size: 25px;
+   color: #fff;
+   background: #486052;
+   border-radius: 100%;
+   width: 30px;
+   height: 30px;
+   border: none;
+   outline: none;
+   cursor: pointer;
+}
+.popup h2{
+   margin-top: -20px;
+}
+.popup p{
+    font-size: 14px;
+    font-family: 'EB Garamond', serif;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+    color: #000;
+}
+.infotitle{
+   color: black;
+   font-size: 25px;
+}
 
 /*
 .nav-link{

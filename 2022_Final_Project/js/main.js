@@ -78,3 +78,16 @@ function callback(data) {
             .attr("d", path);//d defines the coordinates of path
         }
     }
+
+    //creates info popup upon entering page
+    window.addEventListener("load", function(){
+        setTimeout(
+            function open(event){
+                document.querySelector(".popup").style.display = "block";
+            },
+        )
+    });      
+    
+    document.querySelector("#close").addEventListener("click", function(){
+        document.querySelector(".popup").style.display = "none";
+    });
