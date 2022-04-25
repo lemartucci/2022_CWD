@@ -7,7 +7,7 @@ function setMap() {
 
     //create new svg container for the map
     var map = d3
-        .select("body")
+        .select(".mapframe")
         .append("svg")
         .attr("class", "map")
         .attr("width", width)
