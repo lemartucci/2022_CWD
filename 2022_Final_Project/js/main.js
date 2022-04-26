@@ -115,6 +115,7 @@
             return midwestStates;
     }
 */
+
         //creates info popup upon entering page
         window.addEventListener("load", function(){
             setTimeout(
@@ -128,7 +129,7 @@
             document.querySelector(".popup").style.display = "none";
         });
         
-        
+
 
         //Scatterplot Creation....Draft code based on D3 example
         var margin = {top: 10, right: 30, bottom: 30, left: 60},
