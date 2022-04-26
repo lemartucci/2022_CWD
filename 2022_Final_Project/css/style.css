@@ -11,6 +11,37 @@ body{
     background-color: #C3D8D6;
     
 }
+.leftsidebar{
+   background-color: #b8c4bd;
+   border-color: #000;
+   left: 0;
+   position: absolute;
+   background-attachment: fixed;
+   border: #000;
+   height: 140%;
+   width: 445px;
+   float: left;
+}
+.leftsidebar h3{
+   color: black;
+   font-size: 30px;
+   text-align: center;
+   font-family:'EB Garamond', serif;
+
+}
+.leftsidebar label{
+   color: black;
+   font-size: 30px;
+   text-align: center;
+
+}
+.leftsidebar button{
+   color: black;
+   font-size: 15px;
+   text-align: center;
+   background-color: #b8c4bd;
+
+}
 .counties {
     fill: #fff;
     stroke: #CCC;
