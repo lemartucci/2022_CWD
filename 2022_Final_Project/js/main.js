@@ -34,9 +34,9 @@
             d3.json("data/Midwest_States_Project.topojson"),
             d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
-            d3.json("data/Positive_Cases.csv"),
-            d3.json("data/Total_Harvested.csv"),
-            d3.json("data/Deer_Licenses_Sold.csv")
+            d3.csv("data/Positive_Cases.csv"),
+            d3.csv("data/Total_Harvested.csv"),
+            d3.csv("data/Deer_Licenses_Sold.csv")
         ];
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
