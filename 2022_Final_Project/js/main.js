@@ -34,7 +34,9 @@
             d3.json("data/Midwest_States_Project.topojson"),
             d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
-            //d3.json("data/Positive_Cases.csv")
+            d3.json("data/Positive_Cases.csv"),
+            d3.json("data/Total_Harvested.csv"),
+            d3.json("data/Deer_Licenses_Sold.csv")
         ];
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
@@ -43,10 +45,15 @@
             var midwest = data[0]
                 midCounties = data[1]
                 background = data[2]
-                //csvData = data[3]
+                caseData = data[3]
+                harvestData=data[4]
+                deerData=data[5]
                 //console.log(midwest);
                 //console.log(midCounties);
                 //console.log(background);
+                //console.log(caseData);
+                //console.log(harvestData);
+                //console.log(deerData);
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
