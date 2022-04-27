@@ -59,7 +59,7 @@
         Promise.all(promisesCsv).then(callback);//Fetching multiple datasets at once with Promise.All
 
         //Callback function to retrieve the data
-        function callback(data) {
+    function callback(data) {
             var midwest = data[0]
                 midCounties = data[1]
                 background = data[2]
@@ -111,6 +111,7 @@
                 })
                 .attr("d", path);//d defines the coordinates of path
             }
+            setPlot();
         }
 /*
         function joinData(midwestStates,csvData){
