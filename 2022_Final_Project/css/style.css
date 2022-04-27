@@ -8,25 +8,18 @@ body{
 .map {
     border: medium solid #C3C9C6;
     margin: 45px 0 0 450px;
-    background-color: #C3D8D6;
-    
+    background-color: #C3D8D6;  
 }
 .plotFrame {
    fill: none;
-   stroke: black;
+   border: black;
    stroke-width: 5px;
    shape-rendering: crispEdges;
    position: right;
 }
 .plotBackground {
    fill: rgb(182, 167, 145);
-}
-.axis path,
-.axis line {
-    fill: none;
-    stroke: rgb(11, 10, 10);
-    stroke-width: 1px;
-    shape-rendering: crispEdges;
+   border:#000;
 }
 .leftsidebar{
    /*
