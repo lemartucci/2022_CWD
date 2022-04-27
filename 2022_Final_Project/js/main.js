@@ -139,8 +139,66 @@
             };
             return midwestStates;
     }
-*/
 
+    //function to create color scale generator
+    function makeColorScale(data){
+        var colorClasses = [
+            "#f6eff7",
+            "#bdc9e1",
+            "#67a9cf",
+            "#1c9099",
+            "#016c59"
+        ];
+
+        //create color scale generator
+        var colorScale = d3.scaleQuantile()
+            .range(colorClasses);
+
+        //build array of all values of the expressed attribute
+        var domainArray = [];
+        for (var i=0; i<data.length; i++){
+            var val = parseFloat(data[i][expressed]);
+            domainArray.push(val);
+        };
+
+        //assign array of expressed values as scale domain
+        colorScale.domain(domainArray);
+
+        return colorScale;
+    };
+    
+        function setEnumerationUnits(midwestStates,map,path,colorScale){
+                //add midwest states to map
+                var midStates = map.selectAll(".midStates")
+                    .data(midwestStates)
+                    .enter()
+                    .append("path")
+                    .attr("class", function(d){
+                        return "midStates " + d.properties.STATE_NAME;
+                    })
+                    .attr("d", path)
+                    .style("fill", function(d){
+                        var value = d.properties[expressed];            
+                        if(value) {                
+                            return colorScale(d.properties[expressed]);            
+                        } else {                
+                            return "#ccc";            
+                        } 
+                    })   
+                    .on("mouseover", function(event, d){
+                        highlight(d.properties);
+                    })
+                    .on("mouseout", function (event, d) {
+                        dehighlight(d.properties);
+                        d3.select(".infolabel").remove()
+                    }) 
+                    .on("mousemove", moveLabel);
+                                    
+            //below Example 2.2 line 16...add style descriptor to each path
+            var desc = midStates.append("desc")
+            .text('{"stroke": "grey", "stroke-width": "0.5px"}');
+        }
+*/
         //creates info popup upon entering page
         window.addEventListener("load", function(){
             setTimeout(
@@ -153,7 +211,7 @@
         document.querySelector("#close").addEventListener("click", function(){
             document.querySelector(".popup").style.display = "none";
         });
-    
+
     function setPlot(){
     
             //create a second svg element to hold the scatter plot
