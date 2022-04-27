@@ -26,33 +26,22 @@
         </ul>
         </div>
     </nav>
-    <div class = "leftsidebar">
-        <h3>This is a column</h3>
-        <label>Overlay</label> <br>
-        <label>Years</label> <br>
-        <br>
-        <button> Here is a button</button>
+
+    <div class="leftsidebar">
+        <svg width="600" height="600">
+                <rect x="50" y="20" width="300" height="500"
+                style="fill: white; stroke: #b8c4bd; stroke-width: 3px;"></rect>
+            <text x="120" y="50" style="font-size: 25px;">This is a column</text> 
+            <text x="70" y="90">Overlay</text>
+            <text x="70" y="130">Year</text>
+            <br>
+            <button x="70" y="170">Here is a button</button>         
+        </svg>
     </div>
 
-    <!---
-    the left panel section
-     <div id="queryPanel">
-                <div id="checkBoxControl">
-                    <div class="buttontitle">Overlay correlates:</div>
-                    <label class="container" style="color: #486052; padding-top: 15px;">Number of registered hunters
-                        <input name="category" value="H5" type="checkbox" checked="checked" onclick="getCheckedCheckboxesFor()">
-                        <span class="checkmark" style="margin-top: 10px;"></span>
-                    </label>
-                    <label class="container" style="color: #486052;padding-top: 5px;">Number of deer harvested
-                        <input name="category" value="H4" type="checkbox" checked="checked" onclick="getCheckedCheckboxesFor()">
-                        <span class="checkmark"></span>
-                    </label>
-    </div>
- -->
     <div class="mapframe"></div>
 
     <div id="scatterplot"></div>
-
 
     <div class="popup">
         <button id="close">&times;</button>
