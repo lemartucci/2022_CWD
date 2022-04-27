@@ -14,7 +14,7 @@ body{
 .plotFrame {
    fill: none;
    stroke: black;
-   stroke-width: 3px;
+   stroke-width: 5px;
    shape-rendering: crispEdges;
    position: right;
 }
@@ -28,7 +28,6 @@ body{
     stroke-width: 1px;
     shape-rendering: crispEdges;
 }
-
 .leftsidebar{
    /*
    background-color: #b8c4bd;
