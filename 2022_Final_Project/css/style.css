@@ -10,16 +10,17 @@ body{
     margin: 45px 0 0 450px;
     background-color: #C3D8D6;  
 }
-.plotFrame {
+.chartFrame {
    fill: none;
-   border: black;
+   border: black 2px solid;
    stroke-width: 5px;
    shape-rendering: crispEdges;
-   position: right;
+   float: right;
 }
-.plotBackground {
+.chartBackground {
    fill: rgb(182, 167, 145);
    border:#000;
+   width: 250px;
 }
 .leftsidebar{
    /*

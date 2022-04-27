@@ -2,18 +2,19 @@
 (function(){
 
     //pseudo-global variables
-        //var attrArray=[]
+        //var attrArray=["2000"], "2005", "2010", "2015", "2020"]
         //var expresed = attrArray[0];
     
     //Scatterplot dimensions
-    var plotWidth = window.innerWidth * 0.425,
-        plotHeight = 473,
+    var chartWidth = (window.innerWidth * 0.425)-200,
+        chartHeight = 473,
         leftPadding = 25,
         rightPadding = 2,
         topBottomPadding = 5,
-        plotInnerWidth = plotWidth - leftPadding - rightPadding,
-        plotInnerHeight = plotHeight - topBottomPadding * 2,
+        //chartInnerWidth = chartWidth - leftPadding - rightPadding,
+        //chartInnerHeight = chartHeight - topBottomPadding * 2,
         translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
+
 
     var yScale= d3.scaleLinear().range([463,0]).domain([0,600]);//Scale bar range; Y scale bar
 
@@ -21,8 +22,8 @@
 
     function setMap() {
         //map frame dimensions
-        var width = window.innerWidth * 0.55,
-        height = 1000;
+        var width = window.innerWidth * 0.40,
+        height = 900;
 
         //create new svg container for the map
         var map = d3
@@ -66,18 +67,18 @@
                 caseData = data[3]
                 harvestData=data[4]
                 deerData=data[5]
-                //console.log(midwest);
-                //console.log(midCounties);
-                //console.log(background);
-                //console.log(caseData);
-                //console.log(harvestData);
-                //console.log(deerData);
+                console.log(midwest);
+                console.log(midCounties);
+                console.log(background);
+                console.log(caseData);
+                console.log(harvestData);
+                console.log(deerData);
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project).features;
             console.log(midwestStates);
 
-           //midwestStates = joinData(midwestStates, csvData);
+           //midwestStates = joinData(midwestStates, caseData);
         
             var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
             console.log(midwestCounties);
@@ -111,13 +112,13 @@
                 })
                 .attr("d", path);//d defines the coordinates of path
             }
-//            setPlot();
+            setChart();
         }
 
-        function joinData(midwestStates,csvData){
+        function joinData(midwestStates,caseData){
             //loop through csv to assign each set of csv attribute values to geojson region
-             for (var i=0; i<csvData.length; i++){
-                var  state = csvData[i]; //the current district
+             for (var i=0; i<caseData.length; i++){
+                var  state = caseData[i]; //the current district
                 var csvKey = state.STATE_NAME; //the CSV primary key
 
                 //loop through geojson districts to find correct district
@@ -140,70 +141,71 @@
             };
             return midwestStates;
     }
+    function setChart(){
+    
+        //create a second svg element to hold the bar chart
+        var chart = d3.select("body")//(".mapframe")
+            .append("svg")
+            .attr("width", chartWidth)
+            .attr("height", chartHeight)
+            .attr("class", "chart");
+    
+        //rectangle for chart background
+        var chartBackground = chart.append("rect")
+            .attr("class", "chartBackground")
+            .attr("width", chartInnerWidth)
+            .attr("height", chartInnerHeight)
+            //.attr("transform", translate);
+    
+        //bars for each county
+        var bars = chart.selectAll(".bar")
+            .data(csvData)
+            .enter()
+            .append("rect")
+            .sort(function(a, b){
+                return b[expressed]-a[expressed]
+            })
+            .attr("class", function(d){
+                return "bar " + d.STATE_NAME;
+            })
+            /*.attr("width", chartInnerWidth / csvData.length - 1)
+            .on("mouseover", function(event,d){
+                highlight(d)
+            })
+            .on("mouseout", function(event, d){
+                dehighlight()
+            })
+            .on("mousemove", moveLabel);*/ 
 
-/*
-    function setPlot(){
+        //Text element for chart title and define title placement
+        var chartTitle = chart.append("text")
+            .attr("x", 45)
+            .attr("y", 35)
+            .attr("class", "chartTitle");
     
-            //create a second svg element to hold the scatter plot
-            var plot = d3.select("body")
-                .append("svg")
-                .attr("width", plotWidth)
-                .attr("height", plotHeight)
-                .attr("class", "plot");
-        
-            //rectangle for plot background
-            var plotBackground = plot.append("rect")
-                .attr("class", "plotBackground")
-                .attr("width", plotInnerWidth)
-                .attr("height", plotInnerHeight)
-                .attr("transform", translate);
-        
-            //dots for each state
-            var dots = plot.selectAll(".dot")
-                .data()
-                .enter()
-                .append("rect")
-                .sort(function(a, b){
-                    return b[expressed]-a[expressed]
-                })
-                .attr("class", function(d){
-                    //return "dots " + d.STATE_NAME;
-                })
-                //.attr("width", plottInnerWidth / csvData.length - 1)
-                //.on("mouseover", function(event,d){
-                 //   highlight(d)
-                //})
-                //.on("mouseout", function(event, d){
-                 //   dehighlight()
-                //})
-                //.on("mousemove", moveLabel); 
+        updateChart(bars, caseData.length, colorScale);
     
-            //Text element for plot title and define title placement
-            var plotTitle = plot.append("text")
-                .attr("x", 45)
-                .attr("y", 35)
-                .attr("class", "plotTitle");
+        //Create a vertical axis generator on left (y)
+        var yAxis = d3.axisLeft()
+            .scale(yScale);
+    
+        //Place the axis
+        var axis = chart.append("g")
+            .attr("class", "axis")
+            .attr("transform", translate)
+            .call(yAxis);
+    
+        //create a frame for border of chart
+        var chartFrame = chart.append("rect")
+            .attr("class", "chartFrame")
+            .attr("width", chartInnerWidth)
+            .attr("height", chartInnerHeight)
+            .attr("transform", translate);
         
-            //updatePlot(bars, csvData.length, colorScale);
-        
-            //Create a vertical axis generator on left (y)
-            var yAxis = d3.axisLeft()
-                .scale(yScale);
-        
-            //Place the axis
-            var axis = plot.append("g")
-                .attr("class", "axis")
-                .attr("transform", translate)
-                .call(yAxis);
-        
-            //create a frame for border of plot
-            var plotFrame = plot.append("rect")
-                .attr("class", "plotFrame")
-                .attr("width", plotInnerWidth)
-                .attr("height", plotInnerHeight)
-                .attr("transform", translate);
-    }
-        
+        var desc = bars.append("desc").text('{"stroke": "none", "stroke-width": "0px"}');
+        }
+
+    
         /*
         //Scatterplot Creation....Draft code based on D3 example
         var margin = {top: 10, right: 30, bottom: 30, left: 60},
