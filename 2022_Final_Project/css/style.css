@@ -11,6 +11,23 @@ body{
     background-color: #C3D8D6;
     
 }
+.plotFrame {
+   fill: none;
+   stroke: black;
+   stroke-width: 3px;
+   shape-rendering: crispEdges;
+   position: right;
+}
+.plotBackground {
+   fill: rgb(182, 167, 145);
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: rgb(11, 10, 10);
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
 
 .leftsidebar{
    /*

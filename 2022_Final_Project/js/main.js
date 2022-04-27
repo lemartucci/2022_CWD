@@ -2,6 +2,20 @@
 (function(){
 
     //pseudo-global variables
+        //var attrArray=[]
+        //var expresed = attrArray[0];
+    
+    //Scatterplot dimensions
+    var plotWidth = window.innerWidth * 0.425,
+        plotHeight = 473,
+        leftPadding = 25,
+        rightPadding = 2,
+        topBottomPadding = 5,
+        plotInnerWidth = plotWidth - leftPadding - rightPadding,
+        plotInnerHeight = plotHeight - topBottomPadding * 2,
+        translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
+
+    var yScale= d3.scaleLinear().range([463,0]).domain([0,600]);//Scale bar range; Y scale bar
 
     window.onload = setMap();
 
@@ -34,13 +48,15 @@
             d3.json("data/Midwest_States_Project.topojson"),
             d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
-        /*
+        ]
+        var promisesCsv=[
             d3.csv("data/Positive_Cases.csv"),
             d3.csv("data/Total_Harvested.csv"),
             d3.csv("data/Deer_Licenses_Sold.csv")
-        */
-        ];
+            ]
+        ;
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
+        Promise.all(promisesCsv).then(callback);//Fetching multiple datasets at once with Promise.All
 
         //Callback function to retrieve the data
         function callback(data) {
@@ -137,9 +153,71 @@
         document.querySelector("#close").addEventListener("click", function(){
             document.querySelector(".popup").style.display = "none";
         });
+    
+    function setPlot(){
+    
+            //create a second svg element to hold the scatter plot
+            var plot = d3.select("body")
+                .append("svg")
+                .attr("width", plotWidth)
+                .attr("height", plotHeight)
+                .attr("class", "plot");
+        
+            //rectangle for plot background
+            var plotBackground = plot.append("rect")
+                .attr("class", "plotBackground")
+                .attr("width", plotInnerWidth)
+                .attr("height", plotInnerHeight)
+                .attr("transform", translate);
+        
+            //bars for each county
+            var dots = plot.selectAll(".dot")
+                .data()
+                .enter()
+                .append("rect")
+                .sort(function(a, b){
+                    return b[expressed]-a[expressed]
+                })
+                .attr("class", function(d){
+                    //return "dots " + d.STATE_NAME;
+                })
+                //.attr("width", plottInnerWidth / csvData.length - 1)
+                //.on("mouseover", function(event,d){
+                 //   highlight(d)
+                //})
+                //.on("mouseout", function(event, d){
+                 //   dehighlight()
+                //})
+                //.on("mousemove", moveLabel); 
+    
+            //Text element for plot title and define title placement
+            var plotTitle = plot.append("text")
+                .attr("x", 45)
+                .attr("y", 35)
+                .attr("class", "plotTitle");
+        
+            //updatePlot(bars, csvData.length, colorScale);
+        
+            //Create a vertical axis generator on left (y)
+            var yAxis = d3.axisLeft()
+                .scale(yScale);
+        
+            //Place the axis
+            var axis = plot.append("g")
+                .attr("class", "axis")
+                .attr("transform", translate)
+                .call(yAxis);
+        
+            //create a frame for border of plot
+            var plotFrame = plot.append("rect")
+                .attr("class", "plotFrame")
+                .attr("width", plotInnerWidth)
+                .attr("height", plotInnerHeight)
+                .attr("transform", translate);
+    }
         
 
-
+        /*
         //Scatterplot Creation....Draft code based on D3 example
         var margin = {top: 10, right: 30, bottom: 30, left: 60},
             width = 460-margin.left-margin.right,
@@ -212,5 +290,5 @@
                 .style('font-family', 'Helvetica')
                 .style('font-size', 12)
                 .text('Positive Cases');
-        })
+        })*/
     }) ();
