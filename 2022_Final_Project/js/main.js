@@ -65,10 +65,11 @@
             var midwest = data[0]
                 midCounties = data[1]
                 background = data[2]
-                caseData = data[3]
-                harvestData=data[4]
-                deerData=data[5]
-                midwestPoints = data[6]
+                midwestPoints = data[3]
+                caseData = data[4]
+                harvestData=data[5]
+                deerData=data[6]
+                
                 console.log(midwest);
                 console.log(midCounties);
                 console.log(background);
@@ -81,7 +82,7 @@
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project).features;
             console.log(midwestStates);
 
-           //midwestStates = joinData(midwestStates, caseData);
+            //midwestStates = joinData(midwestStates, caseData);
         
             var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
             console.log(midwestCounties);
@@ -104,6 +105,13 @@
                 .attr("class", "midwestBackground")
                 .attr("d", path);
             
+            //add midwest points to the map
+            var midPoints = map
+                .append("path")
+                .datum(midwestPoints)
+                .attr("class", "midwestPoints")
+                .attr("d", path);
+            
             //add midwest counties to the map
             var counties = map
                 .selectAll(".counties")
@@ -117,10 +125,10 @@
             }
             setChart();
         }
-
+/*
         function joinData(midwestStates,caseData){
             //loop through csv to assign each set of csv attribute values to geojson region
-             for (var i=0; i<caseData.length; i++){
+             for (var i=3; i<caseData.length; i++){
                 var  state = caseData[i]; //the current district
                 var csvKey = state.STATE_NAME; //the CSV primary key
 
@@ -143,7 +151,7 @@
             };
             return midwestStates;
     }
-
+*/
     function setChart(){
     
         //create a second svg element to hold the bar chart

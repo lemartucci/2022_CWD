@@ -10,6 +10,11 @@ body{
     margin: 45px 0 0 450px;
     background-color: #C3D8D6;  
 }
+.midPoints{
+   color: pink;
+   width: 10px;
+   height: 10px;
+}
 .chartFrame {
    fill: none;
    border: black 2px solid;
