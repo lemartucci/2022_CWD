@@ -109,7 +109,7 @@
             var midPoints = map
                 .append("path")
                 .datum(midwestPoints)
-                .attr("class", "midwestPoints")
+                .attr("class", "midPoints")
                 .attr("d", path);
             
             //add midwest counties to the map

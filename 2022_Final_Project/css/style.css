@@ -10,11 +10,6 @@ body{
     margin: 45px 0 0 450px;
     background-color: #C3D8D6;  
 }
-.midPoints{
-   color: pink;
-   width: 10px;
-   height: 10px;
-}
 .chartFrame {
    fill: none;
    border: black 2px solid;
@@ -28,10 +23,6 @@ body{
    width: 250px;
 }
 .leftsidebar{
-   /*
-   background-color: #b8c4bd;
-   border-color: #000;
-   */
    position: absolute;
    background-attachment: fixed;
    border: #000;
@@ -110,9 +101,6 @@ footer{
     box-sizing: border-box;
     color: white;
  }
- body {
-    font-family:'EB Garamond', serif;
- }
  nav{
     background: #536D5E;
     height: 80px;
@@ -155,21 +143,14 @@ footer{
    width: 750px;
    padding-left: 350px
 } 
-
 .container{
 	display: block;
 	align-items: center;
-}
-
-h4{
-   font-size: 20px;
-   font-family: 'EB Garamond', serif;
 }
 .map{ 
   position: relative;
   display: inline-block;
 }  
-
 .bullets{
 	width: 50%;
 	font-family: 'EB Garamond', serif;
@@ -180,26 +161,11 @@ h2{
 	font-family: 'EB Garamond', serif;
    color:#000000;  
 }
-h3{
-   font-family: 'Shippori Antique B1', sans-serif;
-   color:#000000;  
-}
-h4{
-   font-family: 'Shippori Antique B1', sans-serif;
-   color:#000; 
-}
-h5{
-   font-family: 'Shippori Antique B1', sans-serif;
-  font-size: 40px;
-  color: #000;
-  padding-left: 100px;
-}
 h6{
   font-family: 'EB Garamond', serif;
   font-size: 20px;
    color:#000; 
 }
-
 .link{
    text-decoration: underline;
    color: white
