@@ -1,3 +1,4 @@
+/* body, map */
 html,body{
    min-height: 140%;
    overflow: auto;
@@ -6,10 +7,35 @@ body{
    background-color: #ffffff;
 }
 .map {
-    border: medium solid #C3C9C6;
-    margin: 45px 0 0 450px;
-    background-color: #C3D8D6;  
+   border: medium solid #C3C9C6;
+   margin: 45px 0 0 450px;
+   background-color: #C3D8D6;  
+   position: relative;
+   display: inline-block; 
 }
+counties {
+   fill: #fff;
+   stroke: #CCC;
+   stroke-width: 1px;
+   opacity: 10;
+}
+.midwestBackground {
+   fill: #fff;
+   stroke: #CCC;
+}
+.usa{
+  fill: #fff;
+  stroke: #CCC;
+}
+
+/*.otherStates {
+  fill: rgb(182, 167, 145);
+  opacity: 10;
+  stroke: gray;
+  stroke-width: 0.5px;
+}*/
+
+/* bar chart */
 .chartFrame {
    fill: none;
    border: black 2px solid;
@@ -22,6 +48,8 @@ body{
    border:#000;
    width: 250px;
 }
+
+/* left column */
 .leftsidebar{
    position: absolute;
    background-attachment: fixed;
@@ -49,26 +77,8 @@ body{
    background-color: #b8c4bd;
    border-radius: 5px;
 }
-.counties {
-    fill: #fff;
-    stroke: #CCC;
-    stroke-width: 1px;
-    opacity: 10;
-}
-.midwestBackground {
-    fill: #fff;
-    stroke: #CCC;
-}
-.usa{
-   fill: #fff;
-   stroke: #CCC;
-}
-/*.otherStates {
-   fill: rgb(182, 167, 145);
-   opacity: 10;
-   stroke: gray;
-   stroke-width: 0.5px;
-}*/
+
+/* header and footer */
 .logo{
    color: white;
    font-size: 40px;
@@ -134,9 +144,8 @@ footer{
     border-radius: 3px;
     color: black;
  }
- .otherStates{
-    background-color:aqua;
- }
+
+/* text */
 .description{
    font-family: 'EB Garamond', serif;
    font-size: 20px;
@@ -147,10 +156,6 @@ footer{
 	display: block;
 	align-items: center;
 }
-.map{ 
-  position: relative;
-  display: inline-block;
-}  
 .bullets{
 	width: 50%;
 	font-family: 'EB Garamond', serif;
@@ -177,6 +182,8 @@ h6{
     margin: 0;
     box-sizing: border-box;
 }
+
+/* info pop-up*/
 .popup{
     background-color: #fff;
     width: 850px;
@@ -220,24 +227,8 @@ h6{
    color: black;
    font-size: 50px;
 }
-
 .buttontitle{
    font-size: 20px;
    font-family: 'EB Garamond', serif;
    color: #000;
 }
-/*
-.nav-link{
-    color:#914602;
-	text-decoration: none;
-	list-style: none;
-}
-
-.navbar a{
-	float: right;
-	text-align: center;
-	padding-right: 30px;
-	padding: 20px 18px;
-	text-decoration: none;
-	font-size: 17px;
-}*/
