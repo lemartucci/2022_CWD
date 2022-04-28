@@ -49,6 +49,7 @@
             d3.json("data/Midwest_States_Project.topojson"),
             d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
+            d3.json("data/Midwest_Points.geojson")
         ]
         var promisesCsv=[
             d3.csv("data/Positive_Cases.csv"),
@@ -67,12 +68,14 @@
                 caseData = data[3]
                 harvestData=data[4]
                 deerData=data[5]
+                midwestPoints = data[6]
                 console.log(midwest);
                 console.log(midCounties);
                 console.log(background);
                 console.log(caseData);
                 console.log(harvestData);
                 console.log(deerData);
+                console.log(midwestPoints)
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project).features;
@@ -134,13 +137,13 @@
                         attrArray.forEach(function(attr){
                             var val = parseFloat(state[attr]); //get csv attribute value
                             geojsonProps[attr] = val; //assign attribute and value to geojson properties
-                        
                         });
                     };
                 };
             };
             return midwestStates;
     }
+
     function setChart(){
     
         //create a second svg element to hold the bar chart
