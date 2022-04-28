@@ -1,5 +1,6 @@
 html,body{
-   min-height: 140%;
+   min-height: 100%;
+   max-width: 100vw;
    overflow: auto;
 }
 body{
@@ -7,10 +8,27 @@ body{
 }
 .map {
     border: medium solid #C3C9C6;
-    margin: 45px 0 0 450px;
     background-color: #C3D8D6;  
+    display: inline-block;
+    margin-left:150px;
+    margin-top: 10px;
+    margin-right: 150px;
+    margin-bottom:35px;
+    object-position: center;
+}  
+.graph{
+   height: 275px;
+   width: 1000px;
+   margin-top: 4px;
+   margin-left: 280px;
+   border: medium solid #C3C9C6;
+   background-color: #e9f0ef;  
+   display: inline-block;
+   border-color: black;
+
 }
-.chartFrame {
+
+/*.chartFrame {
    fill: none;
    border: black 2px solid;
    stroke-width: 5px;
@@ -23,10 +41,10 @@ body{
    width: 250px;
 }
 .leftsidebar{
-   /*
+   
    background-color: #b8c4bd;
    border-color: #000;
-   */
+   
    position: absolute;
    background-attachment: fixed;
    border: #000;
@@ -52,7 +70,7 @@ body{
    text-align: center;
    background-color: #b8c4bd;
    border-radius: 5px;
-}
+}*/
 .counties {
     fill: #fff;
     stroke: #CCC;
@@ -97,14 +115,14 @@ footer{
 	font-family: 'EB Garamond', serif;
    color: white;
 }
-*{
+/**{
     padding: 0;
     margin: 0;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
     color: white;
- }
+ }*/
  body {
     font-family:'EB Garamond', serif;
  }
@@ -143,27 +161,23 @@ footer{
  }
  .otherStates{
     background-color:aqua;
- }
+ }/*
 .description{
    font-family: 'EB Garamond', serif;
    font-size: 20px;
    width: 750px;
    padding-left: 350px
 } 
-
+/*
 .container{
 	display: block;
 	align-items: center;
-}
-
+}*/
+/*
 h4{
    font-size: 20px;
    font-family: 'EB Garamond', serif;
-}
-.map{ 
-  position: relative;
-  display: inline-block;
-}  
+} 
 
 .bullets{
 	width: 50%;
@@ -198,7 +212,7 @@ h6{
 .link{
    text-decoration: underline;
    color: white
-}
+}/*
 *,
 *:before,
 *:after{

@@ -3,31 +3,16 @@
 
     //pseudo-global variables
         var attrArray=["2000", "2005", "2010", "2015", "2020"]
-        var expresed = attrArray[0];
+        //var expresed = attrArray[0];
     
-    //Scatterplot dimensions
-    var chartWidth = (window.innerWidth * 0.425)-200,
-        chartHeight = 473,
-        leftPadding = 25,
-        rightPadding = 2,
-        topBottomPadding = 5,
-        chartInnerWidth = chartWidth - leftPadding - rightPadding,
-        chartInnerHeight = chartHeight - topBottomPadding * 2,
-        translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
-
-
-    var yScale= d3.scaleLinear().range([5,0]).domain([0,1500]);//Scale bar range; Y scale bar
 
     window.onload = setMap();
 
     function setMap() {
         //map frame dimensions
-        var width = (window.innerWidth * 0.425) -200,
-        height = 1000;
-
-        console.log( d3
-            .select(".mapframe"))
-
+        var width = (window.innerWidth * 0.85),
+            height = 820;
+           
         //create new svg container for the map
         var map = d3
             .select("body")
@@ -41,7 +26,7 @@
             .center([0, 41.60])//centered on Midwest states
             .rotate([89.35, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
-            .scale(4800)
+            .scale(4000)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
@@ -118,9 +103,9 @@
            
             midwestStates= joinData(midwestStates,caseData);
             
-            setChart(caseData, colorScale);
+            //setGraph(caseData, colorScale);
             
-            setEnumerationUnits(midwestStates,map,path);
+            //setEnumerationUnits(midwestStates,map,path);
 
         }
 
@@ -152,7 +137,7 @@
             };
             return midwestStates;
     }
-
+/*
     function makeColorScale(){
         var colorClasses=[
             "#edf8fb",
@@ -173,7 +158,7 @@
         }
         colorScale.domain(domainArray);
 
-        return colorScale;
+        return colorScale;*/
     
     /*function setEnumerationUnits(midwestStates,map,path, colorScale){
             var state = map
@@ -193,74 +178,72 @@
                         return "#A8A8A8";
                     }
                 })*/
-    
-    
-        function setChart(){
-    
-        //create a second svg element to hold the bar chart
-        var chart = d3.select("body")//(".mapframe")
-            .append("svg")
-            .attr("width", chartWidth)
-            .attr("height", chartHeight)
-            .attr("class", "chart");
-    
-        //rectangle for chart background
-        var chartBackground = chart.append("rect")
-            .attr("class", "chartBackground")
-            .attr("width", chartInnerWidth)
-            .attr("height", chartInnerHeight)
-            //.attr("transform", translate);
-    
-        //bars for each county
-        var bars = chart.selectAll(".bar")
-            .data(caseData)
-            .enter()
-            .append("rect")
-            .sort(function(a, b){
-                return b[expressed]-a[expressed]
-            })
-            .attr("class", function(d){
-                return "bar " + d.STATE_NAME;
-            })
-            /*.attr("width", chartInnerWidth / csvData.length - 1)
-            .on("mouseover", function(event,d){
-                highlight(d)
-            })
-            .on("mouseout", function(event, d){
-                dehighlight()
-            })
-            .on("mousemove", moveLabel);*/ 
+    /*
+    function setGraph(){
+        // set the dimensions and margins of the graph
+        var margin = {top: 10, right: 30, bottom: 30, left: 60},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
-        //Text element for chart title and define title placement
-        var chartTitle = chart.append("text")
-            .attr("x", 45)
-            .attr("y", 35)
-            .attr("class", "chartTitle");
-    
-        //updateChart(bars, caseData.length, colorScale);
-    
-        //Create a vertical axis generator on left (y)
-        var yAxis = d3.axisLeft()
-            .scale(yScale);
-    
-        //Place the axis
-        var axis = chart.append("g")
-            .attr("class", "axis")
-            .attr("transform", translate)
-            .call(yAxis);
-    
-        //create a frame for border of chart
-        var chartFrame = chart.append("rect")
-            .attr("class", "chartFrame")
-            .attr("width", chartInnerWidth)
-            .attr("height", chartInnerHeight)
-            .attr("transform", translate);
+        // append the svg object to the body of the page
+        var svg = d3.select("#cwd_data")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+        //Read the data
+        d3.csv("data/Positive_Cases.csv", function(data) {
+
+        // group the data: I want to draw one line per group
+        var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
+        .key(function(d) { return d.STATE_NAME;})
+        .entries(data);
+
+        // Add X axis --> it is a date format
+        var x = d3.scaleLinear()
+        .domain(d3.extent(data, function(d) { return d.Year; }))
+        .range([ 0, width ]);
+        svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).ticks(5));
+
+        // Add Y axis
+        var y = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) { return +d.n; })])
+        .range([ height, 0 ]);
+        svg.append("g")
+        .call(d3.axisLeft(y));
+
+        // color palette
+        var res = sumstat.map(function(d){ return d.key }) // list of group names
+        var color = d3.scaleOrdinal()
+        .domain(res)
+        .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+
+        // Draw the line
+        svg.selectAll(".line")
+        .data(sumstat)
+        .enter()
+        .append("path")
+            .attr("fill", "none")
+            .attr("stroke", function(d){ return color(d.key) })
+            .attr("stroke-width", 1.5)
+            .attr("d", function(d){
+            return d3.line()
+                .x(function(d) { return x(d.Year); })
+                .y(function(d) { return y(+d.n); })
+                (d.values)
+            })
+
+})*/
+/*
+
+
+    }
         
-        var desc = bars.append("desc").text('{"stroke": "none", "stroke-width": "0px"}');
-        }
-
-    
-        /*
         //Scatterplot Creation....Draft code based on D3 example
         var margin = {top: 10, right: 30, bottom: 30, left: 60},
             width = 460-margin.left-margin.right,
