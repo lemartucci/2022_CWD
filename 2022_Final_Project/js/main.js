@@ -2,8 +2,8 @@
 (function(){
 
     //pseudo-global variables
-        //var attrArray=["2000"], "2005", "2010", "2015", "2020"]
-        //var expresed = attrArray[0];
+        var attrArray=["2000", "2005", "2010", "2015", "2020"]
+        var expresed = attrArray[0];
     
     //Scatterplot dimensions
     var chartWidth = (window.innerWidth * 0.425)-200,
@@ -11,12 +11,12 @@
         leftPadding = 25,
         rightPadding = 2,
         topBottomPadding = 5,
-        //chartInnerWidth = chartWidth - leftPadding - rightPadding,
-        //chartInnerHeight = chartHeight - topBottomPadding * 2,
+        chartInnerWidth = chartWidth - leftPadding - rightPadding,
+        chartInnerHeight = chartHeight - topBottomPadding * 2,
         translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
 
 
-    var yScale= d3.scaleLinear().range([463,0]).domain([0,600]);//Scale bar range; Y scale bar
+    var yScale= d3.scaleLinear().range([5,0]).domain([0,1500]);//Scale bar range; Y scale bar
 
     window.onload = setMap();
 
@@ -30,7 +30,7 @@
 
         //create new svg container for the map
         var map = d3
-            .select(".mapframe")
+            .select("body")
             .append("svg")
             .attr("class", "map")
             .attr("width", width)
@@ -115,8 +115,13 @@
                 })
                 .attr("d", path);//d defines the coordinates of path
             }
-            setPlot();
-            setEnumerationUnits();
+           
+            midwestStates= joinData(midwestStates,caseData);
+            
+            setChart(caseData, colorScale);
+            
+            setEnumerationUnits(midwestStates,map,path);
+
         }
 
         function joinData(midwestStates,caseData){
@@ -125,8 +130,10 @@
                 var  state = caseData[i]; //the current district
                 var csvKey = state.STATE_NAME; //the CSV primary key
 
+                console.log(state);
+
                 //loop through geojson districts to find correct district
-                for (var a=0; a<Positive_Cases.length; a++){
+                for (var a=0; a<midwestStates.length; a++){
 
                     var geojsonProps = midwestStates[a].properties; //the current region geojson properties
                     var geojsonKey = geojsonProps.STATE_NAME; //the geojson primary key
@@ -145,7 +152,50 @@
             };
             return midwestStates;
     }
-    function setChart(){
+
+    function makeColorScale(){
+        var colorClasses=[
+            "#edf8fb",
+            "#ccece6",
+            "#99d8c9",
+            "#66c2a4",
+            "#2ca25f",
+            "#006d2c",
+	    ];
+    }
+    var colorScale = d3.scaleQuantile()
+    .range(colorClasses);
+
+    var domainArray = [];
+        for (var i =0; i<data.length; i++){
+            var val = parseFloat(data[i][expressed]);
+            domainArray.push(val);
+        }
+        colorScale.domain(domainArray);
+
+        return colorScale;
+    
+    /*function setEnumerationUnits(midwestStates,map,path, colorScale){
+            var state = map
+                .selectAll(".STATE_NAME")
+                .data(midwestStates)
+                .enter()
+                .append("path")
+                .attr("class", function (d) {
+                    return "state " + d.properties.STATE_NAME;
+                })
+                .attr("d", path)//d defines the coordinates of path
+                .style("fill", function(d){
+                    var value = d.properties[expressed];
+                    if(value) {
+                        return colorScale(d.properties[expressed]);//if there are no values for attribute, use grey color
+                    } else {
+                        return "#A8A8A8";
+                    }
+                })*/
+    
+    
+        function setChart(){
     
         //create a second svg element to hold the bar chart
         var chart = d3.select("body")//(".mapframe")
@@ -163,7 +213,7 @@
     
         //bars for each county
         var bars = chart.selectAll(".bar")
-            .data(csvData)
+            .data(caseData)
             .enter()
             .append("rect")
             .sort(function(a, b){
@@ -187,7 +237,7 @@
             .attr("y", 35)
             .attr("class", "chartTitle");
     
-        updateChart(bars, caseData.length, colorScale);
+        //updateChart(bars, caseData.length, colorScale);
     
         //Create a vertical axis generator on left (y)
         var yAxis = d3.axisLeft()
