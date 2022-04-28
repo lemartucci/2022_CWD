@@ -22,8 +22,11 @@
 
     function setMap() {
         //map frame dimensions
-        var width = window.innerWidth * 0.40,
-        height = 900;
+        var width = (window.innerWidth * 0.425) -200,
+        height = 1000;
+
+        console.log( d3
+            .select(".mapframe"))
 
         //create new svg container for the map
         var map = d3
@@ -112,7 +115,8 @@
                 })
                 .attr("d", path);//d defines the coordinates of path
             }
-            setChart();
+            setPlot();
+            setEnumerationUnits();
         }
 
         function joinData(midwestStates,caseData){
