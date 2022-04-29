@@ -140,6 +140,9 @@ h6{
     margin: 0;
     box-sizing: border-box;
 }
+.bullets{
+   padding-left: 20px;
+}
 
 /*popup*/
 .popup{

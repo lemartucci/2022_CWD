@@ -8,6 +8,19 @@
 
     window.onload = setMap();
 
+    //creates info popup upon entering page
+    window.addEventListener("load", function(){
+        setTimeout(
+            function open(event){
+                document.querySelector(".popup").style.display = "block";
+            },
+        )
+    });      
+   
+    document.querySelector("#close").addEventListener("click", function(){
+        document.querySelector(".popup").style.display = "none";
+    });
+
     function setMap() {
         //map frame dimensions
         var width = (window.innerWidth * 0.85),
