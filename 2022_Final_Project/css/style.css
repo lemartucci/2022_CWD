@@ -1,13 +1,6 @@
-/*html,body{
-   min-height: 100%;
-   max-width: 100vw;
-   overflow: auto;
-}
-*/
+/*body,map*/
 body{
    background-color: #ffffff;
-   font-family:'EB Garamond', serif;
-
 }
 .map {
     border: medium solid #C3C9C6;
@@ -16,70 +9,9 @@ body{
     margin-left:150px;
     margin-top: 10px;
     margin-right: 150px;
-    margin-bottom:35px;
+    margin-bottom: 35px;
     object-position: center;
 }  
-.controls{
-   height: 200px;
-   width: 300px;
-   margin-top: 10px;
-   border: medium solid #C3C9C6;
-   background-color: #e9f0ef;  
-   float: left;
-}
-.graph{
-   height: 200px;
-   width: 1000px;
-   margin-top: 5px;
-   margin-left: 374px;
-   border: medium solid #C3C9C6;
-   background-color: #e9f0ef;  
- 
-}
-
-/*.chartFrame {
-   fill: none;
-   border: black 2px solid;
-   stroke-width: 5px;
-   shape-rendering: crispEdges;
-   float: right;
-}
-.chartBackground {
-   fill: rgb(182, 167, 145);
-   border:#000;
-   width: 250px;
-}
-.leftsidebar{
-   
-   background-color: #b8c4bd;
-   border-color: #000;
-   
-   position: absolute;
-   background-attachment: fixed;
-   border: #000;
-   height: 140%;
-   width: 400px;
-   float: left;
-}
-.leftsidebar h3{
-   color: black;
-   font-size: 25px;
-   text-align: center;
-   font-family:'EB Garamond', serif;
-   padding-top: 40px;
-}
-.leftsidebar label{
-   color: black;
-   font-size: 20px;
-   padding-left: 20px;
-}
-.leftsidebar button{
-   color: black;
-   font-size: 15px;
-   text-align: center;
-   background-color: #b8c4bd;
-   border-radius: 5px;
-}*/
 .counties {
     fill: #fff;
     stroke: #CCC;
@@ -100,6 +32,26 @@ body{
    stroke: gray;
    stroke-width: 0.5px;
 }*/
+
+/*controls, graph*/
+.controls{
+   height: 200px;
+   width: 300px;
+   margin-top: 10px;
+   border: medium solid #C3C9C6;
+   background-color: #e9f0ef;  
+   float: left;
+}
+.graph{
+   height: 200px;
+   width: 1000px;
+   margin-top: 5px;
+   margin-left: 374px;
+   border: medium solid #C3C9C6;
+   background-color: #e9f0ef;  
+}
+
+/*header,footer*/
 .logo{
    color: white;
    font-size: 40px;
@@ -119,6 +71,7 @@ footer{
 }
 .footer-content{
    font-size: 15px;
+   padding-top: 8px;
    text-align: center;
 	font-family: 'EB Garamond', serif;
    color: white;
@@ -136,6 +89,8 @@ footer{
     height: 80px;
     width: 100%;
  }
+
+ /*text*/
  .title {
    font-family:'EB Garamond', serif;
    font-size: 1.5em;
@@ -154,6 +109,7 @@ footer{
  }
  nav ul li a{
     color: white;
+    text-decoration: none;
     font-size: 18px;
     padding: 7px 13px;
     border-radius: 3px;
@@ -164,58 +120,17 @@ footer{
     border-radius: 3px;
     color: black;
  }
- .otherStates{
-    background-color:aqua;
- }/*
-.description{
-   font-family: 'EB Garamond', serif;
-   font-size: 20px;
-   width: 750px;
-   padding-left: 350px
-} 
-/*
-.container{
-	display: block;
-	align-items: center;
-}*/
-/*
-h4{
-   font-size: 20px;
-   font-family: 'EB Garamond', serif;
-} 
 
-.bullets{
-	width: 50%;
-	font-family: 'EB Garamond', serif;
-	color: #486052;
-	font-size: 20px;
-}
 h2{
 	font-family: 'EB Garamond', serif;
    color:#000000;  
-}
-h3{
-   font-family: 'Shippori Antique B1', sans-serif;
-   color:#000000;  
-}
-h4{
-   font-family: 'Shippori Antique B1', sans-serif;
-   color:#000; 
-}
-h5{
-   font-family: 'Shippori Antique B1', sans-serif;
-  font-size: 40px;
-  color: #000;
-  padding-left: 100px;
 }
 h6{
   font-family: 'EB Garamond', serif;
   font-size: 20px;
    color:#000; 
 }
-
 .link{
-   text-decoration: underline;
    color: white
 }
 *,
@@ -225,7 +140,8 @@ h6{
     margin: 0;
     box-sizing: border-box;
 }
-*/
+
+/*popup*/
 .popup{
     background-color: #fff;
     width: 850px;
@@ -275,18 +191,10 @@ h6{
    font-family: 'EB Garamond', serif;
    color: #000;
 }
-/*
-.nav-link{
-    color:#914602;
-	text-decoration: none;
-	list-style: none;
-}
 
-.navbar a{
-	float: right;
-	text-align: center;
-	padding-right: 30px;
-	padding: 20px 18px;
-	text-decoration: none;
-	font-size: 17px;
-}*/
+/*html,body{
+   min-height: 100%;
+   max-width: 100vw;
+   overflow: auto;
+}
+*/

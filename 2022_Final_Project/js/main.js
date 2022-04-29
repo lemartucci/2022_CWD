@@ -37,21 +37,19 @@
             d3.json("data/Midwest_States_Project.topojson"),
             d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
-        ]
-        var promisesCsv=[
             d3.csv("data/Positive_Cases.csv"),
             d3.csv("data/Total_Harvested.csv"),
             d3.csv("data/Deer_Licenses_Sold.csv")
             ]
         ;
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
-        Promise.all(promisesCsv).then(callback);//Fetching multiple datasets at once with Promise.All
 
         //Callback function to retrieve the data
         function callback(data) {
             var midwest = data[0]
                 midCounties = data[1]
                 background = data[2]
+                midwestPoints = data[3].features
                 caseData = data[3]
                 harvestData=data[4]
                 deerData=data[5]
@@ -88,7 +86,21 @@
                 .datum(midwestStates)
                 .attr("class", "midwestBackground")
                 .attr("d", path);
-            
+/*
+            //add midwest points to the map
+            var points = map.selectAll(“.point”)
+                .data(midwestPoints)
+                .enter()
+                .append(“circle”)
+                .attr(“class”,“point”)
+                .attr(“r”, 5)
+                .attr(“cx”,function(d){
+                    return projection(d.geometry.coordinates)[0]
+                })
+                .attr(“cy”,function(d){
+                    return projection(d.geometry.coordinates)[1]
+                });
+*/          
             //add midwest counties to the map
             var counties = map
                 .selectAll(".counties")
