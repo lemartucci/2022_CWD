@@ -114,7 +114,15 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 });
-          
+                
+                     // Add a scale for bubble size
+                     var valueExtent = d3.extent(data, function(d) { return +d.n; })
+                     var size = d3.scaleSqrt()
+                         .domain(valueExtent)  // What's in the data
+                         .range([ 1, 50])  // Size in pixel
+                    }
+                /*
+                        
             //add midwest counties to the map
             var counties = map
                 .selectAll(".counties")
@@ -125,12 +133,14 @@
                     return "midwestCounties" + d.properties.STATE_NAME;
                 })
                 .attr("d", path);//d defines the coordinates of path
-            }
+                */
+
+            
             //setPlot();
             //setEnumerationUnits();
         }
-/*
-        function joinData(midwestStates,caseData){
+
+        function joinData(midwestPoints,caseData){
             //loop through csv to assign each set of csv attribute values to geojson region
              for (var i=0; i<caseData.length; i++){
                 var  state = caseData[i]; //the current district
@@ -139,9 +149,9 @@
                 console.log(state);
 
                 //loop through geojson districts to find correct district
-                for (var a=0; a<midwestStates.length; a++){
+                for (var a=0; a<midwestPoints.length; a++){
 
-                    var geojsonProps = midwestStates[a].properties; //the current region geojson properties
+                    var geojsonProps = midwestPoints[a].properties; //the current region geojson properties
                     var geojsonKey = geojsonProps.STATE_NAME; //the geojson primary key
 
                     //where primary keys match, transfer csv data to geojson properties object
@@ -158,6 +168,7 @@
             };
             return midwestStates;
     }
+
 /*
     function makeColorScale(){
         var colorClasses=[
