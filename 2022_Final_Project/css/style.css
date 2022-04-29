@@ -25,7 +25,7 @@ body{
    margin-top: 10px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
-   display: inline-block;
+   float: left;
 }
 .graph{
    height: 200px;
@@ -34,7 +34,7 @@ body{
    margin-left: 374px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
-   display: inline-block;
+ 
 }
 
 /*.chartFrame {
