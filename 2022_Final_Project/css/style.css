@@ -17,15 +17,13 @@ body{
     object-position: center;
 }  
 .graph{
-   height: 275px;
+   height: 200px;
    width: 1000px;
-   margin-top: 4px;
-   margin-left: 280px;
+   margin-top: 5px;
+   margin-left: 374px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
    display: inline-block;
-   border-color: black;
-
 }
 
 /*.chartFrame {

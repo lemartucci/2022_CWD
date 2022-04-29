@@ -100,13 +100,8 @@
                 })
                 .attr("d", path);//d defines the coordinates of path
             }
-           
-            midwestStates= joinData(midwestStates,caseData);
-            
-            //setGraph(caseData, colorScale);
-            
-            //setEnumerationUnits(midwestStates,map,path);
-
+            //setPlot();
+            //setEnumerationUnits();
         }
 
         function joinData(midwestStates,caseData){
