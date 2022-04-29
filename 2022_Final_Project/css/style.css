@@ -2,6 +2,11 @@
 body{
    background-color: #ffffff;
 }
+.points{
+   width: 10px;
+   height: 10px;
+   fill: pink;
+}
 .map {
     border: medium solid #C3C9C6;
     background-color: #C3D8D6;  
@@ -15,18 +20,15 @@ body{
 .points{
    width: 10px;
    height: 10px;
-   background: pink;
+   fill: pink;
 }
 .counties {
-    fill: #fff;
-    stroke: #CCC;
-    stroke-width: 1px;
-    opacity: 10;
+   fill: #fff;
+   stroke: #CCC;
+   stroke-width: 1px;
+   opacity: 10;
 }
-.midwestBackground {
-    fill: #fff;
-    stroke: #CCC;
-}
+
 .usa{
    fill: #fff;
    stroke: #CCC;

@@ -48,7 +48,7 @@
         //Data for map
         var promises = [
             d3.json("data/Midwest_States_Project.topojson"),
-            d3.json("data/USA_Counties_Midwest_Project.topojson"),
+            //d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
             d3.json("data/Midwest_Points.geojson"),
             d3.csv("data/Positive_Cases.csv"),
@@ -61,14 +61,14 @@
         //Callback function to retrieve the data
         function callback(data) {
             var midwest = data[0]
-                midCounties = data[1]
-                background = data[2]
-                midwestPoints = data[3].features
+                //midCounties = data[1]
+                background = data[1]
+                midwestPoints = data[2].features
                 caseData = data[3]
                 harvestData=data[4]
                 deerData=data[5]
                 console.log(midwest);
-                console.log(midCounties);
+                //console.log(midCounties);
                 console.log(background);
                 console.log(caseData);
                 console.log(harvestData);
@@ -80,8 +80,8 @@
 
            //midwestStates = joinData(midwestStates, caseData);
         
-            var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
-            console.log(midwestCounties);
+            //var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
+            //console.log(midwestCounties);
 
             //var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
             var backgroundStates = topojson.feature(background, background.objects.USA_Project);
@@ -129,7 +129,7 @@
             //setPlot();
             //setEnumerationUnits();
         }
-
+/*
         function joinData(midwestStates,caseData){
             //loop through csv to assign each set of csv attribute values to geojson region
              for (var i=0; i<caseData.length; i++){
