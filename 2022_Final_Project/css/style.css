@@ -12,6 +12,11 @@ body{
     margin-bottom: 35px;
     object-position: center;
 }  
+.points{
+   width: 10px;
+   height: 10px;
+   background: pink;
+}
 .counties {
     fill: #fff;
     stroke: #CCC;
@@ -26,6 +31,7 @@ body{
    fill: #fff;
    stroke: #CCC;
 }
+
 /*.otherStates {
    fill: rgb(182, 167, 145);
    opacity: 10;

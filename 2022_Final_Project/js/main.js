@@ -50,6 +50,7 @@
             d3.json("data/Midwest_States_Project.topojson"),
             d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
+            d3.json("data/Midwest_Points.geojson"),
             d3.csv("data/Positive_Cases.csv"),
             d3.csv("data/Total_Harvested.csv"),
             d3.csv("data/Deer_Licenses_Sold.csv")
@@ -99,21 +100,21 @@
                 .datum(midwestStates)
                 .attr("class", "midwestBackground")
                 .attr("d", path);
-/*
+
             //add midwest points to the map
-            var points = map.selectAll(“.point”)
+            var points = map.selectAll(".points")
                 .data(midwestPoints)
                 .enter()
-                .append(“circle”)
-                .attr(“class”,“point”)
-                .attr(“r”, 5)
-                .attr(“cx”,function(d){
+                .append("circle")
+                .attr("class","points")
+                .attr("r", 5)
+                .attr("cx",function(d){
                     return projection(d.geometry.coordinates)[0]
                 })
-                .attr(“cy”,function(d){
+                .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 });
-*/          
+          
             //add midwest counties to the map
             var counties = map
                 .selectAll(".counties")
