@@ -23,8 +23,8 @@
 
     function setMap() {
         //map frame dimensions
-        var width = (window.innerWidth * 0.85),
-            height = 820;
+        var width = (window.innerWidth * 0.7),
+            height = 600;
            
         //create new svg container for the map
         var map = d3
@@ -39,7 +39,7 @@
             .center([0, 41.60])//centered on Midwest states
             .rotate([89.35, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
-            .scale(4000)
+            .scale(3000)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()

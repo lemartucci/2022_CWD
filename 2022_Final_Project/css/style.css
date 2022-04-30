@@ -44,8 +44,9 @@ body{
 /*controls, graph*/
 .controls{
    height: 200px;
-   width: 300px;
+   width: 325px;
    margin-top: 10px;
+   margin-left: 40px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
    float: left;
@@ -53,7 +54,7 @@ body{
 .graph{
    height: 200px;
    width: 1000px;
-   margin-top: 5px;
+   margin-top: 10px;
    margin-left: 374px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
