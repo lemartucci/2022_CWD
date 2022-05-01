@@ -4,7 +4,9 @@
     //pseudo-global variables
         var attrArray=["2000", "2005", "2010", "2015", "2020"]
         //var expresed = attrArray[0];
-    
+        
+        var yScale= d3.scaleLinear().range([465,0]).domain([0,600]);//Scale bar range; Y scale bar
+        var xScale= d3.scaleLinear().range([5,0]).domain([2005,2010]);//Scale bar range; Y scale bar
 
     window.onload = setMap();
 
@@ -103,7 +105,6 @@
                 .datum(midwestStates)
                 .attr("class", "midwestBackground")
                 .attr("d", path)
-                .style("stroke", "#000");//outline stroke color
 
             //add midwest points to the map
             var points = map.selectAll(".points")
@@ -150,7 +151,7 @@
                 */
 
             
-            //setPlot();
+            setGraph();
             //setEnumerationUnits();
         }
 
@@ -183,26 +184,36 @@
             return midwestStates;
     }
 
-        // set the dimensions and margins of the graph
-        
-        var graph = d3.select("body")
-            .append("svg")
-            .attr("class", "graph")
-        
-        var y = d3.scaleLinear()
-            .range([0, 1600])
-            .domain([valueExtent]);
-        
-        var yAxis = d3.axisLeft(y);
+        // Creating line graph and axis
 
-        var axis = graph.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(50,0)")
-            .call(yAxis)
-
-       
-
+        function setGraph(){
+            var w= 800,
+                h= 200;
+            
+            var graph = d3.select("#graph")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h)
+                .attr("class", "graph");
+            
+            var xAxis = d3.axisBottom()
+                .scale(xScale);
+            
+            var yAxis = d3.axisLeft()
+                .scale(yScale);
         
+                graph.append("g")
+                .attr("transform", "translate (25,0)")
+                .call(yAxis);
+            
+            var xAxisTranslate = h/1.5 + 10;
+                graph.append("g")
+                .attr("transform", "translate (50, 80)")
+                .call(xAxis);
+
+        };
+
+    /*
         //Read the data
         d3.csv("data/Positive_Cases.csv"), function(data) {
 
@@ -247,7 +258,7 @@
                     (d.values)
                 })
       
-        } 
+        } */
 /*
     function makeColorScale(){
         var colorClasses=[

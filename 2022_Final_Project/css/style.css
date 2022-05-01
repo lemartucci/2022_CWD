@@ -1,8 +1,7 @@
 /*body,map*/
 body{
    background-color: #ffffff;
-   height: auto;
-   width: auto;
+   min-height: 160%;
    
 }
 .points{
@@ -31,9 +30,10 @@ body{
    stroke-width: 1px;
    opacity: 10;
 }*/
-/*.midwestBackground{
+.midwestBackground{
+   outline: #000;
   
-}*/
+}
 
 .usa{
    fill: #fff;
@@ -58,13 +58,18 @@ body{
    float: left;
 }
 .graph{
-   height: 200px;
-   width: 800px;
    margin-top: 10px;
    margin-right: 40px;
    margin-left: 400px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef; 
+}
+.axis path,
+.axis line{
+   fill: none;
+   stroke: black;
+   stroke-width: 1px;
+   shape-rendering: crispEdges;
 }
 
 /*header,footer*/
