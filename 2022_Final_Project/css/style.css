@@ -1,6 +1,9 @@
 /*body,map*/
 body{
    background-color: #ffffff;
+   height: auto;
+   width: auto;
+   
 }
 .points{
    width: 10px;
@@ -14,7 +17,7 @@ body{
     margin-left:150px;
     margin-top: 10px;
     margin-right: 150px;
-    margin-bottom: 35px;
+    margin-bottom: 75px;
     object-position: center;
 }  
 .points{
@@ -22,12 +25,15 @@ body{
    height: 10px;
    fill: pink;
 }
-.counties {
+/*.counties {
    fill: #fff;
    stroke: #CCC;
    stroke-width: 1px;
    opacity: 10;
-}
+}*/
+/*.midwestBackground{
+  
+}*/
 
 .usa{
    fill: #fff;
@@ -53,11 +59,12 @@ body{
 }
 .graph{
    height: 200px;
-   width: 1000px;
+   width: 800px;
    margin-top: 10px;
-   margin-left: 374px;
+   margin-right: 40px;
+   margin-left: 400px;
    border: medium solid #C3C9C6;
-   background-color: #e9f0ef;  
+   background-color: #e9f0ef; 
 }
 
 /*header,footer*/

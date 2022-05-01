@@ -102,21 +102,28 @@
                 .append("path")
                 .datum(midwestStates)
                 .attr("class", "midwestBackground")
-                .attr("d", path);
+                .attr("d", path)
+                .style("stroke", "#000");//outline stroke color
 
             //add midwest points to the map
             var points = map.selectAll(".points")
-                .data(midwestPoints)
+                .data(caseChartData)
                 .enter()
                 .append("circle")
                 .attr("class","points")
-                .attr("r", 5)
+                .attr("id", function(d){
+                    return d.STATE_NAME;
+                })
+                .attr("r", function(d){
+                    var area = d.cases * .5;
+                    return Math.sqrt/(area/Math.PI);
+                }
                 .attr("cx",function(d){
                     return projection(d.geometry.coordinates)[0]
                 })
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
-                });
+                }));
                 
                      // Add a scale for bubble size
                      var valueExtent = d3.extent(data, function(d) { return +d.n; })
@@ -177,18 +184,27 @@
     }
 
         // set the dimensions and margins of the graph
-        var margin = {top: 10, right: 30, bottom: 30, left: 60},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        var w= 800,
+            h= 200;
+        
+        var graph = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h)
+            .attr("class", "graph")
+        
+        var y = d3.scaleLinear()
+            .range([0, 1600])
+            .domain([valueExtent]);
+        
+        var yAxis = d3.axisLeft(y);
 
-        // append the svg object to the body of the page
-        var svg = d3.select("graph")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+        var axis = graph.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(50,0)")
+            .call(yAxis)
+
+       
 
         
         //Read the data
