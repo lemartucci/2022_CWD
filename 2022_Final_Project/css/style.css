@@ -159,6 +159,12 @@ h6{
 .bullets{
    padding-left: 20px;
 }
+.description{
+   font-size: 20px;
+   width: 80%;
+   padding-left: 300px;
+   padding-top: 50px;
+}
 
 /*popup*/
 .popup{

@@ -134,8 +134,6 @@
                 });         
                 }
 
-                // Add circles:
-
                 /*
                         
             //add midwest counties to the map
