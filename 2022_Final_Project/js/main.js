@@ -103,6 +103,12 @@
                 .datum(midwestStates)
                 .attr("class", "midwestBackground")
                 .attr("d", path);
+            
+            // Add a scale for bubble size
+            var valueExtent = d3.extent(data[6], function(d) { return +d.cases })
+            var size = d3.scaleSqrt()
+                .domain(valueExtent)  // What's in the data
+                .range([ 1, 1600])  // Size in pixel
 
             //add midwest points to the map
             var points = map.selectAll(".points")
@@ -110,7 +116,11 @@
                 .enter()
                 .append("circle")
                 .attr("class","points")
-                .attr("r", 5)
+                //.attr("r", 5)
+                .attr("r", function(d){
+                    var area= d.cases * .5;
+                     return Math.sqrt/(area/Math.PI)
+                })
                 .attr("cx",function(d){
                     return projection(d.geometry.coordinates)[0]
                 })
@@ -118,12 +128,7 @@
                     return projection(d.geometry.coordinates)[1]
                 });
                 
-                     // Add a scale for bubble size
-                     var valueExtent = d3.extent(data, function(d) { return +d.n; })
-                     var size = d3.scaleSqrt()
-                         .domain(valueExtent)  // What's in the data
-                         .range([ 1, 50])  // Size in pixel
-
+                     
                     }
 
                 // Add circles:
@@ -236,29 +241,7 @@
                 })
       
         } 
-/*
-    function makeColorScale(){
-        var colorClasses=[
-            "#edf8fb",
-            "#ccece6",
-            "#99d8c9",
-            "#66c2a4",
-            "#2ca25f",
-            "#006d2c",
-	    ];
-    }
-    var colorScale = d3.scaleQuantile()
-    .range(colorClasses);
 
-    var domainArray = [];
-        for (var i =0; i<data.length; i++){
-            var val = parseFloat(data[i][expressed]);
-            domainArray.push(val);
-        }
-        colorScale.domain(domainArray);
-
-        return colorScale;*/
-    
     /*function setEnumerationUnits(midwestStates,map,path, colorScale){
             var state = map
                 .selectAll(".STATE_NAME")
@@ -278,7 +261,6 @@
                     }
                 })*/
 
-    
     
     
     /*
