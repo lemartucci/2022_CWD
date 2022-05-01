@@ -184,13 +184,9 @@
     }
 
         // set the dimensions and margins of the graph
-        var w= 800,
-            h= 200;
         
         var graph = d3.select("body")
             .append("svg")
-            .attr("width", w)
-            .attr("height", h)
             .attr("class", "graph")
         
         var y = d3.scaleLinear()
