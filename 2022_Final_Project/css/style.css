@@ -82,7 +82,7 @@ color: #5E5E5E;
 /*dropdown*/
 .dropdown{
    position: absolute;
-    top: 100px;
+    top: 80px;
     left: 100px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
@@ -95,8 +95,8 @@ color: #5E5E5E;
 /*header,footer*/
 .logo{
    color: white;
-   font-size: 40px;
-   line-height: 80px;
+   font-size: 35px;
+   line-height: 60px;
    padding: 0 100px;
    padding-left: 20px;
    font-family:'EB Garamond', serif;
@@ -127,7 +127,7 @@ footer{
  }*/
  nav{
     background: #536D5E;
-    height: 80px;
+    height: 60px;
     width: 100%;
  }
 
@@ -145,7 +145,7 @@ footer{
  }
  nav ul li{
     display: inline-block;
-    line-height: 80px;
+    line-height: 60px;
     margin: 0 5px;
  }
  nav ul li a{
