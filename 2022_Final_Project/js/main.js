@@ -86,7 +86,7 @@
             //joinData();
 
             //translate TopoJSONs to geoJsons
-            var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project).features;
+            var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
             console.log(midwestStates);
 
            //midwestStates = joinData(midwestStates, caseData);
@@ -213,7 +213,7 @@
                 .call(xAxis);
             
         };
-          
+         
         //function to create a dropdown menu for attribute selection
         function createDropdown(csvData) {
             //add select element
@@ -245,7 +245,7 @@
                     return d.replaceAll("y", " ");
                 });
         }
-   /*
+   
         //function to create dynamic label
         function setLabel(props){
             //label content
@@ -263,8 +263,7 @@
                 .attr("class", "labelname")
                 .html(props.name);
         }; 
-        
-     
+          
         //function to move info label with mouse
         function moveLabel(){
             //get width of label

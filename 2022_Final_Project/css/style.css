@@ -18,11 +18,15 @@ body{
     margin-right: 150px;
     margin-bottom: 75px;
     object-position: center;
-}  
+} 
+.midwestBackground{
+   fill: darkgrey;
+   stroke: white;
+} 
 .points{
    width: 10px;
    height: 10px;
-   fill: pink;
+   stroke: pink;
 }
 /*.counties {
    fill: #fff;
@@ -30,10 +34,7 @@ body{
    stroke-width: 1px;
    opacity: 10;
 }*/
-.midwestBackground{
-   outline: #000;
-  
-}
+
 
 .usa{
    fill: #fff;
