@@ -145,10 +145,9 @@
                 .enter()
                 .append("circle")
                 .attr("class","points")
-                .attr("r",5)
                 .attr("r", function(d){
                     console.log(d.properties);
-                    var area= d.properties.y2015;
+                    var area= d.properties.y2015*6;
                     return Math.sqrt(area/Math.PI)
                 })
                 .attr("id", function(d){
@@ -199,12 +198,12 @@
                 .scale(yScale);
         
                 graph.append("g")
-                .attr("transform", "translate (50,20)")
+                .attr("transform", "translate (58,10)")
                 .call(yAxis);
             
             var xAxisTranslate = h/1.5 + 10;
                 graph.append("g")
-                .attr("transform", "translate (55, 165)")
+                .attr("transform", "translate (65, 153)")
                 .call(xAxis);
         };
           
@@ -238,6 +237,28 @@
                 .text(function (d) {
                     return d.replaceAll("y", " ");
                 });
+        }
+
+       /* 
+        //dropdown change listener handler
+        function changeAttribute(attribute, csvData) {
+            //change the expressed attribute
+            expressed = attrArray[3];
+    
+            //resize proportional symbols
+            var vermontDistricts = d3
+                .selectAll(".midwestPoints")
+                .transition()
+                .duration(1000)
+                .style("fill", function (d) {
+                var value = d.properties[expressed];
+                if (value) {
+                    return colorScale(d.properties[expressed]);
+                } else {
+                    return "#ccc";
+                }
+            });
+            
         }
 
     /*
