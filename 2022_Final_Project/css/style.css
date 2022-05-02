@@ -50,19 +50,25 @@ body{
 /*controls, graph*/
 .controls{
    height: 200px;
-   width: 325px;
+   width: 500px;
    margin-top: 10px;
    margin-left: 40px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
    float: left;
+
 }
 .graph{
    margin-top: 10px;
    margin-right: 40px;
-   margin-left: 400px;
+   margin-left: 40px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef; 
+   float: left;
+}
+g{
+font-family:'EB Garamond', serif;
+font-size: 12px;
 }
 .axis path,
 .axis line{
