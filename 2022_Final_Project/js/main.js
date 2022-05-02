@@ -2,7 +2,7 @@
 (function(){
 
     //pseudo-global variables
-        var attrArray=["2000", "2005", "2010", "2015", "2020"]
+        var attrArray=["y2000", "y2005", "y2010", "y2015", "y2020"]
         //var expresed = attrArray[0];
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
