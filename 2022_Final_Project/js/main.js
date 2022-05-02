@@ -3,7 +3,7 @@
 
     //pseudo-global variables
         var attrArray=["y2000", "y2005", "y2010", "y2015", "y2020"]
-        //var expresed = attrArray[0];
+        var expressed = attrArray[3];
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
         var xScale= d3.scaleLinear().range([700,0]).domain([2020,2000]);//Scale bar range; Y scale bar
@@ -79,8 +79,9 @@
                 console.log(deerData);
                 console.log(caseChartData);
             
-            midwestPoints = joinData(midwestPoints,caseData)
-            joinData();
+            midwestPoints = joinData(midwestPoints,caseData);
+            createDropdown();
+            //joinData();
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project).features;
@@ -109,12 +110,14 @@
                 .attr("class", "midwestBackground")
                 .attr("d", path);
             
+                /*
             // Add a scale for bubble size
-            var valueExtent = d3.extent(data[6], function(d) { return +d.properties })
+            var valueExtent = d3.extent(data[3], function(d) { return +d.properties })
             var size = d3.scaleSqrt()
                 .domain(valueExtent)  // What's in the data
                 .range([ 1, 1600])  // Size in pixel
                 .attr("d", path)
+            */
 
             //add midwest points to the map
             var points = map.selectAll(".points")
@@ -122,11 +125,14 @@
                 .enter()
                 .append("circle")
                 .attr("class","points")
-                .attr("r", 5)
+                .attr("r",5)
+                /*
                 .attr("r", function(d){
-                    //var area= d.properties * .5;
-                     //return Math.sqrt/(area/Math.PI)
+                    console.log(d.properties);
+                    var area= d.properties.y2020 * .5;
+                    return Math.sqrt/(area/Math.PI)
                 })
+                */
                 .attr("id", function(d){
                     return d.STATE_NAME;
                 })
@@ -178,7 +184,6 @@
                         attrArray.forEach(function(attr){
                             var val = parseFloat(state[attr]); //get csv attribute value
                             geojsonProps[attr] = val; //assign attribute and value to geojson properties
-                        
                         });
                     };
                 };
@@ -213,6 +218,38 @@
                 .call(xAxis);
 
         };
+          
+        //function to create a dropdown menu for attribute selection
+        function createDropdown(csvData) {
+            //add select element
+            var dropdown = d3
+                .select(".controls")
+                .append("select")
+                .attr("class", "dropdown")
+                .on("change", function () {
+                    changeAttribute(this.value, csvData);
+                });
+
+            //add initial option
+            var titleOption = dropdown
+                .append("option")
+                .attr("class", "titleOption")
+                .attr("disabled", "true")
+                .text("Select Attribute");
+
+            //add attribute name options
+            var attrOptions = dropdown
+                .selectAll("attrOptions")
+                .data(attrArray)
+                .enter()
+                .append("option")
+                .attr("value", function (d) {
+                    return d;
+                })
+                .text(function (d) {
+                    return d.replaceAll("y", " ");
+                });
+        }
 
     /*
         //Read the data
