@@ -3,7 +3,7 @@
 
     //pseudo-global variables
         var attrArray=["y2000", "y2005", "y2010", "y2015", "y2020"]
-        var expressed = attrArray[3];
+        var expressed = attrArray[0];
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
         var xScale= d3.scaleLinear().range([700,0]).domain([2020,2000]);//Scale bar range; Y scale bar
@@ -179,8 +179,9 @@
                 */
 
             setGraph();
-
-            //setEnumerationUnits();
+            setLabel();
+            moveLabel();
+            setEnumerationUnits();
         }
 
         // Creating line graph and axis
@@ -250,19 +251,14 @@
         //function to create dynamic label
         function setLabel(props){
             //label content
-            var labelAttribute =  "<h3>" + props.STATE_NAME + "</h3>" + "<h1>" + props[expressed] +  " %" + "<br>" +
-                "</h1><b>" + "</b>";
+            var labelAttribute =  "<h3>" + props.STATE_NAME + "</h3>";
     
             //create info label div
-            var infolabel = d3.select(".map")
+            var infolabel = d3.select("body")
                 .append("div")
                 .attr("class", "infolabel")
                 .attr("id", props.STATE_NAME + "_label")
                 .html(labelAttribute);
-    
-            var regionName = infolabel.append("div")
-                .attr("class", "labelname")
-                .html(props.name);
         }; 
           
         //function to move info label with mouse
@@ -356,11 +352,11 @@
                     .x(function(d) { return x(d.year); })
                     .y(function(d) { return y(+d.cases); })
                     (d.values)
-                })
+                })*/
       
-        } 
+    
 
-    /*\function setEnumerationUnits(midwestStates,map,path, colorScale){
+    /*function setEnumerationUnits(midwestStates,map,path, colorScale){
             var state = map
                 .selectAll(".STATE_NAME")
                 .data(midwestStates)
@@ -370,14 +366,7 @@
                     return "state " + d.properties.STATE_NAME;
                 })
                 .attr("d", path)//d defines the coordinates of path
-                .style("fill", function(d){
-                    var value = d.properties[expressed];
-                    if(value) {
-                        return colorScale(d.properties[expressed]);//if there are no values for attribute, use grey color
-                    } else {
-                        return "#A8A8A8";
-                    }
-                })*/
+                };*/
 
     
     
@@ -518,6 +507,6 @@
                 .attr('transform', 'translate(60,' + height + ')rotate(-90)')
                 .style('font-family', 'Helvetica')
                 .style('font-size', 12)
-                .text('Positive Cases');
+                .text('Positive Cases')
         })*/
     }) ();
