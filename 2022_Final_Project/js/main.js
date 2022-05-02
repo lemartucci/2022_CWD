@@ -79,7 +79,7 @@
                 console.log(deerData);
                 console.log(caseChartData);
             
-            midwestPoints = joinData(midwestPoints,caseChartData)
+            midwestPoints = joinData(midwestPoints,caseData)
             joinData();
 
             //translate TopoJSONs to geoJsons
