@@ -170,6 +170,9 @@ h6{
    padding-left: 300px;
    padding-top: 50px;
 }
+strong{
+   font-weight: 900;
+}
 
 /*popup*/
 .popup{
