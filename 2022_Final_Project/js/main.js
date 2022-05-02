@@ -78,6 +78,9 @@
                 console.log(harvestData);
                 console.log(deerData);
                 console.log(caseChartData);
+            
+            midwestPoints = joinData(midwestPoints,caseChartData)
+            joinData();
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project).features;
@@ -115,11 +118,11 @@
 
             //add midwest points to the map
             var points = map.selectAll(".points")
-                .data(caseChartData)
+                .data(midwestPoints)
                 .enter()
                 .append("circle")
                 .attr("class","points")
-                //.attr("r", 5)
+                .attr("r", 5)
                 .attr("r", function(d){
                     var area= d.cases * .5;
                      return Math.sqrt/(area/Math.PI)
@@ -180,7 +183,7 @@
                     };
                 };
             };
-            return midwestStates;
+            return midwestPoints;
     }
 
         // Creating line graph and axis
