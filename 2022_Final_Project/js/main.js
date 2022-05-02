@@ -5,8 +5,8 @@
         var attrArray=["2000", "2005", "2010", "2015", "2020"]
         //var expresed = attrArray[0];
         
-        var yScale= d3.scaleLinear().range([465,0]).domain([0,600]);//Scale bar range; Y scale bar
-        var xScale= d3.scaleLinear().range([5,0]).domain([2005,2010]);//Scale bar range; Y scale bar
+        var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
+        var xScale= d3.scaleLinear().range([700,0]).domain([2020,2000]);//Scale bar range; Y scale bar
 
     window.onload = setMap();
 
@@ -202,14 +202,13 @@
                 .scale(yScale);
         
                 graph.append("g")
-                .attr("transform", "translate (25,0)")
+                .attr("transform", "translate (45,20)")
                 .call(yAxis);
             
             var xAxisTranslate = h/1.5 + 10;
                 graph.append("g")
-                .attr("transform", "translate (50, 80)")
+                .attr("transform", "translate (50, 170)")
                 .call(xAxis);
-
         };
 
     /*
