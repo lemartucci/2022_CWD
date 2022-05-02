@@ -81,6 +81,8 @@
             
             midwestPoints = joinData(midwestPoints,caseData);
             createDropdown();
+            //setLabel();
+            //moveLabel();
             //joinData();
 
             //translate TopoJSONs to geoJsons
@@ -238,6 +240,51 @@
                     return d.replaceAll("y", " ");
                 });
         }
+   /*
+        //function to create dynamic label
+        function setLabel(props){
+            //label content
+            var labelAttribute =  "<h3>" + props.STATE_NAME + "</h3>" + "<h1>" + props[expressed] +  " %" + "<br>" +
+                "</h1><b>" + "</b>";
+    
+            //create info label div
+            var infolabel = d3.select(".map")
+                .append("div")
+                .attr("class", "infolabel")
+                .attr("id", props.STATE_NAME + "_label")
+                .html(labelAttribute);
+    
+            var regionName = infolabel.append("div")
+                .attr("class", "labelname")
+                .html(props.name);
+        }; 
+        
+     
+        //function to move info label with mouse
+        function moveLabel(){
+            //get width of label
+            var labelWidth = d3.select(".infolabel")
+                .node()
+                .getBoundingClientRect()
+                .width;
+    
+            //use coordinates of mousemove event to set label coordinates
+            var x1 = event.clientX + 10,
+                y1 = event.clientY + 200,
+                x2 = event.clientX - labelWidth + 10,
+                y2 = event.clientY + 50;
+    
+                console.log(y1)
+    
+            //horizontal label coordinate, testing for overflow
+            var x = event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1; 
+            //vertical label coordinate, testing for overflow
+            var y = event.clientY < 75 ? y2 : y1; 
+    
+            d3.select(".infolabel")
+                .style("left", x + "px")
+                .style("top", y + "px");
+        };
 
        /* 
         //dropdown change listener handler
@@ -260,7 +307,7 @@
             });
             
         }
-
+*/
     /*
         //Read the data
         d3.csv("data/Positive_Cases.csv"), function(data) {
@@ -308,7 +355,7 @@
       
         } 
 
-    /*function setEnumerationUnits(midwestStates,map,path, colorScale){
+    /*\function setEnumerationUnits(midwestStates,map,path, colorScale){
             var state = map
                 .selectAll(".STATE_NAME")
                 .data(midwestStates)
