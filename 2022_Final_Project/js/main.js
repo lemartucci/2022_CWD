@@ -96,6 +96,35 @@
             var backgroundStates = topojson.feature(background, background.objects.USA_Project);
             console.log(backgroundStates)
             
+            function joinData(midwestPoints,caseData){
+                //loop through csv to assign each set of csv attribute values to geojson region
+                 for (var i=0; i<caseData.length; i++){
+                    var  state = caseData[i]; //the current district
+                    var csvKey = state.STATE_NAME; //the CSV primary key
+    
+                    console.log(state);
+    
+                    //loop through geojson districts to find correct district
+                    for (var a=0; a<midwestPoints.length; a++){
+    
+                        var geojsonProps = midwestPoints[a].properties; //the current region geojson properties
+                        var geojsonKey = geojsonProps.STATE_NAME; //the geojson primary key
+    
+                        //where primary keys match, transfer csv data to geojson properties object
+                        if (geojsonKey == csvKey){
+    
+                            //assign all attributes and values
+                            attrArray.forEach(function(attr){
+                                var val = parseFloat(state[attr]); //get csv attribute value
+                                geojsonProps[attr] = val; //assign attribute and value to geojson properties
+                            });
+                        };
+                    };
+                };
+                console.log(midwestPoints);
+                return midwestPoints;
+        }
+            
             //add surrounding states for context
             var usa = map
                 .append("path")
@@ -109,15 +138,6 @@
                 .datum(midwestStates)
                 .attr("class", "midwestBackground")
                 .attr("d", path);
-            
-                /*
-            // Add a scale for bubble size
-            var valueExtent = d3.extent(data[3], function(d) { return +d.properties })
-            var size = d3.scaleSqrt()
-                .domain(valueExtent)  // What's in the data
-                .range([ 1, 1600])  // Size in pixel
-                .attr("d", path)
-            */
 
             //add midwest points to the map
             var points = map.selectAll(".points")
@@ -126,13 +146,11 @@
                 .append("circle")
                 .attr("class","points")
                 .attr("r",5)
-                /*
                 .attr("r", function(d){
                     console.log(d.properties);
-                    var area= d.properties.y2020 * .5;
-                    return Math.sqrt/(area/Math.PI)
+                    var area= d.properties.y2015;
+                    return Math.sqrt(area/Math.PI)
                 })
-                */
                 .attr("id", function(d){
                     return d.STATE_NAME;
                 })
@@ -163,34 +181,6 @@
             //setEnumerationUnits();
         }
 
-        function joinData(midwestPoints,caseData){
-            //loop through csv to assign each set of csv attribute values to geojson region
-             for (var i=0; i<caseData.length; i++){
-                var  state = caseData[i]; //the current district
-                var csvKey = state.STATE_NAME; //the CSV primary key
-
-                console.log(state);
-
-                //loop through geojson districts to find correct district
-                for (var a=0; a<midwestPoints.length; a++){
-
-                    var geojsonProps = midwestPoints[a].properties; //the current region geojson properties
-                    var geojsonKey = geojsonProps.STATE_NAME; //the geojson primary key
-
-                    //where primary keys match, transfer csv data to geojson properties object
-                    if (geojsonKey == csvKey){
-
-                        //assign all attributes and values
-                        attrArray.forEach(function(attr){
-                            var val = parseFloat(state[attr]); //get csv attribute value
-                            geojsonProps[attr] = val; //assign attribute and value to geojson properties
-                        });
-                    };
-                };
-            };
-            return midwestPoints;
-    }
-
         // Creating line graph and axis
         function setGraph(){
             var w= 800,
@@ -216,7 +206,6 @@
                 graph.append("g")
                 .attr("transform", "translate (55, 165)")
                 .call(xAxis);
-
         };
           
         //function to create a dropdown menu for attribute selection
