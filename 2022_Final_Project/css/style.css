@@ -41,7 +41,7 @@ body{
    background-color: rgb(197, 197, 191);
    border: solid thin #fff;
 }
-.infolabel h1 {
+.infolabel h3 {
    margin: 0 20px 0 0;
    padding: 0;
    display: inline-block;

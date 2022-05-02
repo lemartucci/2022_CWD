@@ -164,20 +164,6 @@
                 .style("stroke", "#000"); //black border of circle          
                 }
 
-                /*
-                        
-            //add midwest counties to the map
-            var counties = map
-                .selectAll(".counties")
-                .data(midwestCounties)
-                .enter()
-                .append("path")
-                .attr("class", function (d) {
-                    return "midwestCounties" + d.properties.STATE_NAME;
-                })
-                .attr("d", path);//d defines the coordinates of path
-                */
-
             setGraph();
             setLabel();
             moveLabel();
@@ -251,10 +237,10 @@
         //function to create dynamic label
         function setLabel(props){
             //label content
-            var labelAttribute =  "<h3>" + props.STATE_NAME + "</h3>";
+            var labelAttribute =  "<h3>" + props.STATE_NAME + ","+ props[expressed]+ "</h3>";
     
             //create info label div
-            var infolabel = d3.select("body")
+            var infolabel = d3.select("map")
                 .append("div")
                 .attr("class", "infolabel")
                 .attr("id", props.STATE_NAME + "_label")
@@ -310,9 +296,7 @@
         }
 */
     /*
-        //Read the data
-        d3.csv("data/Positive_Cases.csv"), function(data) {
-
+       
             // group the data: I want to draw one line per group
             var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
             .key(function(d) { return d.STATE_NAME;})
@@ -356,9 +340,9 @@
       
     
 
-    /*function setEnumerationUnits(midwestStates,map,path, colorScale){
+    /*function setEnumerationUnits(midwestStates,map,path){
             var state = map
-                .selectAll(".STATE_NAME")
+                .selectAll("STATE_NAME")
                 .data(midwestStates)
                 .enter()
                 .append("path")
