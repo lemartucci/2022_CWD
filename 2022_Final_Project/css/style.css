@@ -50,9 +50,9 @@ body{
 /*controls, graph*/
 .controls{
    height: 200px;
-   width: 500px;
+   width: 450px;
    margin-top: 10px;
-   margin-left: 40px;
+   margin-left: 90px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef;  
    float: left;
@@ -61,7 +61,7 @@ body{
 .graph{
    margin-top: 10px;
    margin-right: 40px;
-   margin-left: 40px;
+   margin-left: 10px;
    border: medium solid #C3C9C6;
    background-color: #e9f0ef; 
    float: left;

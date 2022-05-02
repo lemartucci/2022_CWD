@@ -91,7 +91,7 @@
             //var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
             var backgroundStates = topojson.feature(background, background.objects.USA_Project);
             console.log(backgroundStates)
-        
+            
             //add surrounding states for context
             var usa = map
                 .append("path")
@@ -149,8 +149,8 @@
                 .attr("d", path);//d defines the coordinates of path
                 */
 
-            
             setGraph();
+
             //setEnumerationUnits();
         }
 
@@ -184,7 +184,6 @@
     }
 
         // Creating line graph and axis
-
         function setGraph(){
             var w= 800,
                 h= 200;
@@ -202,13 +201,14 @@
                 .scale(yScale);
         
                 graph.append("g")
-                .attr("transform", "translate (45,20)")
+                .attr("transform", "translate (50,20)")
                 .call(yAxis);
             
             var xAxisTranslate = h/1.5 + 10;
                 graph.append("g")
-                .attr("transform", "translate (50, 170)")
+                .attr("transform", "translate (55, 165)")
                 .call(xAxis);
+
         };
 
     /*
