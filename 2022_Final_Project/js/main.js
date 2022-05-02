@@ -194,19 +194,24 @@
                 .attr("class", "graph");
             
             var xAxis = d3.axisBottom()
-                .scale(xScale);
+                .scale(xScale)
+                .tickValues([2000, 2005, 2010,2015, 2020])
+                .tickFormat(d3.format("d"));
             
+                
             var yAxis = d3.axisLeft()
                 .scale(yScale);
         
                 graph.append("g")
                 .attr("transform", "translate (58,10)")
                 .call(yAxis);
+                
             
             var xAxisTranslate = h/1.5 + 10;
                 graph.append("g")
                 .attr("transform", "translate (65, 153)")
                 .call(xAxis);
+            
         };
           
         //function to create a dropdown menu for attribute selection
@@ -225,7 +230,7 @@
                 .append("option")
                 .attr("class", "titleOption")
                 .attr("disabled", "true")
-                .text("Select Attribute");
+                .text("Select Year");
 
             //add attribute name options
             var attrOptions = dropdown
