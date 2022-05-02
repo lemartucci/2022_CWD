@@ -110,7 +110,7 @@
                 .attr("d", path);
             
             // Add a scale for bubble size
-            var valueExtent = d3.extent(data[6], function(d) { return +d.cases })
+            var valueExtent = d3.extent(data[6], function(d) { return +d.properties })
             var size = d3.scaleSqrt()
                 .domain(valueExtent)  // What's in the data
                 .range([ 1, 1600])  // Size in pixel
@@ -124,8 +124,8 @@
                 .attr("class","points")
                 .attr("r", 5)
                 .attr("r", function(d){
-                    var area= d.cases * .5;
-                     return Math.sqrt/(area/Math.PI)
+                    //var area= d.properties * .5;
+                     //return Math.sqrt/(area/Math.PI)
                 })
                 .attr("id", function(d){
                     return d.STATE_NAME;
