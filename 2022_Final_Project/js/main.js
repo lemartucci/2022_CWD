@@ -160,7 +160,8 @@
                 })
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
-                });         
+                })
+                .style("stroke", "#000"); //black border of circle          
                 }
 
                 /*
