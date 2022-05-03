@@ -22,20 +22,31 @@ body{
 } 
 .midwestBackground{
    fill: white;
-   stroke: #C3C9C6;
+   stroke: #536D5E;
+   stroke-width: 1.5px;
 } 
 .usa{
-   fill: darkgrey;
+   fill: white;
    stroke: #C3C9C6;
 }
-
-/*.otherStates {
-   fill: rgb(182, 167, 145);
-   opacity: 10;
-   stroke: gray;
-   stroke-width: 0.5px;
-}*/
-
+.infolabel {
+   margin: 0 15px 0 0;
+   position: absolute;
+   height: 40px;
+   min-width: 60px;
+   color: #fff;
+   background-color: rgb(197, 197, 191);
+   border: solid thin #fff;
+}
+.infolabel h3 {
+   margin: 0 20px 0 0;
+   padding: 0;
+   display: inline-block;
+   text-align: center;
+   line-height: 1em;
+   font-size: small;
+   color: black;
+}
 /*controls, graph*/
 .controls{
    height: 200px;
