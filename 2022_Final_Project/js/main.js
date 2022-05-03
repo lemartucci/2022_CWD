@@ -178,11 +178,11 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 })
-                .on("mouseover", function(e, d){
-                    console.log(d)
+                .on("mouseover", function(e, d){ //calling setLabel when points added to map to allow point props to be passed
+                    //console.log(d)
                     setLabel(d.properties)
                 })
-                .on("mousemove", function(d){
+                .on("mousemove", function(d){ 
                     moveLabel()
                 })
                 .style("stroke", "darkgrey"); //dark grey border of circle          
@@ -413,7 +413,7 @@
                 x2 = event.clientX - labelWidth + 10,
                 y2 = event.clientY + 50;
     
-                console.log(y1)
+                //console.log(y1)
     
             //horizontal label coordinate, testing for overflow
             var x = event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1; 
