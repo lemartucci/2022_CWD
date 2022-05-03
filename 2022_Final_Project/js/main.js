@@ -262,7 +262,12 @@
                     return d;
                 })
                 .text(function (d) {
-                    return d.replaceAll("y", " ");
+                    return d.replaceAll("y", " ")
+                        .replace("2000", "Positive Cases")
+                        .replace("2005", "Deer Licenses Sold")
+                        .replace("2010", "Total Deer Harvested")
+                        .replace("2015", " ")
+                        .replace("2020", "")
                 });
         }
         
@@ -279,6 +284,14 @@
                 .selectAll(".points")
                 .transition()
                 .duration(1000)
+                .style("fill", function(d){
+                    var value = d.properties[expressed];
+                    if (value){
+                        return colorScale(value);
+                    }else{
+                        return "#ccc";
+                    }
+                })
                 .attr("class","points")
                 .attr("r", function(d){
                     console.log(d.properties);
@@ -294,9 +307,16 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 })
-                .style("stroke", "darkgrey"); //dark grey border of circle          
-        }
+                .style("stroke", "darkgrey") //dark grey border of circle  
         
+            
+            //updateSymbol(points, csvData.length, colorScale);
+    
+        //Update Symbol function
+        /*function updateSymbol(points, n, colorScale){
+         points.attr("x", function (d,i){
+                return i * 
+                */
  /*  
         //function to create dynamic label
         function setLabel(props){
@@ -557,4 +577,4 @@
                 .style('font-size', 12)
                 .text('Positive Cases')
         })*/
-    }) ();
+    } })();
