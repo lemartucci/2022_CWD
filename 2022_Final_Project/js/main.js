@@ -5,7 +5,8 @@
         var attrArray=["y2005", "y2010", "y2015", "y2020"]
         var expressed = attrArray[0];
 
-        //var attrArray2=[""]
+        var attrArray2=["deer harvested", "deer_licenses_sold"]
+        var expressed = attrArray2[0]
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
         var xScale= d3.scaleLinear().range([700,0]).domain([2020,2000]);//Scale bar range; Y scale bar
@@ -165,7 +166,7 @@
                 .attr("class","points")
                 .attr("r", function(d){
                     console.log(d.properties);
-                    var area= d.properties.y2015*6;
+                    var area= d.properties.y2005*6;
                     return Math.sqrt(area/Math.PI)
                 })
                 .attr("id", function(d){
@@ -248,16 +249,67 @@
                     return d.replaceAll("y", " ");
                 });
         }
+
+        //dropdown change listener handler
+        function changeAttribute(attribute, csvData) {
+            //change the expressed attribute
+            expressed = attribute;
         
+            //resize circles
+            var points = d3
+                .selectAll(".points")
+                .transition()
+                .duration(1000)
+                .attr("class","points")
+                .attr("r", function(d){
+                    console.log(d.properties);
+                    var area= d.properties[expressed]*6;
+                    return Math.sqrt(area/Math.PI)
+                })
+                .attr("id", function(d){
+                    return d.STATE_NAME;
+                })
+                .style("stroke", "darkgrey") //dark grey border of circle  
+        }
+
+        
+        //function to create color scale generator
+        function makeColorScale(data){
+            var colorClasses = [
+                "#f6eff7",
+                "#bdc9e1",
+                "#67a9cf",
+                "#1c9099",
+                "#016c59"
+            ];
+
+            //create color scale generator
+            var colorScale = d3.scaleQuantile()
+                .range(colorClasses);
+
+            //build array of all values of the expressed attribute
+            var domainArray = [];
+            for (var i=0; i<data.length; i++){
+                var val = parseFloat(data[i][expressed]);
+                domainArray.push(val);
+            };
+
+            //assign array of expressed values as scale domain
+            colorScale.domain(domainArray);
+
+            return colorScale;
+        };
+
+
         //function to create a dropdown menu for attribute selection
-        function createDropdown2(csvData) {
+        function createDropdown2(csvData2) {
             //add select element
             var dropdown = d3
                 .select(".controls")
                 .append("select")
                 .attr("class", "dropdown2")
                 .on("change", function () {
-                    changeAttribute(this.value, csvData);
+                    changeAttribute(this.value, csvData2);
                 });
 
             //add initial option
@@ -284,28 +336,31 @@
                         .replace("2020", "")
                 });
         }
-        
+
         //dropdown change listener handler
-        function changeAttribute(attribute, csvData) {
+        function changeAttribute2(attribute, csvData2) {
             //change the expressed attribute
             expressed = attribute;
+
+            //recreate the color scale
+            var colorScale = makeColorScale(csvData2);
         
-            //resize circles
-            var points = d3
-                .selectAll(".points")
+            //recolor enumeration units
+            var vermontDistricts = d3
+                .selectAll(".vermontDistricts")
                 .transition()
                 .duration(1000)
-                .attr("class","points")
-                .attr("r", function(d){
-                    console.log(d.properties);
-                    var area= d.properties[expressed]*6;
-                    return Math.sqrt(area/Math.PI)
-                })
-                .attr("id", function(d){
-                    return d.STATE_NAME;
-                })
-                .style("stroke", "darkgrey") //dark grey border of circle  
-        }
+                .style("fill", function (d) {
+                var value = d.properties[expressed];
+                if (value) {
+                    return colorScale(d.properties[expressed]);
+                } else {
+                    return "#ccc";
+                }
+            });
+        }  
+        
+       
             
             //updateSymbol(points, csvData.length, colorScale);
     
