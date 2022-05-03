@@ -81,6 +81,7 @@
             
             midwestPoints = joinData(midwestPoints,caseData);
             createDropdown();
+            createDropdown2();
             //setLabel();
             //moveLabel();
             //joinData();
@@ -179,7 +180,7 @@
                 */
 
             setGraph();
-
+            setLabel();
             //setEnumerationUnits();
         }
 
@@ -246,6 +247,39 @@
                     return d.replaceAll("y", " ");
                 });
         }
+        
+        //function to create a dropdown menu for attribute selection
+        function createDropdown2(csvData) {
+            //add select element
+            var dropdown = d3
+                .select(".controls")
+                .append("select")
+                .attr("class", "dropdown2")
+                .on("change", function () {
+                    changeAttribute(this.value, csvData);
+                });
+
+            //add initial option
+            var titleOption = dropdown
+                .append("option")
+                .attr("class", "titleOption")
+                .attr("disabled", "true")
+                .text("Select Overlay");
+
+            //add attribute name options
+            var attrOptions = dropdown
+                .selectAll("attrOptions")
+                .data(attrArray)
+                .enter()
+                .append("option")
+                .attr("value", function (d) {
+                    return d;
+                })
+                .text(function (d) {
+                    return d.replaceAll("y", " ");
+                });
+        }
+        
    
         //function to create dynamic label
         function setLabel(props){
