@@ -87,24 +87,24 @@
                 harvestData=data[4]
                 deerData=data[5]
                 caseChartData=data[6]
-                console.log(midwest);
-                //console.log(midCounties);
-                console.log(background);
-                console.log(caseData);
-                console.log(harvestData);
-                console.log(deerData);
-                console.log(caseChartData);
+                // console.log(midwest);
+                // //console.log(midCounties);
+                // console.log(background);
+                // console.log(caseData);
+                // console.log(harvestData);
+                // console.log(deerData);
+                // console.log(caseChartData);
             
             midwestPoints = joinData(midwestPoints,caseData);
             createDropdown();
             createDropdown2();
-            //setLabel();
+            //setLabel(caseData);
             //moveLabel();
             //joinData();
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
-            console.log(midwestStates);
+            //console.log(midwestStates);
 
            //midwestStates = joinData(midwestStates, caseData);
         
@@ -113,7 +113,7 @@
 
             //var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
             var backgroundStates = topojson.feature(background, background.objects.USA_Project);
-            console.log(backgroundStates)
+            //console.log(backgroundStates)
             
             function joinData(midwestPoints,caseData){
                 //loop through csv to assign each set of csv attribute values to geojson region
@@ -121,7 +121,7 @@
                     var  state = caseData[i]; //the current district
                     var csvKey = state.STATE_NAME; //the CSV primary key
     
-                    console.log(state);
+                    //console.log(state);
     
                     //loop through geojson districts to find correct district
                     for (var a=0; a<midwestPoints.length; a++){
@@ -140,9 +140,9 @@
                         };
                     };
                 };
-                console.log(midwestPoints);
+                //console.log(midwestPoints);
                 return midwestPoints;
-        }
+            }
             
             //add surrounding states for context
             var usa = map
@@ -165,7 +165,7 @@
                 .append("circle")
                 .attr("class","points")
                 .attr("r", function(d){
-                    console.log(d.properties);
+                    //console.log(d.properties);
                     var area= d.properties.y2005*6;
                     return Math.sqrt(area/Math.PI)
                 })
@@ -177,6 +177,13 @@
                 })
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
+                })
+                .on("mouseover", function(e, d){
+                    console.log(d)
+                    setLabel(d.properties)
+                })
+                .on("mousemove", function(d){
+                    moveLabel()
                 })
                 .style("stroke", "darkgrey"); //dark grey border of circle          
                 }
@@ -262,7 +269,7 @@
                 .duration(1000)
                 .attr("class","points")
                 .attr("r", function(d){
-                    console.log(d.properties);
+                    //console.log(d.properties);
                     var area= d.properties[expressed]*6;
                     return Math.sqrt(area/Math.PI)
                 })
@@ -369,14 +376,15 @@
          points.attr("x", function (d,i){
                 return i * 
                 */
- /*  
+   
         //function to create dynamic label
         function setLabel(props){
             //label content
+            console.log(props)
             var labelAttribute =  "<h3>" + props.STATE_NAME + ","+ props[expressed]+ "</h3>";
     
             //create info label div
-            var infolabel = d3.select("map")
+            var infolabel = d3.select(".map")
                 .append("div")
                 .attr("class", "infolabel")
                 .attr("id", props.STATE_NAME + "_label")
@@ -385,11 +393,11 @@
           
         //function to move info label with mouse
         function moveLabel(){
-            //get width of label
+           // get width of label
             var labelWidth = d3.select(".infolabel")
                 .node()
                 .getBoundingClientRect()
-                .width;
+                .width
     
             //use coordinates of mousemove event to set label coordinates
             var x1 = event.clientX + 10,
