@@ -9,7 +9,7 @@
         var expressed = attrArray2[0]
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
-        var xScale= d3.scaleLinear().range([700,0]).domain([2020,2000]);//Scale bar range; Y scale bar
+        var xScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
 
     window.onload = setMap();
 
@@ -192,7 +192,6 @@
             //setLabel();
             //setEnumerationUnits();
         }
-
         // Creating line graph and axis
         function setGraph(){
             var w= 800,
@@ -206,23 +205,32 @@
             
             var xAxis = d3.axisBottom()
                 .scale(xScale)
-                .tickValues([2000, 2005, 2010,2015, 2020])
+                .tickValues([2005, 2010,2015, 2020])
                 .tickFormat(d3.format("d"));
             
-                
             var yAxis = d3.axisLeft()
                 .scale(yScale);
         
                 graph.append("g")
                 .attr("transform", "translate (58,10)")
-                .call(yAxis);
-                
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("dy", "-4em")
+                .attr("y", 3)
+                .style("text-anchor", "bottom")
+                .text("Individual Cases");
             
             var xAxisTranslate = h/1.5 + 10;
                 graph.append("g")
                 .attr("transform", "translate (65, 153)")
-                .call(xAxis);
-            
+                .call(xAxis)
+                .append("text")
+                .attr("dx", "28em")
+                .attr("text-anchor", "bottom")
+                .attr("x", -5)
+                .attr("y", 26)
+                .text("Year");   
         };
          
         //function to create a dropdown menu for attribute selection
