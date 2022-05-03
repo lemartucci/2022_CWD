@@ -22,12 +22,12 @@ body{
 } 
 .midwestBackground{
    fill: white;
-   stroke: #536D5E;
+   stroke: #C3C9C6;
    stroke-width: 1.5px;
 } 
 .usa{
-   fill: white;
-   stroke: #C3C9C6;
+   fill: darkgrey;
+   stroke:#C3C9C6;
 }
 .infolabel {
    margin: 0 15px 0 0;
@@ -213,7 +213,7 @@ strong{
 
 /*popup*/
 .popup{
-    background-color: #fff;
+    background-color: #486052;
     width: 850px;
     padding: 30px 40px;
     position: absolute;
@@ -226,14 +226,15 @@ strong{
     display: none;
     text-align: center;
     font-size: 20px;
+    box-shadow: 4px 4px 4px #999;
 }
 .popup button{
    display: block;
    margin:  0 0 20px auto;
    background-color: transparent;
    font-size: 25px;
-   color: #fff;
-   background: #486052;
+   color: #486052;
+   background: white;
    border-radius: 100%;
    width: 30px;
    height: 30px;
@@ -249,10 +250,10 @@ strong{
     text-align: justify;
     margin: 20px 0;
     line-height: 25px;
-    color: #000;
+    color: white;
 }
 .infotitle{
-   color: black;
+   color: white;
    font-size: 50px;
 }
 

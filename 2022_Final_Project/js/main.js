@@ -162,11 +162,11 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 })
-                .style("stroke", "#000"); //black border of circle          
+                .style("stroke", "darkgrey"); //dark grey border of circle          
                 }
 
             setGraph();
-            setLabel();
+            //setLabel();
             //setEnumerationUnits();
         }
 
@@ -266,7 +266,38 @@
                 });
         }
         
-   
+        //dropdown change listener handler
+        function changeAttribute(attribute, csvData) {
+            //change the expressed attribute
+            expressed = attribute;
+
+            //recreate the color scale
+            var colorScale = makeColorScale(csvData);
+        
+            //resize circles
+            var points = d3
+                .selectAll(".points")
+                .transition()
+                .duration(1000)
+                .attr("class","points")
+                .attr("r", function(d){
+                    console.log(d.properties);
+                    var area= d.properties[expressed]*6;
+                    return Math.sqrt(area/Math.PI)
+                })
+                .attr("id", function(d){
+                    return d.STATE_NAME;
+                })
+                .attr("cx",function(d){
+                    return projection(d.geometry.coordinates)[0]
+                })
+                .attr("cy",function(d){
+                    return projection(d.geometry.coordinates)[1]
+                })
+                .style("stroke", "darkgrey"); //dark grey border of circle          
+        }
+        
+ /*  
         //function to create dynamic label
         function setLabel(props){
             //label content
