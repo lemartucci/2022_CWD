@@ -2,8 +2,10 @@
 (function(){
 
     //pseudo-global variables
-        var attrArray=["y2000", "y2005", "y2010", "y2015", "y2020"]
+        var attrArray=["y2005", "y2010", "y2015", "y2020"]
         var expressed = attrArray[0];
+
+        //var attrArray2=[""]
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
         var xScale= d3.scaleLinear().range([700,0]).domain([2020,2000]);//Scale bar range; Y scale bar
@@ -276,7 +278,6 @@
                 })
                 .text(function (d) {
                     return d.replaceAll("y", " ")
-                        .replace("2000", "Positive Cases")
                         .replace("2005", "Deer Licenses Sold")
                         .replace("2010", "Total Deer Harvested")
                         .replace("2015", " ")
@@ -288,23 +289,12 @@
         function changeAttribute(attribute, csvData) {
             //change the expressed attribute
             expressed = attribute;
-
-            //recreate the color scale
-            var colorScale = makeColorScale(csvData);
         
             //resize circles
             var points = d3
                 .selectAll(".points")
                 .transition()
                 .duration(1000)
-                .style("fill", function(d){
-                    var value = d.properties[expressed];
-                    if (value){
-                        return colorScale(value);
-                    }else{
-                        return "#ccc";
-                    }
-                })
                 .attr("class","points")
                 .attr("r", function(d){
                     console.log(d.properties);
@@ -314,14 +304,8 @@
                 .attr("id", function(d){
                     return d.STATE_NAME;
                 })
-                .attr("cx",function(d){
-                    return projection(d.geometry.coordinates)[0]
-                })
-                .attr("cy",function(d){
-                    return projection(d.geometry.coordinates)[1]
-                })
                 .style("stroke", "darkgrey") //dark grey border of circle  
-        
+        }
             
             //updateSymbol(points, csvData.length, colorScale);
     
@@ -590,4 +574,4 @@
                 .style('font-size', 12)
                 .text('Positive Cases')
         })*/
-    } })();
+     })();
