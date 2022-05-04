@@ -287,9 +287,10 @@
 
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
 
+                /*
                 var x = d3.scaleTime().range([0, width]);  
                 var y = d3.scaleLinear().range([height, 0]);
-                
+                */
                 // Define the line
                 var lineGraph = d3.line()	
                 .x(function(d) { return x(d.year); })
@@ -506,6 +507,7 @@
                 .style("top", y + "px");
         };
        
+        /*
             // group the data: I want to draw one line per group
             var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
             .key(function(d) { return d.STATE_NAME;})
