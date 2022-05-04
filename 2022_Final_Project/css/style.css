@@ -35,7 +35,7 @@ body{
    height: 40px;
    min-width: 60px;
    color: #fff;
-   background-color: rgb(197, 197, 191);
+   background-color: black;
    border: solid thin #fff;
 }
 .infolabel h3 {
