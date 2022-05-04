@@ -11,8 +11,8 @@
         var colorExpressed = typeExpressed + "_" + yearExpressed.replace("y","");
         var expressed = attrArray[0];
         
-        var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
-        var xScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
+        var xScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
+        var yScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
 
         var colorScale;
 
@@ -283,11 +283,10 @@
             
                 var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
-                height = 200 - margin.top - margin.bottom;
+                height = 225 - margin.top - margin.bottom;
 
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
-
-                
+ 
                 var x = d3.scaleTime().range([20, width]);  
                 var y = d3.scaleLinear().range([height, 20]);
                 
@@ -337,8 +336,13 @@
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
+<<<<<<< Updated upstream
                         .attr("transform", "translate (50,100)")
                         .call(d3.axisBottom(x));
+=======
+                        .attr("transform", "translate (50,100)" + height + ")")
+                        .call(d3.axisTop(x));
+>>>>>>> Stashed changes
 
                         // Add the Y Axis
                         graph.append("g")
