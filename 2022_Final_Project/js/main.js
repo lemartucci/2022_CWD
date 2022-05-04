@@ -302,7 +302,7 @@
                   
                       // Group the entries by symbol
                       dataNest = Array.from(
-                          d3.group(data, d => d.symbol), ([key, value]) => ({key, value})
+                          d3.group(data, d => d.STATE_NAME), ([key, value]) => ({key, value})
                         );
                     
                       // set the colour scale
