@@ -10,14 +10,6 @@
 
         var colorExpressed = typeExpressed + "_" + yearExpressed.replace("y","");
         var expressed = attrArray[0];
-        
-<<<<<<< HEAD
-        var xScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
-        var yScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
-=======
-        //var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
-        //var xScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
->>>>>>> 0757515135c26d3315a501ff51c2f93e9ead0602
 
         var colorScale;
 
@@ -286,14 +278,14 @@
                 .attr("y", 26)
                 .text("Year")*/
             
-                var margin = {top: 15, right: 25, bottom: 35, left: 25},
+                var margin = {top: 30, right: 20, bottom: 70, left: 50},
                 width = 800 - margin.left - margin.right,
                 height = 225 - margin.top - margin.bottom;
 
-                d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
+                d3.csv("data/Positive_Cases_For_Chart.csv").then(function(data) {
  
-                var x = d3.scaleTime().range([20, width]);  
-                var y = d3.scaleLinear().range([height, 25]);
+                var x = d3.scaleTime().range([30, width]);  
+                var y = d3.scaleLinear().range([height, 20]);
                 
                 // Define the line
                 var lineGraph = d3.line()	
@@ -315,7 +307,7 @@
                         );
                     
                       // set the colour scale
-                      var color = d3.scaleOrdinal(d3.schemeCategory10);
+                      var color = d3.scaleOrdinal(d3.schemeTableau10);
                   
                       legendSpace = width/dataNest.length; // spacing for the legend
                   
@@ -331,34 +323,24 @@
                           // Add the Legend
                           graph.append("text")
                               .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-                              .attr("y", height + (margin.bottom)-170)
+                              .attr("y", height + (margin.bottom/2)+ 5)
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
-                              .text(d.key)
-                              ; 
+                              .text(d.key); 
                             });
+
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-                        .attr("transform", "translate (50,100)")
-=======
-                        .attr("transform", "translate (0,170)")
->>>>>>> 0757515135c26d3315a501ff51c2f93e9ead0602
-                        .call(d3.axisBottom(x));
-=======
                         .attr("transform", "translate (50,100)" + height + ")")
-                        .call(d3.axisTop(x));
->>>>>>> Stashed changes
+                        .call(d3.axisBottom(x));
 
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (10,10)" + height + ")")
+                        .attr("transform", "translate (100,10)" + ")")
                         .call(d3.axisLeft(y));
-
 });
     }
         //function to create a dropdown menu for attribute selection
