@@ -72,7 +72,8 @@
             d3.csv("data/Positive_Cases.csv"),
             d3.csv("data/Total_Harvested.csv"),
             d3.csv("data/Deer_Licenses_Sold.csv"),
-            d3.csv("data/Positive_Cases_For_Chart.csv")
+            d3.csv("data/Positive_Cases_For_Chart.csv"),
+            d3.csv("data/overlays.csv")
             ]
         ;
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
@@ -87,6 +88,7 @@
                 harvestData=data[4]
                 deerData=data[5]
                 caseChartData=data[6]
+<<<<<<< Updated upstream
                 // console.log(midwest);
                 // //console.log(midCounties);
                 // console.log(background);
@@ -99,6 +101,21 @@
             createDropdown();
             createDropdown2();
             //setLabel(caseData);
+=======
+                overlayData=data[7]
+                console.log(midwest);
+                //console.log(midCounties);
+                console.log(background);
+                console.log(caseData);
+                console.log(harvestData);
+                console.log(deerData);
+                console.log(caseChartData);
+            
+            midwestPoints = joinData(midwestPoints,caseData);
+            createDropdown();
+            createDropdown2(overlayData);
+            //setLabel();
+>>>>>>> Stashed changes
             //moveLabel();
             //joinData();
 
@@ -178,6 +195,7 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 })
+<<<<<<< Updated upstream
                 .on("mouseover", function(e, d){ //calling setLabel when points added to map to allow point props to be passed
                     //console.log(d)
                     setLabel(d.properties)
@@ -186,7 +204,12 @@
                     moveLabel()
                 })
                 .style("stroke", "darkgrey"); //dark grey border of circle          
+=======
+                .style("stroke", "darkgrey"); //dark grey border of circle   
+                //add function for fill       
+>>>>>>> Stashed changes
                 }
+                
 
             setGraph();
             //setLabel();
@@ -317,14 +340,14 @@
 
 
         //function to create a dropdown menu for attribute selection
-        function createDropdown2(csvData2) {
+        function createDropdown2(csvData) {
             //add select element
             var dropdown = d3
                 .select(".controls")
                 .append("select")
                 .attr("class", "dropdown2")
                 .on("change", function () {
-                    changeAttribute(this.value, csvData2);
+                    changeColor(this.value,csvData);
                 });
 
             //add initial option
@@ -337,32 +360,28 @@
             //add attribute name options
             var attrOptions = dropdown
                 .selectAll("attrOptions")
-                .data(attrArray)
+                .data(attrArray2)
                 .enter()
                 .append("option")
                 .attr("value", function (d) {
                     return d;
                 })
                 .text(function (d) {
-                    return d.replaceAll("y", " ")
-                        .replace("2005", "Deer Licenses Sold")
-                        .replace("2010", "Total Deer Harvested")
-                        .replace("2015", " ")
-                        .replace("2020", "")
+                    return d
                 });
         }
 
         //dropdown change listener handler
-        function changeAttribute2(attribute, csvData2) {
+        function changeColor(attribute, csvData) {
             //change the expressed attribute
             expressed = attribute;
 
             //recreate the color scale
-            var colorScale = makeColorScale(csvData2);
+            var colorScale = makeColorScale(csvData);
         
             //recolor enumeration units
-            var vermontDistricts = d3
-                .selectAll(".vermontDistricts")
+            var midwestPoints = d3
+                .selectAll(".points")
                 .transition()
                 .duration(1000)
                 .style("fill", function (d) {
