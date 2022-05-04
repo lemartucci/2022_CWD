@@ -288,8 +288,8 @@
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
 
                 
-                var x = d3.scaleTime().range([0, width]);  
-                var y = d3.scaleLinear().range([height, 0]);
+                var x = d3.scaleTime().range([20, width]);  
+                var y = d3.scaleLinear().range([height, 20]);
                 
                 // Define the line
                 var lineGraph = d3.line()	
@@ -336,12 +336,13 @@
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate(0," + height + ")")
+                        .attr("transform", "translate (50,100)" + height + ")")
                         .call(d3.axisBottom(x));
 
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
+                        .attr("transform", "translate (100,10)" + height + ")")
                         .call(d3.axisLeft(y));
 
 });
