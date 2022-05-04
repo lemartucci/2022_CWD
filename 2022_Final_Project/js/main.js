@@ -252,7 +252,7 @@
                 .attr("height", h)
                 .attr("class", "graph");
             
-            var xAxis = d3.axisBottom()
+            /*var xAxis = d3.axisBottom()
                 .scale(xScale)
                 .tickValues([2005, 2010,2015, 2020])
                 .tickFormat(d3.format("d"));
@@ -279,9 +279,9 @@
                 .attr("text-anchor", "bottom")
                 .attr("x", -5)
                 .attr("y", 26)
-                .text("Year")
+                .text("Year")*/
             
-                d3.csv("data/Positive_Cases_For_Chart.csv").then(function(data) {
+                d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
 
                 /*
                 var x = d3.scaleTime().range([0, width]);  
@@ -293,7 +293,7 @@
                 .y(function(d) { return y(d.cases); });
                     
                     data.forEach(function(d) {
-                          d.year = parseDate(d.year);
+                          d.year = +d.year;
                           d.cases = +d.cases;
                       });
                   
@@ -314,22 +314,33 @@
                       // Loop through each symbol / key
                       dataNest.forEach(function(d,i) { 
                   
-                          svg.append("path")
+                          graph.append("path")
                               .attr("class", "line")
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
-                              .attr("d", priceline(d.value));
+                              .attr("d", lineGraph(d.value));
                   
                           // Add the Legend
-                          svg.append("text")
+                          graph.append("text")
                               .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
                               .attr("y", height + (margin.bottom/2)+ 5)
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
                               .text(d.key); 
-                            })
-                })
+                            });
+                        // Add the X Axis
+                        graph.append("g")
+                        .attr("class", "axis")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(d3.axisBottom(x));
+
+                        // Add the Y Axis
+                        graph.append("g")
+                        .attr("class", "axis")
+                        .call(d3.axisLeft(y));
+
+});
     }
         //function to create a dropdown menu for attribute selection
         function createDropdown(csvData) {
