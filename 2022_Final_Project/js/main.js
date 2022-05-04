@@ -281,7 +281,7 @@
                 .attr("y", 26)
                 .text("Year")*/
             
-                var margin = {top: 30, right: 20, bottom: 70, left: 50},
+                var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
 
