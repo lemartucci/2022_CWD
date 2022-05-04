@@ -237,26 +237,20 @@
             setGraph();
             //setEnumerationUnits();
         }
-
-        // Creating line graph and axis
         function setGraph(){
             var w= 800,
                 h= 200;
-            
             var graph = d3.select("#graph")
                 .append("svg")
                 .attr("width", w)
                 .attr("height", h)
                 .attr("class", "graph");
-            
             /*var xAxis = d3.axisBottom()
                 .scale(xScale)
                 .tickValues([2005, 2010,2015, 2020])
                 .tickFormat(d3.format("d"));
-            
             var yAxis = d3.axisLeft()
                 .scale(yScale);
-        
                 graph.append("g")
                 .attr("transform", "translate (58,10)")
                 .call(yAxis)
@@ -266,7 +260,6 @@
                 .attr("y", 3)
                 .style("text-anchor", "bottom")
                 .text("Individual Cases");
-            
             var xAxisTranslate = h/1.5 + 10;
                 graph.append("g")
                 .attr("transform", "translate (65, 153)")
@@ -277,71 +270,65 @@
                 .attr("x", -5)
                 .attr("y", 26)
                 .text("Year")*/
-            
-                var margin = {top: 15, right: 25, bottom: 25, left: 25},
+                var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
-                height = 225 - margin.top - margin.bottom;
-
+                height = 200 - margin.top - margin.bottom;
+                
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
+                
+                var x = d3.scaleTime().range([20, width]);
+                var xAxis = d3.scaleTime().range([20, width]);
+                var y = d3.scaleLinear().range([height, 20]);
 
-                
-                var x = d3.scaleTime().range([25, width]); 
-                var y = d3.scaleLinear().range([height, 25]);
-                
+                const parseTime = d3.timeParse("%Y");
                 // Define the line
-                var lineGraph = d3.line()	
+                
+                var lineGraph = d3.line()
                 .x(function(d) { return x(d.year); })
                 .y(function(d) { return y(d.cases); });
-                    
                     data.forEach(function(d) {
                           d.year = +d.year;
                           d.cases = +d.cases;
                       });
-                  
                       // Scale the range of the data
-                      x.domain(d3.extent(data, function(d) { return d.year; }));
+                      x.domain(d3.extent(data, function(d) {return d.year; }));
+                      xAxis.domain(d3.extent(data, function(d) {return parseTime(d.year); }));
                       y.domain([0, d3.max(data, function(d) { return d.cases; })]);
-                  
                       // Group the entries by symbol
                       dataNest = Array.from(
                           d3.group(data, d => d.STATE_NAME), ([key, value]) => ({key, value})
                         );
-                    
                       // set the colour scale
                       var color = d3.scaleOrdinal(d3.schemeTableau10);
-                  
                       legendSpace = width/dataNest.length; // spacing for the legend
-                  
                       // Loop through each symbol / key
-                      dataNest.forEach(function(d,i) { 
-                  
+                      dataNest.forEach(function(d,i) {
                           graph.append("path")
                               .attr("class", "line")
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
-                              .attr("d", lineGraph(d.value));
-                  
+                              .attr("d", lineGraph(d.value))
+                              .attr("transform", "translate(15)");
                           // Add the Legend
                           graph.append("text")
                               .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-                              .attr("y", height + (margin.bottom/2)+ 5)
+                              .attr("y", height + (margin.bottom)- 170)
                               .attr("class", "legend")    // style the legend
-                              .style("fill", function() { // Add the colours dynamically
-                                  return d.color = color(d.key); })
-                              .text(d.key); 
+                              .style("fill", function() { // Add the colours dynamically  
+                                return d.color = color(d.key); })
+                              .text(d.key)
+                              ;
                             });
-
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (20,170)")
-                        .call(d3.axisBottom(x));
-                        
-
+                        .attr("transform", "translate (15,170)")
+                        .call(d3.axisBottom(xAxis));
+                       
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate(45)")
+                        .attr("transform", "translate(35)")
                         .call(d3.axisLeft(y));
 });
     }
