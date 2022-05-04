@@ -282,8 +282,8 @@
                 .text("Year")*/
             
                 var margin = {top: 30, right: 20, bottom: 70, left: 50},
-                width = 600 - margin.left - margin.right,
-                height = 300 - margin.top - margin.bottom;
+                width = 800 - margin.left - margin.right,
+                height = 200 - margin.top - margin.bottom;
 
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
 
