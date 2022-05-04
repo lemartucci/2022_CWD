@@ -3,13 +3,18 @@
 
     //pseudo-global variables
         var attrArray=["y2005", "y2010", "y2015", "y2020"]
-        var expressed = attrArray[0];
+        var yearExpressed = attrArray[0];
 
-        var attrArray2=["deer harvested", "deer_licenses_sold"]
-        var expressed = attrArray2[0]
+        var attrArray2=["deer_harvested", "deer_licenses_sold"]
+        var typeExpressed = attrArray2[0]
+
+        var colorExpressed = typeExpressed + "_" + yearExpressed.replace("y","");
+        var expressed = attrArray[0];
         
         var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
         var xScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
+
+        var colorScale;
 
     window.onload = setMap();
 
@@ -52,6 +57,33 @@
         document.querySelector(".help").style.display = "none";
     });
 
+    //function to create color scale generator
+    function makeColorScale(data){
+        var colorClasses = [
+            "#f7f7f7",
+            "#cccccc",
+            "#969696",
+            "#636363",
+            "#252525"
+        ];
+
+        //create color scale generator
+        var colorScale = d3.scaleQuantile()
+            .range(colorClasses);
+
+        //build array of all values of the expressed attribute
+        var domainArray = [];
+        for (var i=0; i<data.length; i++){
+            var val = parseFloat(data[i].properties[colorExpressed]);
+            domainArray.push(val);
+        };
+
+        //assign array of expressed values as scale domain
+        colorScale.domain(domainArray);
+
+        return colorScale;
+    };
+
     function setMap() {
         //map frame dimensions
         var width = (window.innerWidth * 0.7),
@@ -91,32 +123,6 @@
         ;
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
-        //function to create color scale generator
-        function makeColorScale(data){
-            var colorClasses = [
-                "#f6eff7",
-                "#bdc9e1",
-                "#67a9cf",
-                "#1c9099",
-                "#016c59"
-            ];
-
-            //create color scale generator
-            var colorScale = d3.scaleQuantile()
-                .range(colorClasses);
-
-            //build array of all values of the expressed attribute
-            var domainArray = [];
-            for (var i=0; i<data.length; i++){
-                var val = parseFloat(data[i][expressed]);
-                domainArray.push(val);
-            };
-
-            //assign array of expressed values as scale domain
-            colorScale.domain(domainArray);
-
-            return colorScale;
-        };
 
         //Callback function to retrieve the data
         function callback(data) {
@@ -142,6 +148,8 @@
             createDropdown2(overlayData);
             //setLabel();
             //moveLabel();
+
+            colorScale = makeColorScale(midwestPoints);
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
@@ -202,7 +210,7 @@
                 .attr("class","points")
                 .attr("r", function(d){
                     //console.log(d.properties);
-                    var area= d.properties.y2005*6;
+                    var area= d.properties[expressed]*6;
                     return Math.sqrt(area/Math.PI)
                 })
                 .attr("id", function(d){
@@ -214,16 +222,18 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 })
-                /*
                 .style("fill", function(d){
-                    var value = d.properties[expressed];            
+                    var value = d.properties[colorExpressed]; 
+                    console.log(colorScale(value))           
                      if(value) {                
-                         return colorScale(d.properties[expressed]);            
+                         return colorScale(value);            
                      } else {                
                          return "#ccc";            
                      } 
-                 })  
-                */
+                 })
+                 .on("mouseover",function(d){
+                     setLabel(d);
+                 })
                 .style("stroke", "darkgrey"); //dark grey border of circle          
                 }                                               
                 
@@ -328,7 +338,7 @@
                 .append("select")
                 .attr("class", "dropdown")
                 .on("change", function () {
-                    changeAttribute(this.value, csvData);
+                    changeAttribute(this.value);
                 });
 
             //add initial option
@@ -353,7 +363,7 @@
         }
 
         //dropdown change listener handler
-        function changeAttribute(attribute, csvData) {
+        function changeAttribute(attribute) {
             //change the expressed attribute
             expressed = attribute;
         
@@ -368,6 +378,14 @@
                     var area= d.properties[expressed]*6;
                     return Math.sqrt(area/Math.PI)
                 })
+                .style("fill", function(d){
+                    var value = d.properties[colorExpressed]; 
+                     if(value) {                
+                         return colorScale(value);            
+                     } else {                
+                         return "#ccc";            
+                     } 
+                 })  
                 .attr("id", function(d){
                     return d.STATE_NAME;
                 })
@@ -382,7 +400,9 @@
                 .append("select")
                 .attr("class", "dropdown2")
                 .on("change", function () {
-                    changeColor(this.value,csvData);
+                    //changeColor(this.value,csvData);
+                    colorExpressed = this.value + "_" + expressed.replace("y","");
+                    changeAttribute(expressed);
                 });
 
             //add initial option
@@ -431,7 +451,7 @@
         
         //function to create dynamic label
         function setLabel(props){
-            //label content
+            d3.select(".infolabel").remove();
             console.log(props)
             var labelAttribute =  "<h3>" + props.STATE_NAME + ","+ props[expressed]+ "</h3>";
     
@@ -441,6 +461,8 @@
                 .attr("class", "infolabel")
                 .attr("id", props.STATE_NAME + "_label")
                 .html(labelAttribute);
+
+            moveLabel()
         }; 
           
         //function to move info label with mouse
