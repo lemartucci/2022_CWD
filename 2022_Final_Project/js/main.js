@@ -271,32 +271,46 @@
                 .attr("y", 26)
                 .text("Year")
             
-            d3.csv("data/Positive_Cases.csv", function(data) {
+                d3.csv("Positive_Cases_For_Chart.csv").then(function(data) {
 
-                // group the data by state name
-                var sumstat = d3.nest() // nest function
-                    .key(function(d) { return d.STATE_NAME;})
-                    .entries(data);
-
-                var res = sumstat.map(function(d){ return d.key }) // list of group names
-                var color = d3.scaleOrdinal()
-                      .domain(res)
-                      .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
-
-                graph.selectAll(".line")
-                    .data(sumstat)
-                    .enter()
-                    .append("path")
-                      .attr("fill", "none")
-                      .attr("stroke", function(d){ return color(d.key) })
-                      .attr("stroke-width", 1.5)
-                      .attr("d", function(d){
-                        return d3.line()
-                          .x(function(d) { return x(d.year); })
-                          .y(function(d) { return y(+d.n); })
-                          (d.values)
-                      })
-        })
+                    data.forEach(function(d) {
+                          d.year = parseDate(d.year);
+                          d.cases = +d.cases;
+                      });
+                  
+                      // Scale the range of the data
+                      x.domain(d3.extent(data, function(d) { return d.year; }));
+                      y.domain([0, d3.max(data, function(d) { return d.cases; })]);
+                  
+                      // Group the entries by symbol
+                      dataNest = Array.from(
+                          d3.group(data, d => d.symbol), ([key, value]) => ({key, value})
+                        );
+                    
+                      // set the colour scale
+                      var color = d3.scaleOrdinal(d3.schemeCategory10);
+                  
+                      legendSpace = width/dataNest.length; // spacing for the legend
+                  
+                      // Loop through each symbol / key
+                      dataNest.forEach(function(d,i) { 
+                  
+                          svg.append("path")
+                              .attr("class", "line")
+                              .style("stroke", function() { // Add the colours dynamically
+                                  return d.color = color(d.key); })
+                              .attr("d", priceline(d.value));
+                  
+                          // Add the Legend
+                          svg.append("text")
+                              .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
+                              .attr("y", height + (margin.bottom/2)+ 5)
+                              .attr("class", "legend")    // style the legend
+                              .style("fill", function() { // Add the colours dynamically
+                                  return d.color = color(d.key); })
+                              .text(d.key); 
+                            })
+                })
     }
         //function to create a dropdown menu for attribute selection
         function createDropdown(csvData) {
