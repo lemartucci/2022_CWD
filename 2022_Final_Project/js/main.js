@@ -281,7 +281,7 @@
                 .attr("y", 26)
                 .text("Year")*/
             
-                var margin = {top: 30, right: 20, bottom: 70, left: 50},
+                var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
 
@@ -331,19 +331,20 @@
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
-                              .text(d.key); 
+                              .text(d.key)
+                              ; 
                             });
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (50,100)" + height + ")")
+                        .attr("transform", "translate (50,100)")
                         .call(d3.axisBottom(x));
 
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (100,10)" + height + ")")
-                        .call(d3.axisLeft(y));
+                        .attr("transform", "translate (10,10)" + height + ")")
+                        .call(d3.axisRight(y));
 
 });
     }
