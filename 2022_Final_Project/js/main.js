@@ -10,9 +10,6 @@
 
         var colorExpressed = typeExpressed + "_" + yearExpressed.replace("y","");
         var expressed = attrArray[0];
-        
-        //var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
-        //var xScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
 
         var colorScale;
 
@@ -283,7 +280,7 @@
             
                 var margin = {top: 15, right: 25, bottom: 25, left: 25},
                 width = 800 - margin.left - margin.right,
-                height = 200 - margin.top - margin.bottom;
+                height = 225 - margin.top - margin.bottom;
 
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
 
@@ -311,7 +308,7 @@
                         );
                     
                       // set the colour scale
-                      var color = d3.scaleOrdinal(d3.schemeCategory10);
+                      var color = d3.scaleOrdinal(d3.schemeTableau10);
                   
                       legendSpace = width/dataNest.length; // spacing for the legend
                   
@@ -327,13 +324,13 @@
                           // Add the Legend
                           graph.append("text")
                               .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-                              .attr("y", height + (margin.bottom)-170)
+                              .attr("y", height + (margin.bottom/2)+ 5)
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
-                              .text(d.key)
-                              ; 
+                              .text(d.key); 
                             });
+
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
@@ -346,7 +343,6 @@
                         .attr("class", "axis")
                         .attr("transform", "translate(45)")
                         .call(d3.axisLeft(y));
-
 });
     }
         //function to create a dropdown menu for attribute selection

@@ -59,6 +59,10 @@ body{
    border-radius: 10px;
 
 }
+.line {
+   stroke-width: 1px;
+}
+
 .graph{
    margin-top: 10px;
    margin-right: 40px;
@@ -75,6 +79,7 @@ g{
 font-family:'EB Garamond', serif;
 font-size: 12px;
 color: #5E5E5E;
+padding-left: 30px;
 }
 /*.axis path,
 .axis line{
