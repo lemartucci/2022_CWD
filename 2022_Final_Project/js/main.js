@@ -11,8 +11,13 @@
         var colorExpressed = typeExpressed + "_" + yearExpressed.replace("y","");
         var expressed = attrArray[0];
         
+<<<<<<< HEAD
         var xScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
         var yScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
+=======
+        //var yScale= d3.scaleLinear().range([140,0]).domain([0,1600]);//Scale bar range; Y scale bar
+        //var xScale= d3.scaleLinear().range([700,0]).domain([2020,2005]);//Scale bar range; X scale bar
+>>>>>>> 0757515135c26d3315a501ff51c2f93e9ead0602
 
         var colorScale;
 
@@ -288,7 +293,7 @@
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
  
                 var x = d3.scaleTime().range([20, width]);  
-                var y = d3.scaleLinear().range([height, 20]);
+                var y = d3.scaleLinear().range([height, 25]);
                 
                 // Define the line
                 var lineGraph = d3.line()	
@@ -326,7 +331,7 @@
                           // Add the Legend
                           graph.append("text")
                               .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-                              .attr("y", height + (margin.bottom/2)+ 5)
+                              .attr("y", height + (margin.bottom)-170)
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
@@ -336,8 +341,12 @@
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                         .attr("transform", "translate (50,100)")
+=======
+                        .attr("transform", "translate (0,170)")
+>>>>>>> 0757515135c26d3315a501ff51c2f93e9ead0602
                         .call(d3.axisBottom(x));
 =======
                         .attr("transform", "translate (50,100)" + height + ")")
@@ -348,7 +357,7 @@
                         graph.append("g")
                         .attr("class", "axis")
                         .attr("transform", "translate (10,10)" + height + ")")
-                        .call(d3.axisRight(y));
+                        .call(d3.axisLeft(y));
 
 });
     }
