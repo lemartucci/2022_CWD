@@ -283,6 +283,14 @@
             
                 d3.csv("Positive_Cases_For_Chart.csv").then(function(data) {
 
+                var x = d3.scaleTime().range([0, width]);  
+                var y = d3.scaleLinear().range([height, 0]);
+                
+                // Define the line
+                var lineGraph = d3.line()	
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return y(d.cases); });
+                    
                     data.forEach(function(d) {
                           d.year = parseDate(d.year);
                           d.cases = +d.cases;
@@ -294,7 +302,7 @@
                   
                       // Group the entries by symbol
                       dataNest = Array.from(
-                          d3.group(data, d => d.symbol), ([key, value]) => ({key, value})
+                          d3.group(data, d => d.STATE_NAME), ([key, value]) => ({key, value})
                         );
                     
                       // set the colour scale
