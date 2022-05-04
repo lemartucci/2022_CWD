@@ -78,6 +78,33 @@
         ;
         Promise.all(promises).then(callback);//Fetching multiple datasets at once with Promise.All
 
+        //function to create color scale generator
+        function makeColorScale(data){
+            var colorClasses = [
+                "#f6eff7",
+                "#bdc9e1",
+                "#67a9cf",
+                "#1c9099",
+                "#016c59"
+            ];
+
+            //create color scale generator
+            var colorScale = d3.scaleQuantile()
+                .range(colorClasses);
+
+            //build array of all values of the expressed attribute
+            var domainArray = [];
+            for (var i=0; i<data.length; i++){
+                var val = parseFloat(data[i][expressed]);
+                domainArray.push(val);
+            };
+
+            //assign array of expressed values as scale domain
+            colorScale.domain(domainArray);
+
+            return colorScale;
+        };
+
         //Callback function to retrieve the data
         function callback(data) {
             var midwest = data[0]
@@ -88,20 +115,6 @@
                 harvestData=data[4]
                 deerData=data[5]
                 caseChartData=data[6]
-<<<<<<< Updated upstream
-                // console.log(midwest);
-                // //console.log(midCounties);
-                // console.log(background);
-                // console.log(caseData);
-                // console.log(harvestData);
-                // console.log(deerData);
-                // console.log(caseChartData);
-            
-            midwestPoints = joinData(midwestPoints,caseData);
-            createDropdown();
-            createDropdown2();
-            //setLabel(caseData);
-=======
                 overlayData=data[7]
                 console.log(midwest);
                 //console.log(midCounties);
@@ -115,18 +128,11 @@
             createDropdown();
             createDropdown2(overlayData);
             //setLabel();
->>>>>>> Stashed changes
             //moveLabel();
-            //joinData();
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
             //console.log(midwestStates);
-
-           //midwestStates = joinData(midwestStates, caseData);
-        
-            //var midwestCounties = topojson.feature(midCounties, midCounties.objects.USA_Counties_Midwest_Project).features;
-            //console.log(midwestCounties);
 
             //var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
             var backgroundStates = topojson.feature(background, background.objects.USA_Project);
@@ -195,26 +201,23 @@
                 .attr("cy",function(d){
                     return projection(d.geometry.coordinates)[1]
                 })
-<<<<<<< Updated upstream
-                .on("mouseover", function(e, d){ //calling setLabel when points added to map to allow point props to be passed
-                    //console.log(d)
-                    setLabel(d.properties)
-                })
-                .on("mousemove", function(d){ 
-                    moveLabel()
-                })
+                /*
+                .style("fill", function(d){
+                    var value = d.properties[expressed];            
+                     if(value) {                
+                         return colorScale(d.properties[expressed]);            
+                     } else {                
+                         return "#ccc";            
+                     } 
+                 })  
+                */
                 .style("stroke", "darkgrey"); //dark grey border of circle          
-=======
-                .style("stroke", "darkgrey"); //dark grey border of circle   
-                //add function for fill       
->>>>>>> Stashed changes
-                }
+                }                                               
                 
-
             setGraph();
-            //setLabel();
             //setEnumerationUnits();
         }
+
         // Creating line graph and axis
         function setGraph(){
             var w= 800,
@@ -253,9 +256,9 @@
                 .attr("text-anchor", "bottom")
                 .attr("x", -5)
                 .attr("y", 26)
-                .text("Year");   
+                .text("Year")
         };
-         
+
         //function to create a dropdown menu for attribute selection
         function createDropdown(csvData) {
             //add select element
@@ -310,35 +313,6 @@
                 .style("stroke", "darkgrey") //dark grey border of circle  
         }
 
-        
-        //function to create color scale generator
-        function makeColorScale(data){
-            var colorClasses = [
-                "#f6eff7",
-                "#bdc9e1",
-                "#67a9cf",
-                "#1c9099",
-                "#016c59"
-            ];
-
-            //create color scale generator
-            var colorScale = d3.scaleQuantile()
-                .range(colorClasses);
-
-            //build array of all values of the expressed attribute
-            var domainArray = [];
-            for (var i=0; i<data.length; i++){
-                var val = parseFloat(data[i][expressed]);
-                domainArray.push(val);
-            };
-
-            //assign array of expressed values as scale domain
-            colorScale.domain(domainArray);
-
-            return colorScale;
-        };
-
-
         //function to create a dropdown menu for attribute selection
         function createDropdown2(csvData) {
             //add select element
@@ -367,7 +341,7 @@
                     return d;
                 })
                 .text(function (d) {
-                    return d
+                    return d.replaceAll("_", " ");
                 });
         }
 
@@ -394,16 +368,6 @@
             });
         }  
         
-       
-            
-            //updateSymbol(points, csvData.length, colorScale);
-    
-        //Update Symbol function
-        /*function updateSymbol(points, n, colorScale){
-         points.attr("x", function (d,i){
-                return i * 
-                */
-   
         //function to create dynamic label
         function setLabel(props){
             //label content
@@ -443,30 +407,6 @@
                 .style("left", x + "px")
                 .style("top", y + "px");
         };
-
-       /* 
-        //dropdown change listener handler
-        function changeAttribute(attribute, csvData) {
-            //change the expressed attribute
-            expressed = attrArray[3];
-    
-            //resize proportional symbols
-            var vermontDistricts = d3
-                .selectAll(".midwestPoints")
-                .transition()
-                .duration(1000)
-                .style("fill", function (d) {
-                var value = d.properties[expressed];
-                if (value) {
-                    return colorScale(d.properties[expressed]);
-                } else {
-                    return "#ccc";
-                }
-            });
-            
-        }
-*/
-    /*
        
             // group the data: I want to draw one line per group
             var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
@@ -507,7 +447,7 @@
                     .x(function(d) { return x(d.year); })
                     .y(function(d) { return y(+d.cases); })
                     (d.values)
-                })*/
+                })
       
     
 
@@ -586,82 +526,6 @@
             })
 
 })*/
-/*
-
-
-    }
         
-        //Scatterplot Creation....Draft code based on D3 example
-        var margin = {top: 10, right: 30, bottom: 30, left: 60},
-            width = 460-margin.left-margin.right,
-            height = 400-margin.top-margin.bottom;
-        
-        var svg = d3.select(".scatterplot")
-            .append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-                .attr("tranform",
-                        "translate(" + margin.left + "," + margin.top + ")");
-        
-        d3.csv("data/Positive_Cases.csv", function (data){
-            var x = d3.scaleLinear()
-                .domain([2005, 2020])
-            
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
-
-            var y = d3.scaleLinear()
-                .domain
-                .range
-            svg.append("g")
-                .call(d3.axisLeft(y));
-        
-        var color = d3.scaleOrdinal()
-            .domain(["Michigan", "Wisconsin", "Missouri", "Iowa", "Illinois", "Minnesota" ])
-            .range([ "#440154ff", "#21908dff", "#fde725ff", "#4287f5", "#4a2457", "#4d6e6a"])
-
-        // Add dots
-        svg.append('g')
-            .selectAll("dot")
-            .data(data)
-            .enter()
-            .append("circle")
-            //.attr("cx", function (d) { return x(d.Year); } )
-            //.attr("cy", function (d) { return y(d.Wisconsin); } )
-            //.attr("r", 5)
-            .style("fill", function (d) { return color(d.Wisconsin) } )
-            .style("fill", function (d) { return color(d.Michigan) } )
-            .style("fill", function (d) { return color(d.Illinois) } )
-            .style("fill", function (d) { return color(d.Iowa) } )
-            .style("fill", function (d) { return color(d.Minnesota) } )
-            .style("fill", function (d) { return color(d.Missouri) } );
-        
-        //Title of scatterplot
-            svg.append('text')
-                .attr('x', width/2 + 100)
-                .attr('y', 100)
-                .attr('text-anchor', 'middle')
-                .style('font-family', 'Helvetica')
-                .style('font-size', 20)
-                .text('Positive CWD Cases');
-            
-            // X label
-            svg.append('text')
-                .attr('x', width/2 + 100)
-                .attr('y', height - 15 + 150)
-                .attr('text-anchor', 'middle')
-                .style('font-family', 'Helvetica')
-                .style('font-size', 12)
-                .text('Year');
-            
-            // Y label
-            svg.append('text')
-                .attr('text-anchor', 'middle')
-                .attr('transform', 'translate(60,' + height + ')rotate(-90)')
-                .style('font-family', 'Helvetica')
-                .style('font-size', 12)
-                .text('Positive Cases')
-        })*/
+      
      })();

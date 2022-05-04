@@ -68,10 +68,9 @@ body{
    float: left;
    border-radius: 10px;
 }
-.graph g text{
+g text{
    color:#5E5E5E;
 }
-
 g{
 font-family:'EB Garamond', serif;
 font-size: 12px;
@@ -189,7 +188,7 @@ h2{
 }
 h6{
   font-family: 'EB Garamond', serif;
-  font-size: 20px;
+  font-size: 23px;
    color:#000; 
 }
 .link{
@@ -213,6 +212,9 @@ h6{
 }
 strong{
    font-weight: 900;
+}
+.link2{
+   color:#000;
 }
 
 /*help popup*/
@@ -268,8 +270,8 @@ strong{
    margin:  0 0 20px auto;
    background-color: transparent;
    font-size: 25px;
-   color: #486052;
-   background: white;
+   color: white;
+   background: #486052;
    border-radius: 100%;
    width: 30px;
    height: 30px;
