@@ -337,23 +337,14 @@
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-<<<<<<< Updated upstream
-                        .attr("transform", "translate (50,100)")
-=======
                         .attr("transform", "translate (0,170)")
->>>>>>> Stashed changes
                         .call(d3.axisBottom(x));
 
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
-<<<<<<< Updated upstream
                         .attr("transform", "translate (10,10)" + height + ")")
-                        .call(d3.axisRight(y));
-=======
-                        .attr("transform", "translate (100)" + height + ")")
                         .call(d3.axisLeft(y));
->>>>>>> Stashed changes
 
 });
     }
