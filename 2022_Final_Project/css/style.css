@@ -123,6 +123,16 @@ color: #5E5E5E;
    border-radius: 3px;
    text-decoration: none;
 }
+.logo a{
+   color: white;
+   font-size: 35px;
+   line-height: 60px;
+   padding: 0 100px;
+   padding-left: 20px;
+   font-family:'EB Garamond', serif;
+   border-radius: 3px;
+   text-decoration: none;
+}
 footer{
    background-color: #536D5E;
    position: fixed;
