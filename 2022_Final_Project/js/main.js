@@ -40,7 +40,7 @@
     });
 
     //creates help popup 
-    window.addEventListener(function(){
+    window.addEventListener("load", function(){
         setTimeout(
             function open(event){
                 document.querySelector(".help").style.display = "block"; 
