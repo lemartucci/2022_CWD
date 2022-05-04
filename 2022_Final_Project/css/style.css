@@ -123,6 +123,16 @@ color: #5E5E5E;
    border-radius: 3px;
    text-decoration: none;
 }
+.logo a{
+   color: white;
+   font-size: 35px;
+   line-height: 60px;
+   padding: 0 100px;
+   padding-left: 20px;
+   font-family:'EB Garamond', serif;
+   border-radius: 3px;
+   text-decoration: none;
+}
 footer{
    background-color: #536D5E;
    position: fixed;
@@ -218,34 +228,32 @@ strong{
 }
 
 /*help popup*/
-
 .help{
    background-color: #486052;
-    width: 30%;
-    padding: 10px 10px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-    border: medium solid #C3C9C6;
-    border-width: 3px;
-    border-radius: 15px;
-    display: none;
-    text-align: center;
-    font-size: 10px;
-    box-shadow: 4px 4px 4px #999;
+   color: white;
+   width: 200px;
+   box-shadow: 4px 4px 4px #999;
+   border-radius: 14px;
+   padding: 10px 10px;
+   padding-bottom: 20px;
+   position: absolute;
+   text-align: center;
+   left: 18%;
+   top: 15%;
 }
-/*
-.help h2{
-   margin-top: -20px;
-}
-*/
-.help p{
-    font-family: 'EB Garamond', serif;
-    text-align: justify;
-    margin: 20px 0;
-    line-height: 25px;
-    color: white;
+.help button{
+   display: block;
+   margin:  0 0 10px auto;
+   background-color: transparent;
+   font-size: 18px;
+   color: #486052;
+   background: white;
+   border-radius: 100%;
+   width: 20px;
+   height: 20px;
+   border: none;
+   outline: none;
+   cursor: pointer;
 }
 
 /*popup*/

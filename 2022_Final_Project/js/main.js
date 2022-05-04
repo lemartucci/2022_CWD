@@ -13,12 +13,25 @@
 
     window.onload = setMap();
 
+    //creates help popup 
+    window.addEventListener("load", function(){
+        setTimeout(
+            function open(event){
+                document.querySelector(".help").style.display = "block"; 
+            },5000
+        )
+    });      
+   
+    document.querySelector("#close").addEventListener("click", function(){
+        document.querySelector(".help").style.display = "none";
+    });
+
     //creates info popup upon entering page
     window.addEventListener("load", function(){
         setTimeout(
             function open(event){
-                document.querySelector(".popup").style.display = "block";
-            },
+                document.querySelector(".popup").style.display = "block"; 
+            }
         )
     });      
    
@@ -26,17 +39,17 @@
         document.querySelector(".popup").style.display = "none";
     });
 
-    //creates help popups 
-    window.addEventListener("load", function(){
+    //creates help popup 
+    window.addEventListener(function(){
         setTimeout(
             function open(event){
-                document.querySelector(".popup").style.display = "block";
-            },
+                document.querySelector(".help").style.display = "block"; 
+            },4000
         )
     });      
    
     document.querySelector("#close").addEventListener("click", function(){
-        document.querySelector(".popup").style.display = "none";
+        document.querySelector(".help").style.display = "none";
     });
 
     function setMap() {
