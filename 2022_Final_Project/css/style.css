@@ -76,12 +76,31 @@ font-family:'EB Garamond', serif;
 font-size: 12px;
 color: #5E5E5E;
 }
-.axis path,
+/*.axis path,
 .axis line{
    fill: none;
    stroke: black;
    stroke-width: 1px;
    shape-rendering: crispEdges;
+}*/
+path { 
+   stroke: steelblue;
+   stroke-width: 2;
+   fill: none;
+}
+
+.axis path,
+.axis line {
+   fill: none;
+   stroke: grey;
+   stroke-width: 1;
+   shape-rendering: crispEdges;
+}
+
+.legend {
+   font-size: 16px;
+   font-weight: bold;
+   text-anchor: middle;
 }
 
 /*dropdowns*/
