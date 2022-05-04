@@ -278,15 +278,15 @@
                 .attr("y", 26)
                 .text("Year")*/
             
-                var margin = {top: 30, right: 20, bottom: 70, left: 50},
+                var margin = {top: 15, right: 25, bottom: 25, left: 25},
                 width = 800 - margin.left - margin.right,
                 height = 225 - margin.top - margin.bottom;
 
-                d3.csv("data/Positive_Cases_For_Chart.csv").then(function(data) {
- 
-                var x = d3.scaleTime().range([30, width]);  
-                var x = d3.scaleTime().range([30, 700]);  
-                var y = d3.scaleLinear().range([height, 20]);
+                d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
+
+                
+                var x = d3.scaleTime().range([25, width]); 
+                var y = d3.scaleLinear().range([height, 25]);
                 
                 // Define the line
                 var lineGraph = d3.line()	
@@ -334,13 +334,14 @@
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (50,100)" + height + ")")
+                        .attr("transform", "translate (20,170)")
                         .call(d3.axisBottom(x));
+                        
 
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (100,10)" + ")")
+                        .attr("transform", "translate(45)")
                         .call(d3.axisLeft(y));
 });
     }
