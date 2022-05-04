@@ -270,8 +270,34 @@
                 .attr("x", -5)
                 .attr("y", 26)
                 .text("Year")
-        };
+            
+            d3.csv("data/Positive_Cases.csv", function(data) {
 
+                // group the data by state name
+                var sumstat = d3.nest() // nest function
+                    .key(function(d) { return d.STATE_NAME;})
+                    .entries(data);
+
+                var res = sumstat.map(function(d){ return d.key }) // list of group names
+                var color = d3.scaleOrdinal()
+                      .domain(res)
+                      .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+
+                graph.selectAll(".line")
+                    .data(sumstat)
+                    .enter()
+                    .append("path")
+                      .attr("fill", "none")
+                      .attr("stroke", function(d){ return color(d.key) })
+                      .attr("stroke-width", 1.5)
+                      .attr("d", function(d){
+                        return d3.line()
+                          .x(function(d) { return x(d.year); })
+                          .y(function(d) { return y(+d.n); })
+                          (d.values)
+                      })
+        })
+    }
         //function to create a dropdown menu for attribute selection
         function createDropdown(csvData) {
             //add select element
