@@ -285,6 +285,7 @@
                 d3.csv("data/Positive_Cases_For_Chart.csv").then(function(data) {
  
                 var x = d3.scaleTime().range([30, width]);  
+                var x = d3.scaleTime().range([30, 700]);  
                 var y = d3.scaleLinear().range([height, 20]);
                 
                 // Define the line
