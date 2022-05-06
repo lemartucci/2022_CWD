@@ -226,6 +226,7 @@
                 
             setGraph();
             createLegend();
+            createColorLegend();
             //changeColor();
             //setEnumerationUnits();
         }
@@ -309,26 +310,26 @@
 });
     }
         function createLegend(){
-                var w= 100,
-                    h= 100;
+                var w= 450,
+                    h= 200;
                 var propLegend = d3.select(".controls")
                     .append("svg")
                     .attr("width", w)
                     .attr("height", h)
                     .attr("class", "propLegend");
 
-                //var margin = {top: 600, right:150, bottom: 150, left: 600},
-                //width = 150 - margin.left - margin.right,
-                //height = 150 - margin.top - margin.bottom;
+                //var margin = {top: 100, right: 85, bottom: 50, left: 25},
+                //width = 85 - margin.left - margin.right,
+                //height = 85 - margin.top - margin.bottom;
                 
                 var size = d3.scaleSqrt()
-                    .domain([1,50])
-                    .range([1,50])
+                    .domain([1,100])
+                    .range([1,100])
                 
-                var dataValues = [10, 15, 20]
-                var xCircle = 10
-                var xLabel = 20
-                var yCircle = 50 
+                var dataValues = [15, 50, 1500]
+                var xCircle = 5
+                var xLabel = 10
+                var yCircle = 12 
 
                 propLegend
                     .selectAll(".controls")
@@ -352,6 +353,7 @@
                     .attr('stroke', 'black')
                     .style('stroke-dasharray', ('2,2'))
                     
+                /* 
                 // Add legend: labels
                 svg
                     .selectAll("legend")
@@ -361,9 +363,11 @@
                     .attr('y', d => yCircle - size(d))
                     .text( d => d)
                     .style("font-size", 10)
-                    .attr('alignment-baseline', 'middle')
+                    .attr('alignment-baseline', 'middle')*/
 
         };
+
+        
         /////DROPDOWNS/////
 
         //function to create a dropdown menu for attribute selection
@@ -536,7 +540,6 @@
             d3.select(".infolabel")
                 .style("left", x + "px")
                 .style("top", y + "px");
-        };
-       
+        };      
       
      })();
