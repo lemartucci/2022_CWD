@@ -287,7 +287,7 @@
                               .attr("transform", "translate(20)")
                         
                           // Add the Legend
-                          graph.append("text")
+                        graph.append("text")
                               .attr("x", (legendSpace/1.8)+i*legendSpace)  // space legend
                               .attr("y", height + (margin.bottom)- 160)
                               .attr("class", "legend")    // style the legend
@@ -317,22 +317,19 @@
                     .attr("width", w)
                     .attr("height", h)
                     .attr("class", "propLegend");
-
-                //var margin = {top: 100, right: 85, bottom: 50, left: 25},
-                //width = 85 - margin.left - margin.right,
-                //height = 85 - margin.top - margin.bottom;
                 
                 var size = d3.scaleSqrt()
-                    .domain([1,100])
-                    .range([1,100])
-                
-                var dataValues = [15, 50, 1500]
-                var xCircle = 5
-                var xLabel = 10
-                var yCircle = 12 
+                    .domain([1,50])
+                    .range([1,50])
+                //Ading the circles
+                var dataValues = [5, 15, 20]
+                var xCircle = 10
+                var xLabel = 20
+                var yCircle = 50 
 
+                //Creating a nested legend
                 propLegend
-                    .selectAll(".controls")
+                    .selectAll("legend")
                     .data(dataValues)
                     .join("circle")
                     .attr("cx", xCircle)
@@ -341,7 +338,7 @@
                     .attr("r", d => size(d))
                     .style("fill", "none")
                     .attr("stroke", "black")
-                
+                //Sizes of circles and position
                 propLegend
                     .selectAll("legend")
                     .data(dataValues)
@@ -350,21 +347,20 @@
                     .attr('x2', xLabel)
                     .attr('y1', d => yCircle - size(d))
                     .attr('y2', d => yCircle - size(d))
-                    .attr('stroke', 'black')
-                    .style('stroke-dasharray', ('2,2'))
+                    //.attr('stroke', 'black')
+                    //.style('stroke-dasharray', ('2,2'))
                     
-                /* 
-                // Add legend: labels
-                svg
+                //Legend Labels
+                /*propLegend
                     .selectAll("legend")
-                    .data(valuesToShow)
+                    .data(dataValues)
                     .join("text")
                     .attr('x', xLabel)
                     .attr('y', d => yCircle - size(d))
                     .text( d => d)
                     .style("font-size", 10)
-                    .attr('alignment-baseline', 'middle')*/
-
+                    .attr('alignment-baseline', 'middle')
+                    .labelOffset(100);*/
         };
 
         
