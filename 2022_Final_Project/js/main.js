@@ -225,12 +225,9 @@
                 }                                               
                 
             setGraph();
-<<<<<<< Updated upstream
             createLegend();
             //changeColor();
             //setEnumerationUnits();
-=======
->>>>>>> Stashed changes
         }
 
         /////GRAPH/////
@@ -243,11 +240,7 @@
                 .attr("width", w)
                 .attr("height", h)
                 .attr("class", "graph");
-<<<<<<< Updated upstream
            
-=======
-
->>>>>>> Stashed changes
                 var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
@@ -313,7 +306,6 @@
                         .attr("class", "axis")
                         .attr("transform", "translate(40)")
                         .call(d3.axisLeft(y));
-<<<<<<< Updated upstream
 });
     }
         function createLegend(){
@@ -373,13 +365,6 @@
                     .attr('alignment-baseline', 'middle')*/
 
         };
-=======
-
-            });
-
-        }
-    
->>>>>>> Stashed changes
         /////DROPDOWNS/////
 
         //function to create a dropdown menu for attribute selection
@@ -552,11 +537,7 @@
             d3.select(".infolabel")
                 .style("left", x + "px")
                 .style("top", y + "px");
-<<<<<<< Updated upstream
         };
        
-=======
-        };      
->>>>>>> Stashed changes
       
      })();
