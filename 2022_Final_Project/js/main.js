@@ -316,7 +316,7 @@
                     .attr("width", w)
                     .attr("height", h)
                     .attr("class", "propLegend");
-                
+
                 var size = d3.scaleSqrt()
                     .domain([1,50])
                     .range([1,50])
