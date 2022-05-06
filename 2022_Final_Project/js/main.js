@@ -101,7 +101,6 @@
         //Data for map
         var promises = [
             d3.json("data/Midwest_States_Project.topojson"),
-            //d3.json("data/USA_Counties_Midwest_Project.topojson"),
             d3.json("data/USA_Project.topojson"),
             d3.json("data/Midwest_Points.geojson"),
             d3.csv("data/Positive_Cases.csv"),
@@ -117,7 +116,6 @@
         //Callback function to retrieve the data
         function callback(data) {
             var midwest = data[0]
-                //midCounties = data[1]
                 background = data[1]
                 midwestPoints = data[2].features
                 caseData = data[3]
@@ -126,7 +124,6 @@
                 caseChartData=data[6]
                 overlayData=data[7]
                 console.log(midwest);
-                //console.log(midCounties);
                 console.log(background);
                 console.log(caseData);
                 console.log(harvestData);
@@ -136,7 +133,7 @@
             midwestPoints = joinData(midwestPoints,caseData);
             createDropdown();
             createDropdown2(overlayData);
-            //setLabel();
+            //createSequenceControls();
             //moveLabel();
 
             colorScale = makeColorScale(midwestPoints);
@@ -228,9 +225,12 @@
                 }                                               
                 
             setGraph();
+<<<<<<< Updated upstream
             createLegend();
             //changeColor();
             //setEnumerationUnits();
+=======
+>>>>>>> Stashed changes
         }
 
         /////GRAPH/////
@@ -243,7 +243,11 @@
                 .attr("width", w)
                 .attr("height", h)
                 .attr("class", "graph");
+<<<<<<< Updated upstream
            
+=======
+
+>>>>>>> Stashed changes
                 var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
@@ -255,8 +259,8 @@
                 var y = d3.scaleLinear().range([height, 20]);
 
                 const parseTime = d3.timeParse("%Y");
+
                 // Define the line
-                
                 var lineGraph = d3.line()
                 .x(function(d) { return x(d.year); })
                 .y(function(d) { return y(d.cases); });
@@ -264,17 +268,21 @@
                           d.year = +d.year;
                           d.cases = +d.cases;
                       });
+
                       // Scale the range of the data
                       x.domain(d3.extent(data, function(d) {return d.year; }));
                       xAxis.domain(d3.extent(data, function(d) {return parseTime(d.year); }));
                       y.domain([0, d3.max(data, function(d) { return d.cases; })]);
+
                       // Group the entries by symbol
                       dataNest = Array.from(
                           d3.group(data, d => d.STATE_NAME), ([key, value]) => ({key, value})
                         );
+
                       // set the colour scale
                       var color = d3.scaleOrdinal(d3.schemeTableau10);
                       legendSpace = width/dataNest.length; // spacing for the legend
+
                       // Loop through each symbol / key
                       dataNest.forEach(function(d,i) {
                           graph.append("path")
@@ -282,7 +290,8 @@
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
                               .attr("d", lineGraph(d.value))
-                              .attr("transform", "translate(20)");
+                              .attr("transform", "translate(20)")
+                        
                           // Add the Legend
                           graph.append("text")
                               .attr("x", (legendSpace/1.8)+i*legendSpace)  // space legend
@@ -291,8 +300,8 @@
                               .style("fill", function() { // Add the colours dynamically  
                                 return d.color = color(d.key); })
                               .text(d.key)
-                              ;
                             });
+
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
@@ -304,6 +313,7 @@
                         .attr("class", "axis")
                         .attr("transform", "translate(40)")
                         .call(d3.axisLeft(y));
+<<<<<<< Updated upstream
 });
     }
         function createLegend(){
@@ -363,6 +373,13 @@
                     .attr('alignment-baseline', 'middle')*/
 
         };
+=======
+
+            });
+
+        }
+    
+>>>>>>> Stashed changes
         /////DROPDOWNS/////
 
         //function to create a dropdown menu for attribute selection
@@ -373,7 +390,8 @@
                 .append("select")
                 .attr("class", "dropdown")
                 .on("change", function () {
-                    changeAttribute(this.value);
+                    changeAttribute(this.value)
+                    changeLine();
                 });
 
             //add initial option
@@ -425,6 +443,13 @@
                     return d.STATE_NAME;
                 })
                 .style("stroke", "darkgrey") //dark grey border of circle  
+
+                //update line
+                var lines = d3
+                .selectAll(".line")
+                .transition()
+                .duration(1000)   
+                
         }
 
         //function to create a dropdown menu for attribute selection
@@ -438,28 +463,7 @@
                     //changeColor(this.value,csvData);
                     colorExpressed = this.value + "_" + expressed.replace("y","");
                     changeAttribute(expressed);
-                });
-
-            //add initial option
-            var titleOption = dropdown
-                .append("option")
-                .attr("class", "titleOption")
-                .attr("disabled", "true")
-                .text("Select Overlay");
-
-            //add attribute name options
-            var attrOptions = dropdown
-                .selectAll("attrOptions")
-                .data(attrArray2)
-                .enter()
-                .append("option")
-                .attr("value", function (d) {
-                    return d;
-                })
-                .text(function (d) {
-                    return d.replaceAll("_", " ");
-                });
-        }
+        });
 
         //dropdown change listener handler
         function changeColor(attribute, csvData) {
@@ -483,6 +487,28 @@
                 }
             });
         }  
+
+        //add initial option
+        var titleOption = dropdown
+                .append("option")
+                .attr("class", "titleOption")
+                .attr("disabled", "true")
+                .text("Select Overlay");
+
+        //add attribute name options
+        var attrOptions = dropdown
+            .selectAll("attrOptions")
+            .data(attrArray2)
+            .enter()
+            .append("option")
+            .attr("value", function (d) {
+                    return d;
+            })
+            .text(function (d) {
+                return d.replaceAll("_", " ");
+            });
+
+        }
         
         /////LABELS/////
 
@@ -526,7 +552,11 @@
             d3.select(".infolabel")
                 .style("left", x + "px")
                 .style("top", y + "px");
+<<<<<<< Updated upstream
         };
        
+=======
+        };      
+>>>>>>> Stashed changes
       
      })();

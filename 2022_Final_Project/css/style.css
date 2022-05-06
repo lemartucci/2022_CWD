@@ -188,6 +188,53 @@ footer{
     width: 100%;
  }
 
+ /*sequence control*/
+ .range-slider {  
+	display: inline-block;
+	text-align: center; 
+	-webkit-appearance: none;
+	width: 150px;  	
+	height: 6px;
+	fill: #000;
+	background: #E4A15E;
+}  
+
+.range-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	background: #000; 
+  }
+	
+	.step {  
+		width: 50px; 
+		background-color: #fff;
+		border: #914602;
+	}  
+	
+	.step img {  
+		width: 30px;  
+		height: 30px;
+	}  
+
+	#forward {
+		float: right;
+		size: 30px;
+		}
+		
+		#reverse {  
+			float: left;  
+		}
+
+.leaflet-popup-content p {
+	margin: 0.2em 0;
+}
+
+.input.range-slider{
+	fill: #914602;
+}
+
  /*text*/
  .title {
    font-family:'EB Garamond', serif;
