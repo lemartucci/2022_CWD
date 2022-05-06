@@ -63,9 +63,8 @@ body{
    stroke-width: 1px;
 }
 .propLegend{
-  float: center;
-  padding-top:30px;
-  padding-left: 200px;
+  padding-top: 95px;
+  padding-left: 260px;
 }
 
 .graph{
