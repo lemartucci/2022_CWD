@@ -15,12 +15,14 @@
 
     window.onload = setMap();
 
+    /////POPUP CREATION/////    
+
     //creates help popup 
     window.addEventListener("load", function(){
         setTimeout(
             function open(event){
                 document.querySelector(".help").style.display = "block"; 
-            },5000
+            }
         )
     });      
    
@@ -41,18 +43,7 @@
         document.querySelector(".popup").style.display = "none";
     });
 
-    //creates help popup 
-    window.addEventListener("load", function(){
-        setTimeout(
-            function open(event){
-                document.querySelector(".help").style.display = "block"; 
-            },4000
-        )
-    });      
-   
-    document.querySelector("#close").addEventListener("click", function(){
-        document.querySelector(".help").style.display = "none";
-    });
+    /////COLOR SCALE/////
 
     //function to create color scale generator
     function makeColorScale(data){
@@ -80,6 +71,8 @@
 
         return colorScale;
     };
+
+    /////LOAD MAP AND DATA/////
 
     function setMap() {
         //map frame dimensions
@@ -237,6 +230,9 @@
             setGraph();
             //setEnumerationUnits();
         }
+
+        /////GRAPH/////
+
         function setGraph(){
             var w= 800,
                 h= 200;
@@ -312,7 +308,7 @@
                           // Add the Legend
                           graph.append("text")
                               .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-                              .attr("y", height + (margin.bottom)- 170)
+                              .attr("y", height + (margin.bottom)- 160)
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically  
                                 return d.color = color(d.key); })
@@ -332,6 +328,9 @@
                         .call(d3.axisLeft(y));
 });
     }
+    
+        /////DROPDOWNS/////
+
         //function to create a dropdown menu for attribute selection
         function createDropdown(csvData) {
             //add select element
@@ -451,6 +450,8 @@
             });
         }  
         
+        /////LABELS/////
+
         //function to create dynamic label
         function setLabel(props){
             d3.select(".infolabel").remove();
