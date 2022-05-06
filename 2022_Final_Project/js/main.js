@@ -228,6 +228,8 @@
                 }                                               
                 
             setGraph();
+            createLegend();
+            //changeColor();
             //setEnumerationUnits();
         }
 
@@ -241,31 +243,7 @@
                 .attr("width", w)
                 .attr("height", h)
                 .attr("class", "graph");
-            /*var xAxis = d3.axisBottom()
-                .scale(xScale)
-                .tickValues([2005, 2010,2015, 2020])
-                .tickFormat(d3.format("d"));
-            var yAxis = d3.axisLeft()
-                .scale(yScale);
-                graph.append("g")
-                .attr("transform", "translate (58,10)")
-                .call(yAxis)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("dy", "-4em")
-                .attr("y", 3)
-                .style("text-anchor", "bottom")
-                .text("Individual Cases");
-            var xAxisTranslate = h/1.5 + 10;
-                graph.append("g")
-                .attr("transform", "translate (65, 153)")
-                .call(xAxis)
-                .append("text")
-                .attr("dx", "28em")
-                .attr("text-anchor", "bottom")
-                .attr("x", -5)
-                .attr("y", 26)
-                .text("Year")*/
+           
                 var margin = {top: 15, right: 25, bottom: 35, left: 25},
                 width = 800 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
@@ -328,7 +306,63 @@
                         .call(d3.axisLeft(y));
 });
     }
-    
+        function createLegend(){
+                var w= 50,
+                    h= 50;
+                var propLegend = d3.select(".controls")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h)
+                    .attr("class", "propLegend");
+
+                //var margin = {top: 100, right: 85, bottom: 50, left: 25},
+                //width = 85 - margin.left - margin.right,
+                //height = 85 - margin.top - margin.bottom;
+                
+                var size = d3.scaleSqrt()
+                    .domain([1,100])
+                    .range([1,100])
+                
+                var dataValues = [15, 50, 1500]
+                var xCircle = 5
+                var xLabel = 10
+                var yCircle = 12 
+
+                propLegend
+                    .selectAll(".controls")
+                    .data(dataValues)
+                    .join("circle")
+                    .attr("cx", xCircle)
+                    .attr("cx", xCircle)
+                    .attr("cy", d => yCircle - size(d))
+                    .attr("r", d => size(d))
+                    .style("fill", "none")
+                    .attr("stroke", "black")
+                
+                propLegend
+                    .selectAll("legend")
+                    .data(dataValues)
+                    .join("line")
+                    .attr('x1', d => xCircle + size(d))
+                    .attr('x2', xLabel)
+                    .attr('y1', d => yCircle - size(d))
+                    .attr('y2', d => yCircle - size(d))
+                    .attr('stroke', 'black')
+                    .style('stroke-dasharray', ('2,2'))
+                    
+                /* 
+                // Add legend: labels
+                svg
+                    .selectAll("legend")
+                    .data(valuesToShow)
+                    .join("text")
+                    .attr('x', xLabel)
+                    .attr('y', d => yCircle - size(d))
+                    .text( d => d)
+                    .style("font-size", 10)
+                    .attr('alignment-baseline', 'middle')*/
+
+        };
         /////DROPDOWNS/////
 
         //function to create a dropdown menu for attribute selection
@@ -494,111 +528,5 @@
                 .style("top", y + "px");
         };
        
-        /*
-            // group the data: I want to draw one line per group
-            var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
-            .key(function(d) { return d.STATE_NAME;})
-            .entries(data);
-        
-            // Add X axis --> it is a date format
-            var x = d3.scaleLinear()
-            .domain(d3.extent(data, function(d) { return d.year; }))
-            .range([ 0, width ]);
-            svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).ticks(4));
-        
-            // Add Y axis
-            var y = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d) { return +d.cases; })])
-            .range([ height, 0 ]);
-            svg.append("g")
-            .call(d3.axisLeft(y));
-        
-            // color palette
-            var res = sumstat.map(function(d){ return d.key }) // list of group names
-            var color = d3.scaleOrdinal()
-            .domain(res)
-            .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33'])
-        
-            // Draw the line
-            svg.selectAll(".line")
-                .data(sumstat)
-                .enter()
-                .append("path")
-                .attr("fill", "none")
-                .attr("stroke", function(d){ return color(d.key) })
-                .attr("stroke-width", 1.5)
-                .attr("d", function(d){
-                    return d3.line()
-                    .x(function(d) { return x(d.year); })
-                    .y(function(d) { return y(+d.cases); })
-                    (d.values)
-                })
-
-    
-    
-    /*
-    function setGraph(){
-        // set the dimensions and margins of the graph
-        var margin = {top: 10, right: 30, bottom: 30, left: 60},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
-
-        // append the svg object to the body of the page
-        var svg = d3.select("#cwd_data")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
-
-        //Read the data
-        d3.csv("data/Positive_Cases.csv", function(data) {
-
-        // group the data: I want to draw one line per group
-        var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
-        .key(function(d) { return d.STATE_NAME;})
-        .entries(data);
-
-        // Add X axis --> it is a date format
-        var x = d3.scaleLinear()
-        .domain(d3.extent(data, function(d) { return d.Year; }))
-        .range([ 0, width ]);
-        svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).ticks(5));
-
-        // Add Y axis
-        var y = d3.scaleLinear()
-        .domain([0, d3.max(data, function(d) { return +d.n; })])
-        .range([ height, 0 ]);
-        svg.append("g")
-        .call(d3.axisLeft(y));
-
-        // color palette
-        var res = sumstat.map(function(d){ return d.key }) // list of group names
-        var color = d3.scaleOrdinal()
-        .domain(res)
-        .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
-
-        // Draw the line
-        svg.selectAll(".line")
-        .data(sumstat)
-        .enter()
-        .append("path")
-            .attr("fill", "none")
-            .attr("stroke", function(d){ return color(d.key) })
-            .attr("stroke-width", 1.5)
-            .attr("d", function(d){
-            return d3.line()
-                .x(function(d) { return x(d.Year); })
-                .y(function(d) { return y(+d.n); })
-                (d.values)
-            })
-
-})*/
-        
       
      })();

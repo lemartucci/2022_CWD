@@ -62,6 +62,9 @@ body{
 .line {
    stroke-width: 1px;
 }
+.propLegend{
+  top: 50%;
+}
 
 .graph{
    margin-top: 10px;
