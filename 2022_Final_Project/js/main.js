@@ -304,10 +304,10 @@
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
                               .attr("d", lineGraph(d.value))
-                              .attr("transform", "translate(15)");
+                              .attr("transform", "translate(20)");
                           // Add the Legend
                           graph.append("text")
-                              .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
+                              .attr("x", (legendSpace/1.8)+i*legendSpace)  // space legend
                               .attr("y", height + (margin.bottom)- 160)
                               .attr("class", "legend")    // style the legend
                               .style("fill", function() { // Add the colours dynamically  
@@ -318,13 +318,13 @@
                         // Add the X Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate (15,170)")
-                        .call(d3.axisBottom(xAxis));
+                        .attr("transform", "translate (20,160)")
+                        .call(d3.axisBottom(xAxis).ticks(3))
                        
                         // Add the Y Axis
                         graph.append("g")
                         .attr("class", "axis")
-                        .attr("transform", "translate(35)")
+                        .attr("transform", "translate(40)")
                         .call(d3.axisLeft(y));
 });
     }
@@ -535,20 +535,6 @@
                     .y(function(d) { return y(+d.cases); })
                     (d.values)
                 })
-      
-    
-
-    /*function setEnumerationUnits(midwestStates,map,path){
-            var state = map
-                .selectAll("STATE_NAME")
-                .data(midwestStates)
-                .enter()
-                .append("path")
-                .attr("class", function (d) {
-                    return "state " + d.properties.STATE_NAME;
-                })
-                .attr("d", path)//d defines the coordinates of path
-                };*/
 
     
     
