@@ -31,21 +31,23 @@ body{
 }
 .infolabel {
    position: absolute;
-   height: 50px;
+   height: 65px;
    min-width: 100px;
    color: #fff;
-   background-color: #000;
-   border: solid thin #fff;
+   background-color: #536D5E;
+   border: solid thin #ccc;
    padding: 5px 10px;
-   
- }
+   font-family: 'EB Garamond', serif;
+   border-radius: 15px;
+}
+
 .infolabel h3 {
    margin: 0 20px 0 0;
    padding: 0;
    display: inline-block;
    text-align: center;
    line-height: 1em;
-   font-size: 20pt;
+   font-size: 17pt;
    color: white;
 }
 /*controls, graph*/
