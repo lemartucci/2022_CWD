@@ -13,6 +13,8 @@
 
         var colorScale;
 
+        var color = d3.scaleOrdinal(d3.schemeTableau10);
+
     window.onload = setMap();
 
     /////POPUP CREATION/////    
@@ -171,7 +173,7 @@
                         };
                     };
                 };
-                //console.log(midwestPoints);
+                console.log(midwestPoints);
                 return midwestPoints;
             }
             
@@ -194,7 +196,10 @@
                 .data(midwestPoints)
                 .enter()
                 .append("circle")
-                .attr("class","points")
+                .attr("class", function(d){
+                    console.log(d)
+                 return "points " + d.properties.STATE_NAME;
+                })
                 .attr("r", function(d){
                     //console.log(d.properties);
                     var area= d.properties[expressed]*6;
@@ -275,7 +280,8 @@
 
                       // Group the entries by symbol
                       dataNest = Array.from(
-                          d3.group(data, d => d.STATE_NAME), ([key, value]) => ({key, value})
+                          d3.group(data, d => d.STATE_NAME), ([key, value]) => ({key, value}),
+                          
                         );
 
                       // set the colour scale
@@ -285,11 +291,22 @@
                       // Loop through each symbol / key
                       dataNest.forEach(function(d,i) {
                           graph.append("path")
-                              .attr("class", "line")
+                                .attr("class", function(d){
+                                    console.log(i)
+                                    return "lines " + d;
+                                })
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
                               .attr("d", lineGraph(d.value))
                               .attr("transform", "translate(20)")
+                              .on("mouseover", function(event, d){
+                                highlight(d)
+                            })
+                            .on("mouseout", function(event, d){
+                                dehighlight(d)
+                                
+                            })
+                            .on("mousemove", moveLabel);
                         
                           // Add the Legend
                         graph.append("text")
@@ -414,7 +431,10 @@
                 .selectAll(".points")
                 .transition()
                 .duration(1000)
-                .attr("class","points")
+                .attr("class", function(d){
+                    console.log(d)
+                 return "points " + d.properties.STATE_NAME;
+                })
                 .attr("r", function(d){
                     //console.log(d.properties);
                     var area= d.properties[expressed]*6;
@@ -435,7 +455,7 @@
 
                 //update line
                 var lines = d3
-                .selectAll(".line")
+                .selectAll(".lines")
                 .transition()
                 .duration(1000)            
         }
@@ -498,28 +518,32 @@
 
         }
         
-        /////LABELS/////
+        /////LABELS & HIGHLIGHTING/////
 
-        //function to highlight enumeration units and bars
+        //function to highlight enumeration units and lines
             function highlight(props){
                 //change stroke
-                var selected = d3.selectAll(".points" )//props.STATE_NAME)
+               
+                var selectedpoint = d3.selectAll("." + props.STATE_NAME)
                     .style("stroke", "#536D5E")
                     .style("stroke-width", "3");
+                var selected = d3.selectAll(".lines")
+                    .style("stroke", "blue")
+                    .style("stroke-width", "2");
                 setLabel(props)
             };
             //function to dehighlight enumeration units and bars
             function dehighlight(){
                 //change stroke
-                var states = d3.selectAll(".points")
+                var points = d3.selectAll(".points")
                     .style("stroke", "gray")
                     .style("stroke-width", ".75");
-                var bars = d3.selectAll(".bar")
-                    .style("stroke", "none")
-                    .style('stroke-width', '0')
-
+                var lines = d3.selectAll(".lines")
+                    //.style('stroke-width', '01')
+                    .style("stroke", function(d) { // Add the colours dynamically  
+                        return d.color = color(d.key); })
                 //below Example 2.4 line 21...remove info label
-                d3.select(".infolabel")
+                d3.selectAll(".infolabel")
                 .remove();
             };
 
