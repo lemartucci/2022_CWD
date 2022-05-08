@@ -211,18 +211,23 @@
                 })
                 .style("fill", function(d){
                     var value = d.properties[colorExpressed]; 
-                    console.log(colorScale(value))           
+                    //console.log(colorScale(value))           
                      if(value) {                
                          return colorScale(value);            
                      } else {                
                          return "#ccc";            
                      } 
                  })
-                 .on("mouseover",function(d){
-                     setLabel(d);
+                 .on("mouseover", function(event, d){
+                    highlight(d.properties)
                  })
-                .style("stroke", "darkgrey"); //dark grey border of circle          
-                }                                               
+                 .on("mouseout", function(event, d){
+                    dehighlight(d)
+                    
+                })
+                .on("mousemove", moveLabel)
+                .style("stroke", "darkgrey") //dark grey border of circle          
+                };                                        
                 
             setGraph();
             createLegend();
@@ -307,8 +312,9 @@
                         .attr("class", "axis")
                         .attr("transform", "translate(40)")
                         .call(d3.axisLeft(y));
-});
-    }
+            });
+        }
+
         function createLegend(){
                 var w= 450,
                     h= 200;
@@ -317,7 +323,7 @@
                     .attr("width", w)
                     .attr("height", h)
                     .attr("class", "propLegend");
-                
+
                 var size = d3.scaleSqrt()
                     .domain([1,50])
                     .range([1,50])
@@ -363,7 +369,6 @@
                     .labelOffset(100);*/
         };
 
-        
         /////DROPDOWNS/////
 
         //function to create a dropdown menu for attribute selection
@@ -432,8 +437,7 @@
                 var lines = d3
                 .selectAll(".line")
                 .transition()
-                .duration(1000)   
-                
+                .duration(1000)            
         }
 
         //function to create a dropdown menu for attribute selection
@@ -496,46 +500,72 @@
         
         /////LABELS/////
 
+        //function to highlight enumeration units and bars
+            function highlight(props){
+                //change stroke
+                var selected = d3.selectAll(".points" )//props.STATE_NAME)
+                    .style("stroke", "#536D5E")
+                    .style("stroke-width", "3");
+                setLabel(props)
+            };
+            //function to dehighlight enumeration units and bars
+            function dehighlight(){
+                //change stroke
+                var states = d3.selectAll(".points")
+                    .style("stroke", "gray")
+                    .style("stroke-width", ".75");
+                var bars = d3.selectAll(".bar")
+                    .style("stroke", "none")
+                    .style('stroke-width', '0')
+
+                //below Example 2.4 line 21...remove info label
+                d3.select(".infolabel")
+                .remove();
+            };
+
         //function to create dynamic label
         function setLabel(props){
-            d3.select(".infolabel").remove();
+            //d3.select(".infolabel").remove();
             console.log(props)
-            var labelAttribute =  "<h3>" + props.STATE_NAME + ","+ props[expressed]+ "</h3>";
-    
+            var labelAttribute = "<h3>" + props[expressed] + " cases" + "</h3>" + "<br>" + props.STATE_NAME
+            ;
+            console.log(labelAttribute)
             //create info label div
-            var infolabel = d3.select(".map")
+            var infolabel = d3.select("body")
                 .append("div")
                 .attr("class", "infolabel")
                 .attr("id", props.STATE_NAME + "_label")
                 .html(labelAttribute);
-
-            moveLabel()
+            
+            var statename = infolabel.append("div")
+                .attr("class", "labelname")
+                .html(props.name);
+            //moveLabel()
         }; 
           
         //function to move info label with mouse
         function moveLabel(){
-           // get width of label
-            var labelWidth = d3.select(".infolabel")
-                .node()
-                .getBoundingClientRect()
-                .width
-    
-            //use coordinates of mousemove event to set label coordinates
-            var x1 = event.clientX + 10,
-                y1 = event.clientY + 200,
-                x2 = event.clientX - labelWidth + 10,
-                y2 = event.clientY + 50;
-    
-                //console.log(y1)
-    
-            //horizontal label coordinate, testing for overflow
-            var x = event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1; 
-            //vertical label coordinate, testing for overflow
-            var y = event.clientY < 75 ? y2 : y1; 
-    
-            d3.select(".infolabel")
-                .style("left", x + "px")
-                .style("top", y + "px");
-        };      
+            //get width of label
+           var labelWidth = d3.select(".infolabel")
+           .node()
+           .getBoundingClientRect()
+           .width;
+            //console.log(labelWidth)
+           //use coordinates of mousemove event to set label coordinates
+           var x1 = event.clientX + 10,
+               y1 = event.clientY + 20,
+               x2 = event.clientX - 10,
+               y2 = event.clientY + 10;
+   
+           //horizontal label coordinate, testing for overflow
+           var x = event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1; 
+           //vertical label coordinate, testing for overflow
+           var y = event.clientY < 75 ? y2 : y1; 
+   
+           d3.select(".infolabel")
+               .style("left", x + "px")
+               .style("top", y + "px");
+       };
+       
       
      })();
