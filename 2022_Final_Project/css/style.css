@@ -294,6 +294,12 @@ h6{
    padding-left: 300px;
    padding-top: 50px;
 }
+.resources{
+   font-size: 20px;
+   width: 80%;
+   padding-left: 300px;
+   padding-top: 20px;
+}
 strong{
    font-weight: 900;
 }
