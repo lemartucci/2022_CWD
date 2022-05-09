@@ -10,15 +10,13 @@ body{
    fill:#536D5E;
 }
 .map {
-    border: medium solid #C3C9C6;
-    background-color: #C3D8D6;  
-    display: inline-block;
-    margin-left:150px;
-    margin-top: 10px;
-    margin-right: 150px;
-    margin-bottom: 75px;
-    object-position: center;
-    border-radius: 10px;
+   border: medium solid #C3C9C6;
+   background-color: #C3D8D6;  
+   display: inline-block;
+   margin-top: 10px;
+   margin-left: 6%;
+   margin-bottom: 10px;
+   border-radius: 10px;
 } 
 .midwestBackground{
    fill: white;
@@ -60,16 +58,27 @@ body{
    background-color: white;  
    float: left;
    border-radius: 10px;
-
 }
 .line {
    stroke-width: 1px;
+}
+.legend {
+   font-size: 16px;
+   font-weight: bold;
+   text-anchor: middle;
 }
 .propLegend{
   padding-top: 95px;
   padding-left: 260px;
 }
-
+.colorLegend {
+   display: table;
+   margin: 0 auto;
+   font-family: "Helvetica Neue", sans-serif;
+   font-size: 12px;
+   height: 35px;
+   width: 250px;
+ }
 .graph{
    margin-top: 10px;
    margin-right: 40px;
@@ -109,11 +118,6 @@ path {
    shape-rendering: crispEdges;
 }
 
-.legend {
-   font-size: 16px;
-   font-weight: bold;
-   text-anchor: middle;
-}
 
 /*dropdowns*/
 .dropdown{
@@ -168,7 +172,7 @@ footer{
    background-color: #536D5E;
    position: fixed;
    bottom: 0;
-   height: 40px;
+   height: 34px;
    width: 100%;
 }
 .footer-content{
@@ -178,14 +182,6 @@ footer{
 	font-family: 'EB Garamond', serif;
    color: white;
 }
-/**{
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-    color: white;
- }*/
  nav{
     background: #536D5E;
     height: 60px;
@@ -277,7 +273,7 @@ h2{
 h6{
   font-family: 'EB Garamond', serif;
   font-size: 23px;
-   color:#000; 
+  color: #486052; 
 }
 .link{
    color: white
@@ -303,6 +299,11 @@ strong{
 }
 .link2{
    color:#000;
+}
+.follow{
+   font-family: 'EB Garamond', serif;
+   color: black;  
+   font-size: 18px;
 }
 
 /*help popup*/
