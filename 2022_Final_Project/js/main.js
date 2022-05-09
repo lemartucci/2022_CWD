@@ -28,9 +28,10 @@
 
     window.onload = setMap();
 
-/*
+
     /////POPUP CREATION/////    
 
+    
     //creates help popup 
     window.addEventListener("load", function(){
         setTimeout(
@@ -44,6 +45,7 @@
         document.querySelector(".help").style.display = "none";
     });
 
+
     //creates info popup upon entering page
     window.addEventListener("load", function(){
         setTimeout(
@@ -56,7 +58,7 @@
     document.querySelector("#close").addEventListener("click", function(){
         document.querySelector(".popup").style.display = "none";
     });
-*/
+
     /////COLOR SCALE/////
 
     //function to create color scale generator
@@ -249,7 +251,6 @@
                 
             setGraph();
             createLegend();
-            createColorLegend(data, colorExpressed, colorScale);
             //changeColor();
             //setEnumerationUnits();
         }
@@ -391,7 +392,7 @@
                     //.style('stroke-dasharray', ('2,2'))
                 
                 //Legend Labels
-                /*propLegend
+                propLegend
                     .selectAll("legend")
                     .data(dataValues)
                     .join("text")
@@ -399,33 +400,7 @@
                         .attr('y', d => yCircle - size(d))
                         .text( d => d)
                         .style("font-size", 10)
-                        .attr('alignment-baseline', 'middle')*/
-        };
-
-        //add legend that changes with attribute/classification scheme
-        function createColorLegend(csvData, expressed, colorScale){ //domainArray, min, max) {
-            var scale = d3.scaleQuantile()
-                .domain(numericClasses)
-                .range(colorClasses);
-
-            d3.select(".colorLegend").append("svg").attr("class", "legendBox");
-
-            var legend = d3.select("svg.legendBox");
-
-            legend.append("g")
-                .attr("class", "colorLegend")
-                .attr("transform", "translate(10,15)");
-
-            var colorLegend = d3.legendColor() 
-                .shapeWidth(40)
-                .orient("vertical")
-                .ascending(true)
-                .scale(colorScale)
-                .title(expressed + "CWD cases")
-                .labels(d3.legendHelpers.thresholdLabels)
-
-            legend.select(".colorlegend")
-                .call(colorLegend);
+                        .attr('alignment-baseline', 'middle')
         };
 
         /////DROPDOWNS/////
@@ -595,8 +570,8 @@
             //d3.select(".infolabel").remove();
             //console.log(props)
             var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
-            "<br>" + " cases of CWD"+
-            " in " + yearExpressed + "</h4>"
+            "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
+            " in " + yearExpressed.replaceAll("y"," ") + "</h4>"
             ;
 
             console.log(labelAttribute)
