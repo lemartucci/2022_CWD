@@ -282,7 +282,6 @@
                 .x(function(d) { return x(d.year); })
                 .y(function(d) { return y(d.cases); });
                     data.forEach(function(d) {
-                        console.log(d)
                           d.year = +d.year;
                           d.cases = +d.cases;
                       });
@@ -311,6 +310,7 @@
                                 })
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
+                              .style("stroke-width", "1")
                               .attr("d", lineGraph(d.value))
                               .attr("transform", "translate(20)")
                               .on("mouseover", function(event, d){
@@ -323,13 +323,13 @@
                             //.on("mousemove", moveLabel);
                         
                           // Add the Legend
-                        graph.append("text")
-                              .attr("x", (legendSpace/1.8)+i*legendSpace)  // space legend
-                              .attr("y", height + (margin.bottom)- 160)
-                              .attr("class", "legend")    // style the legend
-                              .style("fill", function() { // Add the colours dynamically  
+                         graph.append("text")
+                            .attr("x", (legendSpace/1.8)+i*legendSpace)  // space legend
+                            .attr("y", height + (margin.bottom)- 160)
+                            .attr("class", "legend" + d.key)    // style the legend
+                            .style("fill", function() { // Add the colours dynamically  
                                 return d.color = color(d.key); })
-                              .text(d.key)
+                            .text(d.key)
                             });
 
                         // Add the X Axis
@@ -569,9 +569,10 @@
                 var selectedpoint = d3.selectAll("." + props.STATE_NAME)
                     .style("stroke", "#536D5E")
                     .style("stroke-width", "4");
-                 var selected = d3.selectAll("." + props.key)
-                     .style("stroke", "#536D5E")
-                     .style("stroke-width", "4");
+                var selectedline = d3.selectAll("." + props.key)
+                    .style("stroke", "#536D5E")
+                    .style("stroke-width", "4");
+                
                 setLabel(props)
             };
             //function to dehighlight enumeration units and bars
@@ -581,7 +582,6 @@
                     .style("stroke", "gray")
                     .style("stroke-width", ".75");
                 var lines = d3.selectAll(".lines")
-                    //.style('stroke-width', '01')
                     .style("stroke", function(d) { // Add the colours dynamically  
                         return d.color = color(d.key); })
                     .style("stroke-width", "1")
@@ -593,7 +593,7 @@
         //function to create dynamic label
         function setLabel(props){
             //d3.select(".infolabel").remove();
-            console.log(props)
+            //console.log(props)
             var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+ " cases"+ "</h4>"
             ;
 
