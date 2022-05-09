@@ -358,12 +358,12 @@
                     .attr("class", "propLegend");
 
                 var size = d3.scaleSqrt()
-                    .domain([1,45])
-                    .range([1,6])
+                    .domain([1,70])
+                    .range([1,9.25])
 
                 //Adding the circles
                 var dataValues = [2,193,1578]
-                var xCircle = 110
+                var xCircle = 100
                 var xLabel =15
                 var yCircle = 90
 
