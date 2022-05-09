@@ -137,7 +137,6 @@
             createDropdown();
             createDropdown2(overlayData);
             //createSequenceControls();
-            //moveLabel();
 
             colorScale = makeColorScale(midwestPoints);
 
@@ -238,6 +237,7 @@
             setGraph();
             createLegend();
             createColorLegend();
+            moveLabel();
             //changeColor();
             //setEnumerationUnits();
         }
@@ -336,7 +336,7 @@
 
         /////MAP LEGENDS/////
 
-        function createLegend(){
+       function createLegend(){
                 var w= 450,
                     h= 200;
                 var propLegend = d3.select(".controls")
@@ -346,13 +346,14 @@
                     .attr("class", "propLegend");
 
                 var size = d3.scaleSqrt()
-                    .domain([1,50])
-                    .range([1,50])
-                //Ading the circles
-                var dataValues = [5, 15, 20]
-                var xCircle = 10
-                var xLabel = 20
-                var yCircle = 50 
+                    .domain([1,45])
+                    .range([1,6])
+
+                //Adding the circles
+                var dataValues = [2,193,1578]
+                var xCircle = 110
+                var xLabel =15
+                var yCircle = 90
 
                 //Creating a nested legend
                 propLegend
@@ -360,36 +361,35 @@
                     .data(dataValues)
                     .join("circle")
                     .attr("cx", xCircle)
-                    .attr("cx", xCircle)
                     .attr("cy", d => yCircle - size(d))
                     .attr("r", d => size(d))
                     .style("fill", "none")
                     .attr("stroke", "black")
-                //Sizes of circles and position
+                
+                //Creating a line for each circle label
                 propLegend
                     .selectAll("legend")
                     .data(dataValues)
                     .join("line")
-                    .attr('x1', d => xCircle + size(d))
+                    .attr('x1', d => xCircle)
                     .attr('x2', xLabel)
                     .attr('y1', d => yCircle - size(d))
                     .attr('y2', d => yCircle - size(d))
                     //.attr('stroke', 'black')
                     //.style('stroke-dasharray', ('2,2'))
-                    
+                
                 //Legend Labels
                 /*propLegend
                     .selectAll("legend")
                     .data(dataValues)
                     .join("text")
-                    .attr('x', xLabel)
-                    .attr('y', d => yCircle - size(d))
-                    .text( d => d)
-                    .style("font-size", 10)
-                    .attr('alignment-baseline', 'middle')
-                    .labelOffset(100);*/
+                        .attr('x', xLabel)
+                        .attr('y', d => yCircle - size(d))
+                        .text( d => d)
+                        .style("font-size", 10)
+                        .attr('alignment-baseline', 'middle')*/
         };
-
+  
         /*
 
         function createColorLegend(csvData){
@@ -594,7 +594,7 @@
             var statename = infolabel.append("div")
                 .attr("class", "labelname")
                 .html(props.name);
-            //moveLabel()
+            moveLabel()
         }; 
           
         //function to move info label with mouse
