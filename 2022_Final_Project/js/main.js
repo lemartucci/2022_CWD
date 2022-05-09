@@ -594,7 +594,9 @@
         function setLabel(props){
             //d3.select(".infolabel").remove();
             //console.log(props)
-            var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+ " cases"+ "</h4>"
+            var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
+            "<br>" + " cases of CWD"+
+            " in " + yearExpressed + "</h4>"
             ;
 
             console.log(labelAttribute)
