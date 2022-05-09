@@ -15,6 +15,17 @@
 
         var color = d3.scaleOrdinal(d3.schemeTableau10);
 
+        var numericClasses;
+
+        //color classes as global variable
+        var colorClasses = [
+            "#f7f7f7",
+            "#cccccc",
+            "#969696",
+            "#636363",
+            "#252525"
+        ];
+
     window.onload = setMap();
 
 /*
@@ -71,6 +82,8 @@
 
         //assign array of expressed values as scale domain
         colorScale.domain(domainArray);
+
+        numericClasses = colorScale.quantiles()
 
         return colorScale;
     };
@@ -390,29 +403,31 @@
                     .labelOffset(100);*/
         };
 
-        /*
+        //add legend that changes with attribute/classification scheme
+        function createColorLegend(csvData, expressed, colorScale){ //domainArray, min, max) {
+            var scale = d3.scaleQuantile()
+                .domain(numericClasses)
+                .range(colorClasses);
 
-        function createColorLegend(csvData){
+            d3.select("#controls").append("svg").attr("class", "legendBox");
 
-            //recreate the color scale
-            var colorScale = makeColorScale(csvData);
+            var legend = d3.select("svg.legendBox");
 
-            d3
-                .select("controls")
-                .append("svg")
-                .attr("class", "colorLegend");
+            legend.append("g")
+                .attr("class", "colorLegend")
+                .attr("transform", "translate(10,15)");
 
-            var colorLegend = d3.legend
-                .colorScale(csvData)
-                .shapeHeight(10)
-                .shapeWidth(50)
-                .shapePadding(0)
-                .labelOffset(5)
-                .orient("horizontal")
-                .labelAlign("start")
-                .scale(colorScale);
-        }
-        */
+            var colorLegend = d3.legendColor() 
+                .shapeWidth(40)
+                .orient("vertical")
+                .ascending(true)
+                .scale(colorScale)
+                .title(expressed + "CWD cases")
+                .labels(d3.legendHelpers.thresholdLabels)
+
+            legend.select(".legend")
+                .call(colorLegend);
+        };
 
         /////DROPDOWNS/////
 
