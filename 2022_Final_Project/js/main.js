@@ -15,6 +15,17 @@
 
         var color = d3.scaleOrdinal(d3.schemeTableau10);
 
+        var numericClasses;
+
+        //color classes as global variable
+        var colorClasses = [
+            "#f7f7f7",
+            "#cccccc",
+            "#969696",
+            "#636363",
+            "#252525"
+        ];
+
     window.onload = setMap();
 
 /*
@@ -71,6 +82,8 @@
 
         //assign array of expressed values as scale domain
         colorScale.domain(domainArray);
+
+        numericClasses = colorScale.quantiles()
 
         return colorScale;
     };
@@ -230,14 +243,13 @@
                     dehighlight(d)
                     
                 })
-                .on("mousemove", moveLabel)
+                //.on("mousemove", moveLabel)
                 .style("stroke", "darkgrey") //dark grey border of circle          
                 };                                        
                 
             setGraph();
             createLegend();
-            createColorLegend();
-            moveLabel();
+            //createColorLegend();
             //changeColor();
             //setEnumerationUnits();
         }
@@ -270,6 +282,7 @@
                 .x(function(d) { return x(d.year); })
                 .y(function(d) { return y(d.cases); });
                     data.forEach(function(d) {
+                        console.log(d)
                           d.year = +d.year;
                           d.cases = +d.cases;
                       });
@@ -294,7 +307,6 @@
                           graph.append("path")
                                 .datum(d)
                                 .attr("class", function(){
-                                    console.log(i)
                                     return "lines " + d.key;
                                 })
                               .style("stroke", function() { // Add the colours dynamically
@@ -307,8 +319,8 @@
                             .on("mouseout", function(event, d){
                                 dehighlight(d)
                                 
-                            })
-                            .on("mousemove", moveLabel);
+                            });
+                            //.on("mousemove", moveLabel);
                         
                           // Add the Legend
                         graph.append("text")
@@ -389,30 +401,32 @@
                         .style("font-size", 10)
                         .attr('alignment-baseline', 'middle')*/
         };
-  
-        /*
 
-        function createColorLegend(csvData){
+        //add legend that changes with attribute/classification scheme
+        function createColorLegend(csvData, expressed, colorScale){ //domainArray, min, max) {
+            var scale = d3.scaleQuantile()
+                .domain(numericClasses)
+                .range(colorClasses);
 
-            //recreate the color scale
-            var colorScale = makeColorScale(csvData);
+            d3.select("#controls").append("svg").attr("class", "legendBox");
 
-            d3
-                .select("controls")
-                .append("svg")
-                .attr("class", "colorLegend");
+            var legend = d3.select("svg.legendBox");
 
-            var colorLegend = d3.legend
-                .colorScale(csvData)
-                .shapeHeight(10)
-                .shapeWidth(50)
-                .shapePadding(0)
-                .labelOffset(5)
-                .orient("horizontal")
-                .labelAlign("start")
-                .scale(colorScale);
-        }
-        */
+            legend.append("g")
+                .attr("class", "colorLegend")
+                .attr("transform", "translate(10,15)");
+
+            var colorLegend = d3.legendColor() 
+                .shapeWidth(40)
+                .orient("vertical")
+                .ascending(true)
+                .scale(colorScale)
+                .title(expressed + "CWD cases")
+                .labels(d3.legendHelpers.thresholdLabels)
+
+            legend.select(".legend")
+                .call(colorLegend);
+        };
 
         /////DROPDOWNS/////
 
@@ -425,7 +439,7 @@
                 .attr("class", "dropdown")
                 .on("change", function () {
                     changeAttribute(this.value)
-                    changeLine();
+                    //changeLine();
                 });
 
             //add initial option
@@ -461,7 +475,6 @@
                 .transition()
                 .duration(1000)
                 .attr("class", function(d){
-                    console.log(d)
                  return "points " + d.properties.STATE_NAME;
                 })
                 .attr("r", function(d){
@@ -555,10 +568,10 @@
                
                 var selectedpoint = d3.selectAll("." + props.STATE_NAME)
                     .style("stroke", "#536D5E")
-                    .style("stroke-width", "3");
-                var selected = d3.selectAll("." + d.key)
-                    .style("stroke", "blue")
-                    .style("stroke-width", "2");
+                    .style("stroke-width", "4");
+                 var selected = d3.selectAll("." + props.key)
+                     .style("stroke", "#536D5E")
+                     .style("stroke-width", "4");
                 setLabel(props)
             };
             //function to dehighlight enumeration units and bars
@@ -571,6 +584,7 @@
                     //.style('stroke-width', '01')
                     .style("stroke", function(d) { // Add the colours dynamically  
                         return d.color = color(d.key); })
+                    .style("stroke-width", "1")
                 //below Example 2.4 line 21...remove info label
                 d3.selectAll(".infolabel")
                 .remove();
