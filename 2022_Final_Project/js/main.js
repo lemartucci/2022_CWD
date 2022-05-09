@@ -292,9 +292,10 @@
                       // Loop through each symbol / key
                       dataNest.forEach(function(d,i) {
                           graph.append("path")
-                                .attr("class", function(d){
+                                .datum(d)
+                                .attr("class", function(){
                                     console.log(i)
-                                    return "lines " + d;
+                                    return "lines " + d.key;
                                 })
                               .style("stroke", function() { // Add the colours dynamically
                                   return d.color = color(d.key); })
@@ -555,7 +556,7 @@
                 var selectedpoint = d3.selectAll("." + props.STATE_NAME)
                     .style("stroke", "#536D5E")
                     .style("stroke-width", "3");
-                var selected = d3.selectAll(".lines")
+                var selected = d3.selectAll("." + d.key)
                     .style("stroke", "blue")
                     .style("stroke-width", "2");
                 setLabel(props)
