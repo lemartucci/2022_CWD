@@ -580,8 +580,9 @@
         function setLabel(props){
             //d3.select(".infolabel").remove();
             console.log(props)
-            var labelAttribute = "<h3>" + props[expressed] + " cases" + "</h3>" + "<br>" + props.STATE_NAME
+            var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+ " cases"+ "</h4>"
             ;
+
             console.log(labelAttribute)
             //create info label div
             var infolabel = d3.select("body")
