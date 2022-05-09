@@ -249,7 +249,7 @@
                 
             setGraph();
             createLegend();
-            //createColorLegend();
+            createColorLegend(data, colorExpressed, colorScale);
             //changeColor();
             //setEnumerationUnits();
         }
@@ -408,7 +408,7 @@
                 .domain(numericClasses)
                 .range(colorClasses);
 
-            d3.select("#controls").append("svg").attr("class", "legendBox");
+            d3.select(".colorLegend").append("svg").attr("class", "legendBox");
 
             var legend = d3.select("svg.legendBox");
 
@@ -424,7 +424,7 @@
                 .title(expressed + "CWD cases")
                 .labels(d3.legendHelpers.thresholdLabels)
 
-            legend.select(".legend")
+            legend.select(".colorlegend")
                 .call(colorLegend);
         };
 

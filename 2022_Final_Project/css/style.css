@@ -74,11 +74,23 @@ body{
 .colorLegend {
    display: table;
    margin: 0 auto;
-   font-family: "Helvetica Neue", sans-serif;
+   font-family: 'EB Garamond', serif;
    font-size: 12px;
+   background-color: white;
+   border: medium solid #C3C9C6;
+   border-width: 1.5px;
    height: 35px;
    width: 250px;
+   margin-left: 100px;
+   margin-top: 150px;
+   position: absolute;
  }
+ .legendBox {
+   position: absolute;
+   right: 75px;
+   top: 25px; 
+   font-size: 0.9em;
+}
 .graph{
    margin-top: 10px;
    margin-right: 40px;
