@@ -95,7 +95,7 @@
            
         //create new svg container for the map
         var map = d3
-            .select("body")
+            .select("#mapid")
             .append("svg")
             .attr("class", "map")
             .attr("width", width)

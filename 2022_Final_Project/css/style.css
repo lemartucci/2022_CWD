@@ -8,7 +8,7 @@ body{
    height: 10px;
    fill:#536D5E;
 }
-.map {
+/*.map {
    border: medium solid #C3C9C6;
    background-color: #C3D8D6;  
    display: inline-block;
@@ -16,7 +16,9 @@ body{
    margin-left: 6%;
    margin-bottom: 10px;
    border-radius: 10px;
+   position:absolute;
 } 
+*/
 .midwestBackground{
    fill: white;
    stroke: #C3C9C6;
@@ -64,6 +66,7 @@ body{
    position: absolute;
    font-family: 'EB Garamond', serif;
    font-size: 15px;
+   position: absolute;
 
 }
 .lines{
@@ -103,6 +106,7 @@ body{
    background-color: white; 
    float: left;
    border-radius: 10px;
+   position: absolute;
 }
 g text{
    color:#5E5E5E;
