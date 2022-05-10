@@ -85,8 +85,6 @@
         //assign array of expressed values as scale domain
         colorScale.domain(domainArray);
 
-        numericClasses = colorScale.quantiles()
-
         return colorScale;
     };
 
@@ -377,7 +375,7 @@
                     .attr("cy", d => yCircle - size(d))
                     .attr("r", d => size(d))
                     .style("fill", "none")
-                    .attr("stroke", "black")
+                    .attr("stroke", "#636464")
                 
                 //Creating a line for each circle label
                 propLegend
@@ -388,8 +386,8 @@
                     .attr('x2', xLabel)
                     .attr('y1', d => yCircle - size(d))
                     .attr('y2', d => yCircle - size(d))
-                    //.attr('stroke', 'black')
-                    //.style('stroke-dasharray', ('2,2'))
+                    .attr('stroke', '#636464')
+                    .style('stroke-dasharray', ('2,2'))
                 
                 //Legend Labels
                 propLegend
@@ -400,7 +398,7 @@
                         .attr('y', d => yCircle - size(d))
                         .text( d => d)
                         .style("font-size", 10)
-                        .attr('alignment-baseline', 'middle')
+                        .attr('alignment-baseline', 'top')
         };
 
         /////DROPDOWNS/////
