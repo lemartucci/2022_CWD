@@ -261,8 +261,7 @@
                 $('slider').oninput();
               };
 
-            var slider = d3.select(".slider")
-            .append("input")
+            var slider = d3.select("#slider")
                 .attr("type", "range")
                 .attr("min", 2005)
                 .attr("max", 2020)
@@ -272,8 +271,8 @@
                     update(year);
                 });
 
-            function update(year){
-                slider.property("value", year);
+            function update(expressed){
+                slider.property("value", expressed);
                 d3.selectAll(".points")
                 .transition()
                 .duration(1000)
