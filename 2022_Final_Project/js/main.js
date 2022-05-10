@@ -13,6 +13,9 @@
 
         var colorScale;
 
+        var labelyear = '2005';
+            
+
         var color = d3.scaleOrdinal(d3.schemeTableau10);
 
         //color classes as global variable
@@ -473,9 +476,9 @@
                 .append("select")
                 .attr("class", "dropdown")
                 .on("change", function () {
-                    changeAttribute(this.value)
-                    //changeLine();
+                    changeAttribute(this.value)  
                 });
+                
 
             //add initial option
             var titleOption = dropdown
@@ -502,7 +505,8 @@
         function changeAttribute(attribute) {
             //change the expressed attribute
             expressed = attribute;
-        
+            
+            labelyear = attribute.replaceAll("y"," ");
             //resize circles
             var points = d3
                 .selectAll(".points")
@@ -623,11 +627,11 @@
         //function to create dynamic label
         function setLabel(props){
             //d3.select(".infolabel").remove();
-            console.log(props)
+            //console.log(props)
             if (props.STATE_NAME){
                 var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
             "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
-            " in " + yearExpressed.replaceAll("y"," ") + "</h4>";
+            " in " + labelyear + "</h4>";
             }
              else {
                 var labelAttribute = "<h4>" + props.key + "</h4>";
