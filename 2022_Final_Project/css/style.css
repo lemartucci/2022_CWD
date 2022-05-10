@@ -58,6 +58,9 @@ body{
    float: left;
    border-radius: 10px;
 }
+.controls p{
+   position: center;
+}
 .lines{
    stroke-width: 1px;
 }
