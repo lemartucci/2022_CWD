@@ -104,7 +104,7 @@
         var projection = d3.geoAlbers()
             .center([0, 41.60])//centered on Midwest states
             .rotate([89.35, 0, 0])
-            .parallels([45, 38])//Standard parallels (latitudes)
+            .parallels([40, 38])//Standard parallels (latitudes)
             .scale(3000)
             .translate([width / 2, height / 2]);
 
