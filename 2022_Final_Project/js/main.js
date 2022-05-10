@@ -344,7 +344,8 @@
                         );
 
                       // set the colour scale
-                      var color = d3.scaleOrdinal(d3.schemeTableau10);
+                      var color = d3.scaleOrdinal().domain(data).range(["#543005","#bf812d","#80cdc1","#35978f","#003c30"]);
+
                       legendSpace = width/dataNest.length; // spacing for the legend
 
                       // Loop through each symbol / key
