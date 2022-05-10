@@ -15,8 +15,6 @@
 
         var color = d3.scaleOrdinal(d3.schemeTableau10);
 
-        var numericClasses;
-
         //color classes as global variable
         var colorClasses = [
             "#f7f7f7",
@@ -244,15 +242,64 @@
                     
                 })
                 //.on("mousemove", moveLabel)
-                .style("stroke", "darkgrey") //dark grey border of circle          
+                .style("stroke", "#536D5E") //dark green border of circle          
                 };                                        
                 
             setGraph();
             createLegend();
-            //changeColor();
-            //setEnumerationUnits();
+            makeSlider();
+            changeColor();
         }
 
+        /////SLIDER/////
+
+        function makeSlider(){
+
+            onload = function() {
+                var $ = function(id) { return document.getElementById(id); };
+                $('slider').oninput = function() { $('range').innerHTML = this.value; };
+                $('slider').oninput();
+              };
+
+            var slider = d3.select(".slider")
+            .append("input")
+                .attr("type", "range")
+                .attr("min", 2005)
+                .attr("max", 2020)
+                .attr("step", 5)
+                .on("input", function() {
+                    var year = this.value;
+                    update(year);
+                });
+
+            function update(year){
+                slider.property("value", year);
+                d3.selectAll(".points")
+                .transition()
+                .duration(1000)
+                .attr("class", function(d){
+                return "points " + d.properties.STATE_NAME;
+                })
+                .attr("r", function(d){
+                    //console.log(d.properties);
+                    var area= d.properties[expressed]*6;
+                    return Math.sqrt(area/Math.PI)
+                })
+                .style("fill", function(d){
+                    var value = d.properties[colorExpressed]; 
+                    if(value) {                
+                        return colorScale(value);            
+                    } else {                
+                        return "#ccc";            
+                    } 
+                })  
+                .attr("id", function(d){
+                    return d.STATE_NAME;
+                })
+                .style("stroke", "darkgrey") //dark grey border of circle     
+            }
+        }
+    
         /////GRAPH/////
 
         function setGraph(){
@@ -329,7 +376,7 @@
                             .style("fill", function() { // Add the colours dynamically  
                                 return d.color = color(d.key); })
                             .text(d.key)
-                            });
+                        });
 
                         // Add the X Axis
                         graph.append("g")
@@ -436,7 +483,6 @@
                 });
         }
 
-
         //dropdown change listener handler
         function changeAttribute(attribute) {
             //change the expressed attribute
@@ -466,13 +512,7 @@
                 .attr("id", function(d){
                     return d.STATE_NAME;
                 })
-                .style("stroke", "darkgrey") //dark grey border of circle  
-
-                //update line
-                var lines = d3
-                .selectAll(".lines")
-                .transition()
-                .duration(1000)            
+                .style("stroke", "darkgrey") //dark grey border of circle           
         }
 
         //function to create a dropdown menu for attribute selection
@@ -548,6 +588,7 @@
                 
                 setLabel(props)
             };
+            
             //function to dehighlight enumeration units and bars
             function dehighlight(){
                 //change stroke

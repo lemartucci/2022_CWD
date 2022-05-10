@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width">
             <title>CWD Interactive Map</title>
 
-        <!--put your external stylesheet links here-->
+        <!--EXTERNAL STYLE SHEETS-->
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
         <!--[if IE<9]>
@@ -16,6 +16,9 @@
     </head>
 
     <body>
+
+    <!--NAVBAR-->
+
     <nav>
         <div class="navbar">
         <label class="logo">Chronic Wasting Disease</label>
@@ -26,6 +29,14 @@
         </ul>
         </div>
     </nav>
+
+    <!--SLIDER-->
+
+    <input id="slider" type="range" min="2005" max="2020" value="2005" step="5" />
+
+    <span id="range">2005</span>
+
+    <!--INFO POPUP WINDOW-->
 
     <div class="popup">
         <button id="close">&times;</button>
@@ -42,7 +53,7 @@
              hunting data to look for patterns. 
         </p>
     </div>
-
+<!--
     <div class="help">
         <button id="close">&times;</button>
         <p> <h3>Start here!</h3>
@@ -50,7 +61,8 @@
             Select year then overlay
         </p>
     </div>
-
+-->
+    <!--LEGEND, GRAPH, CONTROLS-->
 
     <div class="colorLegend">
         <img src="img/legend-01.svg" style="width: 80%;">
@@ -60,7 +72,6 @@
 
     <div id ="graph"></div>
 
-
     <footer>
         <div class= "footer-content">
             <p>Last Updated May 2022 | Best viewed on desktop browser | <a class="link" href="https://docs.google.com/forms/d/e/1FAIpQLSeoyZwrh7bEweB04HKzX6bLxwQ69rHNrX-UzFLjTk2TjTb2qQ/viewform?usp=sf_link">Report a bug </a> 
@@ -68,18 +79,11 @@
         </div>
     </footer>
 
-    
-        <!--put your initial page content here-->
-       
-
-        <!--you can also use this space for internal scripts;
-        place these within <script> tags-->
-
-        <!--put your external script links here-->
+        <!--EXTERNAL SCRIPTS-->
 
         <script type="text/javascript" src="lib/topojson.min.js"></script>
         <script type="text/javascript" src="lib/d3.min.js"></script>
-        <script type="text/javascript" src="lib/d3-legend.min.js"></script>
+        <script src="https://raw.github.com/fryn/html5slider/master/html5slider.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

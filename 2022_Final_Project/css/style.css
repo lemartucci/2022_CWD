@@ -1,8 +1,7 @@
 /*body,map*/
 body{
    background-color: #ffffff;
-   min-height: 160%;
-   
+   min-height: 160%; 
 }
 .points{
    width: 10px;
@@ -101,10 +100,20 @@ g text{
    color:#5E5E5E;
 }
 g{
-font-family:'EB Garamond', serif;
-font-size: 12px;
-color: #5E5E5E;
-padding-left: 30px;
+   font-family:'EB Garamond', serif;
+   font-size: 12px;
+   color: #5E5E5E;
+   padding-left: 30px;
+}
+#slider{
+   margin-top: 80px;
+   margin-left: 140px;
+   position: absolute; 
+}
+#range{
+   margin-top: 80px;
+   margin-left: 290px;
+   position: absolute;
 }
 /*.axis path,
 .axis line{
