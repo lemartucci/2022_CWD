@@ -28,7 +28,6 @@
 
 
     /////POPUP CREATION/////    
-
     
     //creates help popup 
     window.addEventListener("load", function(){
@@ -373,7 +372,7 @@
                         
                           // Add the Legend
                          graph.append("text")
-                            .attr("x", (legendSpace/1.8)+i*legendSpace)  // space legend
+                            .attr("x", (legendSpace/2.4)+i*legendSpace)  // space legend
                             .attr("y", height + (margin.bottom)- 160)
                             .attr("class", "legend" + d.key)    // style the legend
                             .style("fill", function() { // Add the colours dynamically  
