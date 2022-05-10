@@ -136,12 +136,12 @@
                 deerData=data[5]
                 caseChartData=data[6]
                 overlayData=data[7]
-                console.log(midwest);
-                console.log(background);
-                console.log(caseData);
-                console.log(harvestData);
-                console.log(deerData);
-                console.log(caseChartData);
+                // console.log(midwest);
+                // console.log(background);
+                // console.log(caseData);
+                // console.log(harvestData);
+                // console.log(deerData);
+                // console.log(caseChartData);
             
             midwestPoints = joinData(midwestPoints,caseData);
             createDropdown();
@@ -183,7 +183,7 @@
                         };
                     };
                 };
-                console.log(midwestPoints);
+                //console.log(midwestPoints);
                 return midwestPoints;
             }
             
@@ -207,7 +207,7 @@
                 .enter()
                 .append("circle")
                 .attr("class", function(d){
-                    console.log(d)
+                    //console.log(d)
                  return "points " + d.properties.STATE_NAME;
                 })
                 .attr("r", function(d){
@@ -235,6 +235,7 @@
                  })
                  .on("mouseover", function(event, d){
                     highlight(d.properties)
+                    setLabel(d.properties);
                  })
                  .on("mouseout", function(event, d){
                     dehighlight(d)
@@ -247,7 +248,7 @@
             setGraph();
             createLegend();
             makeSlider();
-            changeColor();
+            //changeColor();
         }
 
         /////SLIDER/////
@@ -342,7 +343,8 @@
                         );
 
                       // set the colour scale
-                      var color = d3.scaleOrdinal(d3.schemeTableau10);
+                      var color = d3.scaleOrdinal().domain(data).range(["#543005","#bf812d","#80cdc1","#35978f","#003c30"]);
+
                       legendSpace = width/dataNest.length; // spacing for the legend
 
                       // Loop through each symbol / key
@@ -359,6 +361,8 @@
                               .attr("transform", "translate(20)")
                               .on("mouseover", function(event, d){
                                 highlight(d)
+                                console.log(d.key)
+                                setLabel(d)
                             })
                             .on("mouseout", function(event, d){
                                 dehighlight(d)
@@ -579,12 +583,13 @@
                
                 var selectedpoint = d3.selectAll("." + props.STATE_NAME)
                     .style("stroke", "#536D5E")
-                    .style("stroke-width", "4");
+                    .style("stroke-width", "4")
+                    
                 var selectedline = d3.selectAll("." + props.key)
                     .style("stroke", "#536D5E")
                     .style("stroke-width", "4");
                 
-                setLabel(props)
+                //setLabel(props)
             };
             
             //function to dehighlight enumeration units and bars
@@ -605,13 +610,20 @@
         //function to create dynamic label
         function setLabel(props){
             //d3.select(".infolabel").remove();
-            //console.log(props)
-            var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
+            console.log(props)
+            if (props.STATE_NAME){
+                var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
             "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
-            " in " + yearExpressed.replaceAll("y"," ") + "</h4>"
-            ;
+            " in " + yearExpressed.replaceAll("y"," ") + "</h4>";
+            }
+             else {
+                var labelAttribute = "<h4>" + props.key + "</h4>";
+             }
+            // var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
+            // "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
+            // " in " + yearExpressed.replaceAll("y"," ") + "</h4>";
 
-            console.log(labelAttribute)
+            //console.log(labelAttribute)
             //create info label div
             var infolabel = d3.select("body")
                 .append("div")
