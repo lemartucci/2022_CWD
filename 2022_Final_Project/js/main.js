@@ -99,6 +99,7 @@
             .attr("class", "map")
             .attr("width", width)
             .attr("height", height);
+           
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
@@ -110,6 +111,18 @@
 
         var path = d3.geoPath()
             .projection(projection);//Applies projection to the data
+
+        //Adding zoom functionality to the map
+        var zoom = d3.zoom()
+            .scaleExtent([1, 2])
+            .translateExtent([[0, 0], [width, height]])
+            .on('zoom', function(event) {
+                map.selectAll('path')
+                 .attr('transform', event.transform);
+      });
+    
+      map.call(zoom)
+        .call(zoom.scaleBy, 0.2);
 
         //Data for map
         var promises = [
