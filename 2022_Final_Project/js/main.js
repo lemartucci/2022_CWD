@@ -83,7 +83,7 @@
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
-            .center([4.5, 43])//centered on Midwest states
+            .center([5, 43])//centered on Midwest states
             .rotate([92, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
             .scale(3250)
@@ -112,11 +112,7 @@
       });
     
      map.call(zoom)
-<<<<<<< Updated upstream
-        .call(zoom.scaleBy, 0.3)
-=======
         .call(zoom.scaleBy, 0.1)
->>>>>>> Stashed changes
         .on("dblclick.zoom");
 
         //Data for map
@@ -455,6 +451,10 @@
                         .text( d => d)
                         .style("font-size", 10)
                         .attr('alignment-baseline', 'top')
+               
+                var backgroundLegend = d3.select("backgroundLegend")
+                        .append("svg")
+                        .attr("class", "backgroundLegend");
         };
 
         /////DROPDOWNS/////

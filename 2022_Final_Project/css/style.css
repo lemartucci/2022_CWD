@@ -45,7 +45,17 @@ body{
    font-size: 17pt;
    color: white;
 }
-
+.backgroundLegend{
+   margin-left: 20px;
+   border-radius: 10px;
+   opacity: 0.9;
+   background-color: white;
+   height: 340px;
+   width: 480px;
+   margin-left: 59%;
+   margin-top: 230px;
+   
+}
 /*controls, graph*/
 .controls{
    margin-left: 20px;
@@ -54,8 +64,8 @@ body{
    position: absolute;
 }
 .controls p{
-   margin-left: 73px;
-   margin-top: 60px;
+   margin-left: 890px;
+   margin-top: 360px;
    position: absolute;
    font-family: 'EB Garamond', serif;
    font-size: 16px;
@@ -71,18 +81,20 @@ body{
    text-anchor: middle;
 }
 .propLegend{
-  padding-top: 100px;
-  padding-left: 57px;
+  /*padding-top: 200px;
+  padding-left: 300px;*/
+  margin-left: 870px;
+  margin-top: 390px;
 }
 .propLegend .text{
-   padding-top: 0px;
+   padding-top: px;
    padding-left: 20px;
  }
 .colorLegend {
    height: 50px;
    width: 300px;
-   margin-left: 1%;
-   margin-top: 200px;
+   margin-left: 73%;
+   margin-top: 250px;
    position: absolute;
  }
  .legendBox {
@@ -112,12 +124,12 @@ g{
    padding-left: 30px;
 }
 #slider {
-   margin-top: 80px;
-   margin-left: 120px;
+   margin-top: 27px;
+   margin-left: 57px;
    position: absolute; 
    -webkit-appearance: none;  /* Override default CSS styles */
    appearance: none;
-   width: 12%; /* Full-width */
+   width: 25%; /* Full-width */
    height: 15px; /* Specified height */
    background: #d3d3d3; /* Grey background */
    outline: none; /* Remove outline */
@@ -139,8 +151,8 @@ g{
    cursor: pointer; /* Cursor on hover */
  }
 #range{
-   margin-top: 77px;
-   margin-left: 310px;
+   margin-top: 42px;
+   margin-left: 80px;
    font-family:'EB Garamond', serif;
    position: absolute;
 }
@@ -161,8 +173,8 @@ path {
 /*dropdowns*/
 .dropdown{
    position: absolute;
-    top: 25px;
-    left: 20px;
+    top: 75px;
+    left: 90px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
     font-size: 1em;
@@ -174,8 +186,8 @@ path {
 }
 .dropdown2{
     position: absolute;
-    top: 25px;
-    left: 130px;
+    top: 75px;
+    left: 220px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
     font-size: 1em;
