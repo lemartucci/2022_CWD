@@ -121,6 +121,8 @@
             .translateExtent([[0, 0], [width, height]])
             .on('zoom', function(event) {
                 map.selectAll('path')
+                 .attr('transform', event.transform)
+                map.selectAll("circle")
                  .attr('transform', event.transform);
       });
     
