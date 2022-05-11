@@ -150,7 +150,7 @@ g{
  /*dropdowns*/
  .dropdown{
    position: absolute;
-    top: 75px;
+    top: 25px;
     left: 90px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
@@ -163,7 +163,7 @@ g{
  }
  .dropdown2{
     position: absolute;
-    top: 75px;
+    top: 25px;
     left: 220px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
