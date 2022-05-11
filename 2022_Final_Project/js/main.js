@@ -118,35 +118,27 @@
                 deerData=data[5]
                 caseChartData=data[6]
                 overlayData=data[7]
-                // console.log(midwest);
-                // console.log(background);
-                // console.log(caseData);
-                // console.log(harvestData);
-                // console.log(deerData);
-                // console.log(caseChartData);
+               
             
             midwestPoints = joinData(midwestPoints,caseData);
             createDropdown();
             createDropdown2(overlayData);
-            //createSequenceControls();
+            
 
             colorScale = makeColorScale(midwestPoints);
 
             //translate TopoJSONs to geoJsons
             var midwestStates = topojson.feature(midwest, midwest.objects.Midwest_States_Project);
-            //console.log(midwestStates);
-
+           
             //var country = topojson.feature(usa, usa.objects.cb_2018_us_state_20m);
             var backgroundStates = topojson.feature(background, background.objects.USA_Project);
-            //console.log(backgroundStates)
-            
+           
             function joinData(midwestPoints,caseData){
                 //loop through csv to assign each set of csv attribute values to geojson region
                  for (var i=0; i<caseData.length; i++){
                     var  state = caseData[i]; //the current district
                     var csvKey = state.STATE_NAME; //the CSV primary key
     
-                    //console.log(state);
     
                     //loop through geojson districts to find correct district
                     for (var a=0; a<midwestPoints.length; a++){
@@ -165,7 +157,6 @@
                         };
                     };
                 };
-                //console.log(midwestPoints);
                 return midwestPoints;
             }
             
@@ -189,11 +180,11 @@
                 .enter()
                 .append("circle")
                 .attr("class", function(d){
-                    //console.log(d)
+                   
                  return "points " + d.properties.STATE_NAME;
                 })
                 .attr("r", function(d){
-                    //console.log(d.properties);
+                    
                     var area= d.properties[expressed]*6;
                     return Math.sqrt(area/Math.PI)
                 })
@@ -208,7 +199,7 @@
                 })
                 .style("fill", function(d){
                     var value = d.properties[colorExpressed]; 
-                    //console.log(colorScale(value))           
+                             
                      if(value) {                
                          return colorScale(value);            
                      } else {                
@@ -223,7 +214,7 @@
                     dehighlight(d)
                     
                 })
-                //.on("mousemove", moveLabel)
+                
                 .style("stroke", "white") //dark green border of circle          
                 };                                        
                 
@@ -261,7 +252,7 @@
                 return "points " + d.properties.STATE_NAME;
                 })
                 .attr("r", function(d){
-                    //console.log(d.properties);
+                    
                     var area= d.properties[expressed]*6;
                     return Math.sqrt(area/Math.PI)
                 })
@@ -349,7 +340,7 @@
                                 dehighlight(d)
                                 
                             });
-                            //.on("mousemove", moveLabel);
+                            
                         
                           // Add the Legend
                          graph.append("text")
@@ -374,68 +365,8 @@
                         .call(d3.axisLeft(y));
             });
         }
-/*
+
         /////MAP LEGENDS/////
-
-       function createLegend(){
-                var w= 450,
-                    h= 200;
-                var propLegend = d3.select(".controls")
-                    .append("svg")
-                    .attr("width", w)
-                    .attr("height", h)
-                    .attr("class", "propLegend");
-
-                var size = d3.scaleSqrt()
-                    .domain([1,70])
-                    .range([1,9.25])
-
-                //Adding the circles
-                var dataValues = [2,193,1578]
-                var xCircle = 100
-                var xLabel =15
-                var yCircle = 90
-
-                //Creating a nested legend
-                propLegend
-                    .selectAll(".legend")
-                    .data(dataValues)
-                    .join("circle")
-                    .attr("cx", xCircle)
-                    .attr("cy", d => yCircle - size(d))
-                    .attr("r", d => size(d))
-                    .style("fill", "none")
-                    .attr("stroke", "#636464")
-                
-                //Creating a line for each circle label
-                propLegend
-                    .selectAll("legend")
-                    .data(dataValues)
-                    .join("line")
-                    .attr('x1', d => xCircle)
-                    .attr('x2', xLabel)
-                    .attr('y1', d => yCircle - size(d))
-                    .attr('y2', d => yCircle - size(d))
-                    .attr('stroke', '#636464')
-                    .style('stroke-dasharray', ('2,2'))
-                
-                //Legend Labels
-                propLegend
-                    .selectAll("legend")
-                    .data(dataValues)
-                    .join("text")
-                        .attr('x', xLabel)
-                        .attr('y', d => yCircle - size(d))
-                        .text( d => d)
-                        .style("font-size", 10)
-                        .attr('alignment-baseline', 'top')
-               
-                var backgroundLegend = d3.select("backgroundLegend")
-                        .append("svg")
-                        .attr("class", "backgroundLegend");
-        };
-
-        */
 
         var backgroundLegend = d3.select("backgroundLegend")
                         .append("svg")
@@ -490,7 +421,7 @@
                  return "points " + d.properties.STATE_NAME;
                 })
                 .attr("r", function(d){
-                    //console.log(d.properties);
+                    
                     var area= d.properties[expressed]*6;
                     return Math.sqrt(area/Math.PI)
                 })
@@ -579,8 +510,7 @@
                 var selectedline = d3.selectAll("." + props.key)
                     .style("stroke", "#898989")
                     .style("stroke-width", "4");
-                
-                //setLabel(props)
+    
             };
             
             //function to dehighlight enumeration units and bars
@@ -593,15 +523,14 @@
                     .style("stroke", function(d) { // Add the colours dynamically  
                         return d.color = color(d.key); })
                     .style("stroke-width", "1")
-                //below Example 2.4 line 21...remove info label
+                
                 d3.selectAll(".infolabel")
                 .remove();
             };
 
         //function to create dynamic label
         function setLabel(props){
-            //d3.select(".infolabel").remove();
-            //console.log(props)
+          
             if (props.STATE_NAME){
                 var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
             "<br>" + " cases of CWD "+
@@ -610,12 +539,7 @@
              else {
                 var labelAttribute = "<h4>" + props.key + "</h4>";
              }
-            // var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
-            // "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
-            // " in " + yearExpressed.replaceAll("y"," ") + "</h4>";
-
-            //console.log(labelAttribute)
-            //create info label div
+            
             var infolabel = d3.select("body")
                 .append("div")
                 .attr("class", "infolabel")
@@ -635,7 +559,7 @@
            .node()
            .getBoundingClientRect()
            .width;
-            //console.log(labelWidth)
+           
            //use coordinates of mousemove event to set label coordinates
            var x1 = event.clientX + 10,
                y1 = event.clientY + 20,
