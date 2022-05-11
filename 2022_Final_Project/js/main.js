@@ -632,7 +632,7 @@
             //console.log(props)
             if (props.STATE_NAME){
                 var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
-            "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
+            "<br>" + " cases of CWD "+
             " in " + labelyear + "</h4>";
             }
              else {
