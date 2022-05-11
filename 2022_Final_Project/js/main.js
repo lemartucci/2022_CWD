@@ -117,17 +117,19 @@
 
         //Adding zoom functionality to the map
         var zoom = d3.zoom()
-            .scaleExtent([1, 2])
+            .scaleExtent([1, 3])
             .translateExtent([[0, 0], [width, height]])
             .on('zoom', function(event) {
                 map.selectAll('path')
                  .attr('transform', event.transform)
                 map.selectAll("circle")
                  .attr('transform', event.transform);
+
       });
     
-      map.call(zoom)
-        .call(zoom.scaleBy, 0.2);
+     map.call(zoom)
+        .call(zoom.scaleBy, 0.2)
+        .on("dblclick.zoom");
 
         //Data for map
         var promises = [
