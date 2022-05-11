@@ -55,10 +55,11 @@ body{
 }
 .controls p{
    margin-left: 290px;
-   margin-top: 70px;
+   margin-top: 25px;
    position: absolute;
    font-family: 'EB Garamond', serif;
    font-size: 15px;
+   font-weight: bold;
 }
 .lines{
    stroke-width: 1px;
@@ -70,12 +71,12 @@ body{
    text-anchor: middle;
 }
 .propLegend{
-  padding-top: 95px;
-  padding-left: 260px;
+  padding-top: 80px;
+  padding-left: 270px;
 }
 .propLegend .text{
-   padding-top: 95px;
-   padding-left: 400px;
+   padding-top: 0px;
+   padding-left: 425px;
  }
 .colorLegend {
    height: 50px;
@@ -91,16 +92,15 @@ body{
    font-size: 0.9em;
 }
 .graph{
-   margin-top: 250px;
-   margin-right: 20px;
-   margin-left: 1%;
+   margin-top: 15px;
+   margin-left: 58%;
+   margin-right: 200px;
    border: medium solid #C3C9C6;
    background-color: white; 
    float: left;
    border-radius: 10px;
    position: absolute;
-   font-size: 15;
-   opacity: 0.8;
+   opacity: 0.9;
 }
 g text{
    color:#5E5E5E;
@@ -162,8 +162,8 @@ path {
 /*dropdowns*/
 .dropdown{
    position: absolute;
-    top: 80px;
-    left: 100px;
+    top: 25px;
+    left: 20px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
     font-size: 1em;
@@ -174,9 +174,9 @@ path {
     color: #5E5E5E;
 }
 .dropdown2{
-   position: absolute;
-    top: 80px;
-    left: 200px;
+    position: absolute;
+    top: 25px;
+    left: 130px;
     z-index: 10;
     font-family: 'EB Garamond', serif;
     font-size: 1em;
@@ -184,6 +184,19 @@ path {
     padding: 2px;
     border: 2px solid #C3C9C6;   
     border-radius: 6px;
+    color: #5E5E5E;
+}
+.zoomButton{
+   position: absolute;
+   top: 80px;
+    left: 800px;
+    z-index: 10;
+    font-family: 'EB Garamond', serif;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 2px;
+    border: 2px solid #C3C9C6;   
+    border-radius: 8px;
     color: #5E5E5E;
 }
 

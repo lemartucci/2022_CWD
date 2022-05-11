@@ -93,10 +93,10 @@
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
-            .center([-2, 42.5])//centered on Midwest states
+            .center([6, 43])//centered on Midwest states
             .rotate([92, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
-            .scale(3300)
+            .scale(3250)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
@@ -104,14 +104,21 @@
 
         //Adding zoom functionality to the map
         var zoom = d3.zoom()
-            .scaleExtent([1, 3])
+            .scaleExtent([1, 2])
             .translateExtent([[0, 0], [width, height]])
             .on('zoom', function(event) {
                 map.selectAll('path')
                  .attr('transform', event.transform)
                 map.selectAll("circle")
                  .attr('transform', event.transform);
-
+        
+        /*var zoomButton = d3
+                 .select(".controls")
+                 .attr("class", "zoomButton")
+                 .text("+")
+                 .enter()
+                 .select("button")
+                    .on("click", zoom);*/
       });
     
      map.call(zoom)
@@ -309,7 +316,7 @@
         /////GRAPH/////
 
         function setGraph(){
-            var w= 500,
+            var w= 600,
                 h= 200;
             var graph = d3.select("#graph")
                 .append("svg")
@@ -318,7 +325,7 @@
                 .attr("class", "graph");
            
                 var margin = {top: 15, right: 25, bottom: 35, left: 25},
-                width = 500 - margin.left - margin.right,
+                width = 600 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
                 
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
@@ -469,7 +476,6 @@
                 .on("change", function () {
                     changeAttribute(this.value)  
                 });
-                
 
             //add initial option
             var titleOption = dropdown
