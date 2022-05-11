@@ -36,7 +36,6 @@ body{
    font-family: 'EB Garamond', serif;
    border-radius: 15px;
 }
-
 .infolabel h3 {
    margin: 0 20px 0 0;
    padding: 0;
@@ -46,6 +45,7 @@ body{
    font-size: 17pt;
    color: white;
 }
+
 /*controls, graph*/
 .controls{
    margin-left: 20px;
@@ -125,11 +125,11 @@ g{
    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
    transition: opacity .2s;
  }
- /* Mouse-over effects */
+ 
  #slider:hover {
-   opacity: 1; /* Fully shown on mouse-over */
+   opacity: 1; 
  }
- /* The slider handle */
+
  #slider:-webkit-slider-thumb {
    -webkit-appearance: none; /* Override default look */
    appearance: none;
@@ -157,7 +157,6 @@ path {
    stroke-width: 1;
    shape-rendering: crispEdges;
 }
-
 
 /*dropdowns*/
 .dropdown{
@@ -305,35 +304,6 @@ strong{
    font-size: 18px;
 }
 
-/*help popup*/
-.help{
-   background-color: #486052;
-   color: white;
-   width: 200px;
-   box-shadow: 4px 4px 4px #999;
-   border-radius: 14px;
-   padding: 10px 10px;
-   padding-bottom: 20px;
-   position: absolute;
-   text-align: center;
-   left: 18%;
-   top: 15%;
-}
-.help button{
-   display: block;
-   margin:  0 0 10px auto;
-   background-color: transparent;
-   font-size: 18px;
-   color: #486052;
-   background: white;
-   border-radius: 100%;
-   width: 20px;
-   height: 20px;
-   border: none;
-   outline: none;
-   cursor: pointer;
-}
-
 /*popup*/
 .popup{
     background-color: white;
@@ -350,6 +320,7 @@ strong{
     text-align: center;
     font-size: 20px;
     box-shadow: 4px 4px 4px #999;
+    position: absolute;
 }
 .popup button{
    display: block;

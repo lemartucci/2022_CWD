@@ -1,7 +1,8 @@
 //First line of main.js...wrap everything in a self-executing anonymous function to move to local scope
 (function(){
 
-    //pseudo-global variables
+    /////DEFINE VARIABLES IN A GLOBAL SCOPE/////
+
         var attrArray=["y2005", "y2010", "y2015", "y2020"]
         var yearExpressed = attrArray[0];
 
@@ -15,23 +16,12 @@
 
         var labelyear = '2005';
             
-
         var color = d3.scaleOrdinal(d3.schemeTableau10);
-
-        //color classes as global variable
-        var colorClasses = [
-            "#edf8fb",
-            "#b2e2e2",
-            "#2ca25f",
-            "#006d2c"
-        ];
 
     window.onload = setMap();
 
 
     /////POPUP CREATION/////    
-
-
 
     //creates info popup upon entering page
     window.addEventListener("load", function(){
@@ -104,7 +94,7 @@
 
         //Adding zoom functionality to the map
         var zoom = d3.zoom()
-            .scaleExtent([1, 3])
+            .scaleExtent([1, 2])
             .translateExtent([[0, 0], [width, height]])
             .on('zoom', function(event) {
                 map.selectAll('path')
@@ -115,7 +105,7 @@
       });
     
      map.call(zoom)
-        .call(zoom.scaleBy, 0.2)
+        .call(zoom.scaleBy, 0.3)
         .on("dblclick.zoom");
 
         //Data for map
@@ -255,7 +245,6 @@
             setGraph();
             createLegend();
             makeSlider();
-            //changeColor();
         }
 
         /////SLIDER/////
