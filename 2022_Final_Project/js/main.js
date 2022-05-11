@@ -13,6 +13,9 @@
 
         var colorScale;
 
+        var labelyear = '2005';
+            
+
         var color = d3.scaleOrdinal(d3.schemeTableau10);
 
         //color classes as global variable
@@ -98,17 +101,34 @@
             .attr("class", "map")
             .attr("width", width)
             .attr("height", height);
+           
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
             .center([-2, 42.5])//centered on Midwest states
             .rotate([92, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
-            .scale(3000)
+            .scale(3300)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
             .projection(projection);//Applies projection to the data
+
+        //Adding zoom functionality to the map
+        var zoom = d3.zoom()
+            .scaleExtent([1, 3])
+            .translateExtent([[0, 0], [width, height]])
+            .on('zoom', function(event) {
+                map.selectAll('path')
+                 .attr('transform', event.transform)
+                map.selectAll("circle")
+                 .attr('transform', event.transform);
+
+      });
+    
+     map.call(zoom)
+        .call(zoom.scaleBy, 0.2)
+        .on("dblclick.zoom");
 
         //Data for map
         var promises = [
@@ -459,9 +479,9 @@
                 .append("select")
                 .attr("class", "dropdown")
                 .on("change", function () {
-                    changeAttribute(this.value)
-                    //changeLine();
+                    changeAttribute(this.value)  
                 });
+                
 
             //add initial option
             var titleOption = dropdown
@@ -488,7 +508,8 @@
         function changeAttribute(attribute) {
             //change the expressed attribute
             expressed = attribute;
-        
+            
+            labelyear = attribute.replaceAll("y"," ");
             //resize circles
             var points = d3
                 .selectAll(".points")
@@ -609,11 +630,11 @@
         //function to create dynamic label
         function setLabel(props){
             //d3.select(".infolabel").remove();
-            console.log(props)
+            //console.log(props)
             if (props.STATE_NAME){
                 var labelAttribute = "<h4>" + "In " + props.STATE_NAME + " there were "+ props[expressed]+
-            "<br>" + " cases of CWD and "+ typeExpressed.replaceAll("_"," ") +
-            " in " + yearExpressed.replaceAll("y"," ") + "</h4>";
+            "<br>" + " cases of CWD "+
+            " in " + labelyear + "</h4>";
             }
              else {
                 var labelAttribute = "<h4>" + props.key + "</h4>";
