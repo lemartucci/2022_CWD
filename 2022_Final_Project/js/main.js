@@ -83,37 +83,15 @@
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
-            .center([5, 43])//centered on Midwest states
+            .center([6, 42.5])//centered on Midwest states
             .rotate([92, 0, 0])
-            .parallels([45, 38])//Standard parallels (latitudes)
-            .scale(3250)
+            .parallels([45, 39])//Standard parallels (latitudes)
+            .scale(3150)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
             .projection(projection);//Applies projection to the data
-
-        //Adding zoom functionality to the map
-        var zoom = d3.zoom()
-            .scaleExtent([1, 2])
-            .translateExtent([[0, 0], [width, height]])
-            .on('zoom', function(event) {
-                map.selectAll('path')
-                 .attr('transform', event.transform)
-                map.selectAll("circle")
-                 .attr('transform', event.transform);
-        
-        /*var zoomButton = d3
-                 .select(".controls")
-                 .attr("class", "zoomButton")
-                 .text("+")
-                 .enter()
-                 .select("button")
-                    .on("click", zoom);*/
-      });
     
-     map.call(zoom)
-        .call(zoom.scaleBy, 0.1)
-        .on("dblclick.zoom");
 
         //Data for map
         var promises = [
@@ -345,7 +323,7 @@
                           
                         );
 
-                      // set the colour scale
+                      // set the color scale
                       var color = d3.scaleOrdinal().domain(data).range(["#543005","#bf812d","#80cdc1","#35978f","#003c30"]);
 
                       legendSpace = width/dataNest.length; // spacing for the legend
@@ -396,7 +374,7 @@
                         .call(d3.axisLeft(y));
             });
         }
-
+/*
         /////MAP LEGENDS/////
 
        function createLegend(){
@@ -420,7 +398,7 @@
 
                 //Creating a nested legend
                 propLegend
-                    .selectAll("legend")
+                    .selectAll(".legend")
                     .data(dataValues)
                     .join("circle")
                     .attr("cx", xCircle)
@@ -456,6 +434,12 @@
                         .append("svg")
                         .attr("class", "backgroundLegend");
         };
+
+        */
+
+        var backgroundLegend = d3.select("backgroundLegend")
+                        .append("svg")
+                        .attr("class", "backgroundLegend");
 
         /////DROPDOWNS/////
 
@@ -589,11 +573,11 @@
                 //change stroke
                
                 var selectedpoint = d3.selectAll("." + props.STATE_NAME)
-                    .style("stroke", "#536D5E")
+                    .style("stroke", "#898989")
                     .style("stroke-width", "4")
                     
                 var selectedline = d3.selectAll("." + props.key)
-                    .style("stroke", "#536D5E")
+                    .style("stroke", "#898989")
                     .style("stroke-width", "4");
                 
                 //setLabel(props)
