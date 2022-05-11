@@ -106,10 +106,10 @@
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
-            .center([0, 42.5])//centered on Midwest states
-            .rotate([92, 0, 0])
+            .center([0,43])//centered on Midwest states
+            .rotate([90, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
-            .scale(3000)
+            .scale(3300)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
