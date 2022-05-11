@@ -219,8 +219,6 @@
                 };                                        
                 
             setGraph();
-            createLegend();
-            makeSlider();
         }
 
         /////SLIDER/////

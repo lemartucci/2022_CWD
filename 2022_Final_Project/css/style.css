@@ -60,7 +60,6 @@ body{
 .controls{
    margin-left: 20px;
    border-radius: 10px;
-   opacity: 0.8;
    position: absolute;
 }
 .backgroundLegend p{
