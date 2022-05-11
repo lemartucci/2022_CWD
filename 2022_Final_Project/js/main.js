@@ -220,54 +220,6 @@
                 
             setGraph();
         }
-
-        /////SLIDER/////
-
-        function makeSlider(){
-
-            onload = function() {
-                var $ = function(id) { return document.getElementById(id); };
-                $('slider').oninput = function() { $('range').innerHTML = this.value; };
-                $('slider').oninput();
-              };
-
-            var slider = d3.select("#slider")
-                .attr("type", "range")
-                .attr("min", 2005)
-                .attr("max", 2020)
-                .attr("step", 5)
-                .on("input", function() {
-                    var year = this.value;
-                    update(year);
-                });
-
-            function update(expressed){
-                slider.property("value", expressed);
-                d3.selectAll(".points")
-                .transition()
-                .duration(1000)
-                .attr("class", function(d){
-                return "points " + d.properties.STATE_NAME;
-                })
-                .attr("r", function(d){
-                    
-                    var area= d.properties[expressed]*6;
-                    return Math.sqrt(area/Math.PI)
-                })
-                .style("fill", function(d){
-                    var value = d.properties[colorExpressed]; 
-                    if(value) {                
-                        return colorScale(value);            
-                    } else {                
-                        return "#ccc";            
-                    } 
-                })  
-                .attr("id", function(d){
-                    return d.STATE_NAME;
-                })
-                .style("stroke", "darkgrey") //dark grey border of circle     
-            }
-        }
     
         /////GRAPH/////
 
