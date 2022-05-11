@@ -30,19 +30,7 @@
 
 
     /////POPUP CREATION/////    
-    
-    //creates help popup 
-    window.addEventListener("load", function(){
-        setTimeout(
-            function open(event){
-                document.querySelector(".help").style.display = "block"; 
-            }
-        )
-    });      
-   
-    document.querySelector("#close").addEventListener("click", function(){
-        document.querySelector(".help").style.display = "none";
-    });
+
 
 
     //creates info popup upon entering page
