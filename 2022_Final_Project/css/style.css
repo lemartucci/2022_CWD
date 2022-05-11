@@ -16,13 +16,14 @@ body{
    height: 100%;
 } 
 .midwestBackground{
-   fill: white;
+   fill: #333333;
    stroke: #C3C9C6;
    stroke-width: 1.5px;
 } 
 .usa{
-   fill: darkgrey;
-   stroke:#C3C9C6;
+   fill: white;
+   stroke:white;
+   fill-opacity: 0.7;
 }
 .infolabel {
    position: absolute;
@@ -47,14 +48,9 @@ body{
 }
 /*controls, graph*/
 .controls{
-   height: 200px;
-   width: 450px;
-   margin-top: 90px;
    margin-left: 20px;
-   border: medium solid #C3C9C6;
-   background-color: white;  
-   float: left;
    border-radius: 10px;
+   opacity: 0.8;
    position: absolute;
 }
 .controls p{
@@ -68,7 +64,8 @@ body{
    stroke-width: 1px;
 }
 .legend {
-   font-size: 16px;
+   font-size: 12px;
+   font-family: 'EB Garamond', serif;
    font-weight: bold;
    text-anchor: middle;
 }
@@ -83,8 +80,15 @@ body{
 .colorLegend {
    height: 50px;
    width: 300px;
-   margin-left: 100px;
-   margin-top: 100px;
+   margin-left: 1%;
+   margin-top: 35%;
+   position: absolute;
+ }
+ .colorLegend2 {
+   height: 50px;
+   width: 300px;
+   margin-left: 18%;
+   margin-top: 35%;
    position: absolute;
  }
  .legendBox {
@@ -94,15 +98,16 @@ body{
    font-size: 0.9em;
 }
 .graph{
-   margin-top: 450px;
+   margin-top: 250px;
    margin-right: 20px;
-   margin-left: 90px;
+   margin-left: 1%;
    border: medium solid #C3C9C6;
    background-color: white; 
    float: left;
-   border-radius: 0px;
+   border-radius: 10px;
    position: absolute;
    font-size: 15;
+   opacity: 0.8;
 }
 g text{
    color:#5E5E5E;

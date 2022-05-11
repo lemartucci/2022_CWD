@@ -17,11 +17,10 @@
 
         //color classes as global variable
         var colorClasses = [
-            "#f7f7f7",
-            "#cccccc",
-            "#969696",
-            "#636363",
-            "#252525"
+            "#edf8fb",
+            "#b2e2e2",
+            "#2ca25f",
+            "#006d2c"
         ];
 
     window.onload = setMap();
@@ -61,11 +60,11 @@
     //function to create color scale generator
     function makeColorScale(data){
         var colorClasses = [
-            "#f7f7f7",
-            "#cccccc",
-            "#969696",
-            "#636363",
-            "#252525"
+            "#edf8fb",
+            "#b2e2e2",
+            "#66c2a4",
+            "#2ca25f",
+            "#006d2c"
         ];
 
         //create color scale generator
@@ -102,7 +101,7 @@
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
-            .center([0, 42.5])//centered on Midwest states
+            .center([-2, 42.5])//centered on Midwest states
             .rotate([92, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
             .scale(3000)
@@ -242,7 +241,7 @@
                     
                 })
                 //.on("mousemove", moveLabel)
-                .style("stroke", "#536D5E") //dark green border of circle          
+                .style("stroke", "white") //dark green border of circle          
                 };                                        
                 
             setGraph();
@@ -372,7 +371,7 @@
                         
                           // Add the Legend
                          graph.append("text")
-                            .attr("x", (legendSpace/2.4)+i*legendSpace)  // space legend
+                            .attr("x", (legendSpace/2.6)+i*legendSpace)  // space legend
                             .attr("y", height + (margin.bottom)- 160)
                             .attr("class", "legend" + d.key)    // style the legend
                             .style("fill", function() { // Add the colours dynamically  
