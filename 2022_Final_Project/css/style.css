@@ -54,11 +54,11 @@ body{
    position: absolute;
 }
 .controls p{
-   margin-left: 290px;
-   margin-top: 25px;
+   margin-left: 73px;
+   margin-top: 60px;
    position: absolute;
    font-family: 'EB Garamond', serif;
-   font-size: 15px;
+   font-size: 16px;
    font-weight: bold;
 }
 .lines{
@@ -71,18 +71,18 @@ body{
    text-anchor: middle;
 }
 .propLegend{
-  padding-top: 80px;
-  padding-left: 270px;
+  padding-top: 100px;
+  padding-left: 57px;
 }
 .propLegend .text{
    padding-top: 0px;
-   padding-left: 425px;
+   padding-left: 20px;
  }
 .colorLegend {
    height: 50px;
    width: 300px;
    margin-left: 1%;
-   margin-top: 30%;
+   margin-top: 200px;
    position: absolute;
  }
  .legendBox {
@@ -92,15 +92,15 @@ body{
    font-size: 0.9em;
 }
 .graph{
-   margin-top: 15px;
-   margin-left: 58%;
-   margin-right: 200px;
+   margin-top: 25px;
+   margin-left: 56%;
+   margin-right: 20px;
    border: medium solid #C3C9C6;
    background-color: white; 
    float: left;
    border-radius: 10px;
    position: absolute;
-   opacity: 0.9;
+   opacity: 0.95;
 }
 g text{
    color:#5E5E5E;

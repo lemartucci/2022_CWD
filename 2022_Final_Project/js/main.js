@@ -83,7 +83,7 @@
 
         //create Albers equal area conic projection centered on Midwest
         var projection = d3.geoAlbers()
-            .center([6, 43])//centered on Midwest states
+            .center([4.5, 43])//centered on Midwest states
             .rotate([92, 0, 0])
             .parallels([45, 38])//Standard parallels (latitudes)
             .scale(3250)
@@ -112,7 +112,11 @@
       });
     
      map.call(zoom)
+<<<<<<< Updated upstream
         .call(zoom.scaleBy, 0.3)
+=======
+        .call(zoom.scaleBy, 0.1)
+>>>>>>> Stashed changes
         .on("dblclick.zoom");
 
         //Data for map
@@ -305,7 +309,7 @@
         /////GRAPH/////
 
         function setGraph(){
-            var w= 600,
+            var w= 620,
                 h= 200;
             var graph = d3.select("#graph")
                 .append("svg")
@@ -314,7 +318,7 @@
                 .attr("class", "graph");
            
                 var margin = {top: 15, right: 25, bottom: 35, left: 25},
-                width = 600 - margin.left - margin.right,
+                width = 620 - margin.left - margin.right,
                 height = 200 - margin.top - margin.bottom;
                 
                 d3.csv("Data/Positive_Cases_For_Chart.csv").then(function(data) {
